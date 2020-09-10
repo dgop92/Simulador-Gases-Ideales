@@ -6,6 +6,10 @@ public class R {
     
         welcome_message,
         app_name,
+        new_key,
+        wow_key,
+        the_end,
+        alpha
     }
 
     public enum colors {
