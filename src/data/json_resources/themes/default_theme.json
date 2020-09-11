@@ -1,0 +1,12 @@
+{
+	"primary": "#01579b",
+	"dark": "#002f6c",
+	"light": "#4f83cc",
+
+	"primary_text": "#212121",
+	"secondary_text": "#757575",
+	"divider": "#BDBDBD",
+	
+	"semi_white_text": "#e6e6e6",
+	"white_text": "#FFFFFF"
+}

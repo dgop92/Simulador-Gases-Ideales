@@ -9,12 +9,29 @@ public class R {
         new_key,
         wow_key,
         the_end,
-        alpha
+        alpha,
+        new_string
     }
 
     public enum colors {
     
-        primary_color,
-        secondary_color
+        primary,
+        light,
+        dark,
+
+        primary_text,
+        secondary_text,
+        divider,
+
+        semi_white_text,
+        white_text
+    }
+
+
+    public static class fonts{
+
+        public final static String roboto_regular = "/Roboto-Regular.ttf"; 
+        public final static String montserrat_regular = "/Montserrat-Regular.ttf"; 
+        
     }
 }

@@ -10,8 +10,8 @@ import com.github.cliftonlabs.json_simple.JsonException;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsoner;
 
+import resources.R.colors;
 import resources.R.strings;
-import resources.ResourcesLoader;
 
 public class JsonResourceBuilder {
 
@@ -29,16 +29,6 @@ public class JsonResourceBuilder {
         stringFolder.mkdirs();
         themesFolder.mkdirs();
     }
-
-    public void readStringEnum() {
-
-        strings stringsData[] = strings.values();
-        for (strings string : stringsData) {
-            System.out.println(string);
-        }
-    }
-
-    // strings stringsData[] = strings.values();
 
     public JsonObject getOldJsonObject(String resourcePath) throws Exception {
 
@@ -88,6 +78,34 @@ public class JsonResourceBuilder {
             System.out.println("An unexpected error occurred");
         } catch (Exception e){
             //log error as well
+            System.out.println(e);
+        }
+
+    }
+
+    public void createThemeJson(){
+
+        String fileThemePath = AppResources.getFullThemesFilePath();
+
+        try {
+            JsonObject themeJsonObject = getOldJsonObject(fileThemePath);
+            FileWriter fileWriter = new FileWriter(fileThemePath);
+
+            colors colorsKeys[] = colors.values();
+            for (colors color : colorsKeys) {
+                String colorName = color.name();
+                if (!themeJsonObject.containsKey(colorName)){
+                    themeJsonObject.put(colorName, "value");
+                }
+            }
+
+            fileWriter.write(Jsoner.prettyPrint(themeJsonObject.toJson()));
+            fileWriter.flush();
+            fileWriter.close();
+
+        } catch (IOException e) {
+            System.out.println("An unexpected error occurred");
+        } catch (Exception e){
             System.out.println(e);
         }
 

@@ -1,6 +1,12 @@
 package resources;
 
 import java.io.File;
+import java.awt.Color;
+
+import com.github.cliftonlabs.json_simple.JsonObject;
+
+import resources.R.colors;
+import resources.R.strings;
 
 public class AppResources {
     
@@ -13,11 +19,15 @@ public class AppResources {
     public final static String JSON_RESOURCES_PATH = "/json_resources";
     public final static String STRINGS_PATH = "/json_resources/strings";
     public final static String THEMES_PATH = "/json_resources/themes";
-    public final static String FONTS_PATH = "/images";
+    public final static String FONTS_PATH = "/fonts";
 
     private final static String DEFAULT_STRINGS_NAME = "strings_es.json";
     private final static String DEFAULT_THEME_NAME = "default_theme.json";
 
+    public static JsonObject stringsJsonObject = null;
+    public static JsonObject themeJsonObject = null;
+
+    // ---------- Paths ----------- //
 
     public static String getFullImagesPath(){
         return getConcatPath(BASE_PATH, IMAGES_PATH);
@@ -53,6 +63,23 @@ public class AppResources {
     
     public static String getFullThemesFilePath() {
         return getConcatPath(getFullThemesPath(), DEFAULT_THEME_NAME);
+    }
+
+    // ---------- Resources Getters ----------- //
+
+    //Note: Check the type of the object to avoid execptions
+
+    public static String getString(strings key){
+        return (String)stringsJsonObject.getOrDefault((String) key.name(), "None");
+    }
+
+    public static Color getColor(colors colorKey) {
+        String hexColor = (String)stringsJsonObject.getOrDefault((String) colorKey.name(), "#FFFFFF");
+        try{
+            return Color.decode(hexColor);
+        }catch(NumberFormatException e){
+            return new Color(255, 255, 255);
+        }
     }
 
     public static String getConcatPath(String basePath, String childrenPath) {
