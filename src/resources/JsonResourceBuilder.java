@@ -11,24 +11,20 @@ import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsoner;
 
 import resources.R.strings;
+import resources.ResourcesLoader;
 
 public class JsonResourceBuilder {
 
-    private final String STRINGS_FOLDER_PATH = "src/data/resources/strings";
-    private final String THEMES_FOLDER_PATH = "src/data/resources/themes";
-
-    private final String DEFAULT_STRINGS_NAME = "strings_es.json";
-    private final String DEFAULT_THEME_NAME = "default_theme.json";
-
+    
     public JsonResourceBuilder() {
 
         createResourcesFolder();
     }
 
     private void createResourcesFolder() {
-
-        File stringFolder = new File(STRINGS_FOLDER_PATH);
-        File themesFolder = new File(THEMES_FOLDER_PATH);
+        
+        File stringFolder = new File(AppResources.getFullStringsPath());
+        File themesFolder = new File(AppResources.getFullThemesPath());
 
         stringFolder.mkdirs();
         themesFolder.mkdirs();
@@ -66,20 +62,10 @@ public class JsonResourceBuilder {
 
     }
 
-    public void testOld() {
-        String fileStringPath = STRINGS_FOLDER_PATH + "/" + DEFAULT_STRINGS_NAME;
-
-        try {
-            JsonObject stringJsonObject = getOldJsonObject(fileStringPath);
-            System.out.println((String)stringJsonObject.get(R.strings.app_name.name()));
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
+    
     public void createStringJson(){
 
-        String fileStringPath = STRINGS_FOLDER_PATH + "/" + DEFAULT_STRINGS_NAME; 
+        String fileStringPath = AppResources.getFullStringFilePath();
 
         try {
             JsonObject stringJsonObject = getOldJsonObject(fileStringPath);
