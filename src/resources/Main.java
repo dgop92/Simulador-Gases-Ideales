@@ -8,16 +8,18 @@ public class Main {
     
     public static void main(String[] args) {
         
-        /* ResourcesLoader resourcesLoader = new ResourcesLoader();
+        ResourcesLoader resourcesLoader = new ResourcesLoader();
         resourcesLoader.loadResources();
 
         if(resourcesLoader.AreAllResourcesLoaded()){
             System.out.println(AppResources.getString(R.strings.app_name));
+            TestInterface testInterface = new TestInterface();
+            testInterface.setVisible(true);
         }else{
             System.out.println(resourcesLoader.getErrorMessage());
-        } */
+        }
 
-        Scanner sc = new Scanner(System.in);
+        /* Scanner sc = new Scanner(System.in);
         JsonResourceBuilder jsonResourceBuilder = new JsonResourceBuilder();
         System.out.println("1: Create String Json file, 2: Themes: ");
         System.out.print("Ingrese:   ");
@@ -31,7 +33,7 @@ public class Main {
         }else{
             System.out.println("Bye");
         }
-        sc.close();
+        sc.close(); */
 
     }
 }

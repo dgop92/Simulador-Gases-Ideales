@@ -34,4 +34,10 @@ public class R {
         public final static String montserrat_regular = "/Montserrat-Regular.ttf"; 
         
     }
+    
+    public static class icons{
+        
+        public final static String ok_icon = "/icons8-ok-24.png"; 
+        
+    }
 }

@@ -1,6 +1,10 @@
 package resources;
 
 import java.io.File;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
 import java.awt.Color;
 
 import com.github.cliftonlabs.json_simple.JsonObject;
@@ -74,12 +78,18 @@ public class AppResources {
     }
 
     public static Color getColor(colors colorKey) {
-        String hexColor = (String)stringsJsonObject.getOrDefault((String) colorKey.name(), "#FFFFFF");
+        String hexColor = (String)themeJsonObject.getOrDefault((String) colorKey.name(), "#FFFFFF");
+        System.out.println(hexColor);
         try{
             return Color.decode(hexColor);
         }catch(NumberFormatException e){
-            return new Color(255, 255, 255);
+            return new Color(255, 0, 255);
         }
+    }
+
+    public static ImageIcon getIcon(String iconName){
+        String stringPath = getConcatPath(getFullIconsPath(), iconName);
+        return new ImageIcon(stringPath);
     }
 
     public static String getConcatPath(String basePath, String childrenPath) {
