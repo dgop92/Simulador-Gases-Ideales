@@ -1,11 +1,5 @@
 package resources;
 
-import java.io.IOException;
-import java.io.InputStream;
-
-import java.awt.Font;
-import java.awt.FontFormatException;
-
 public class TestInterface extends javax.swing.JFrame {
 
     public TestInterface() {
@@ -16,26 +10,17 @@ public class TestInterface extends javax.swing.JFrame {
 
     private void customInitComponents() {
 
-        /* InputStream is = getClass().getResourceAsStream("/data/fonts/Montserrat-Bold.ttf");
-        try {
-            Font font = Font.createFont(Font.TRUETYPE_FONT, is);
-            Font sizedFont = font.deriveFont(18f);
-            header_title.setFont(sizedFont);
-        } catch (FontFormatException e) {
-            System.out.println("error 1");
-        } catch (IOException e) {
-            System.out.println("error 2");
-        } */
-
         header.setBackground(AppResources.getColor(R.colors.primary));
+        
         header_title.setText(AppResources.getString(R.strings.app_name));
         header_title.setForeground(AppResources.getColor(R.colors.white_text));
+        header_title.setFont(AppResources.getFont(R.fonts.montserrat_regular, 18f));
+
         start_button.setBackground(AppResources.getColor(R.colors.dark));
-        /* star_button_title.setIcon(new javax.swing.ImageIcon(
-            getClass().getResource("/data/icons/icons8-ok-24.png")
-        )); */
+    
         star_button_title.setIcon(AppResources.getIcon(R.icons.ok_icon));
         star_button_title.setForeground(AppResources.getColor(R.colors.white_text));
+        star_button_title.setFont(AppResources.getFont(R.fonts.roboto_regular, 16f));
         
     }
 

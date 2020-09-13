@@ -1,9 +1,8 @@
 {
-	"new_key":"néw",
-	"app_name":"PhotoClass",
-	"wow_key":"wow",
-	"alpha":"the alpha",
-	"welcome_message":"no te borres",
-	"the_end":"endo",
-	"new_string":"value"
+	"app_name": "Simulador de Gases Ideales",
+
+	"main_start_button": "start",
+	"main_settings_button": "settings",
+	"main_about_us_button": "about us"
+	
 }

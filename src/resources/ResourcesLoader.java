@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
+import java.awt.Font;
+import java.awt.FontFormatException;
 
 import com.github.cliftonlabs.json_simple.JsonException;
 import com.github.cliftonlabs.json_simple.JsonObject;
@@ -28,7 +31,8 @@ public class ResourcesLoader {
             checkFoldersExistence();
             loadStrings();
             loadTheme();
-
+            loadFonts();
+            
             areAllResourcesLoaded = true;
         } catch (ResourceNotFoundException e) {
             errorMessage = e.toString();
@@ -61,8 +65,8 @@ public class ResourcesLoader {
         return new File(filePath).exists();
     }
 
-    //Check emptyness may help
-    public void loadStrings() throws ResourceNotLoadedException, ResourceNotFoundException{
+    // Check emptyness may help
+    private void loadStrings() throws ResourceNotLoadedException, ResourceNotFoundException {
 
         String stringsPath = AppResources.getFullStringFilePath();
 
@@ -80,7 +84,7 @@ public class ResourcesLoader {
         }
     }
 
-    public void loadTheme() throws ResourceNotLoadedException, ResourceNotFoundException{
+    private void loadTheme() throws ResourceNotLoadedException, ResourceNotFoundException {
 
         String themesPath = AppResources.getFullThemesFilePath();
 
@@ -92,10 +96,37 @@ public class ResourcesLoader {
         } catch (FileNotFoundException e) {
             throw new ResourceNotFoundException(themesPath);
         } catch (IOException e) {
-            throw new ResourceNotLoadedException(themesPath, "");
+            throw new ResourceNotLoadedException(themesPath);
         } catch (JsonException e) {
             throw new ResourceNotLoadedException(themesPath, "Couldn't parse the theme json file");
         }
+    }
+
+    private void loadFonts() throws ResourceNotLoadedException, ResourceNotFoundException{
+
+        HashMap<String, Font> customFonts = new HashMap<>();
+
+        for (String fontNamePath: AppResources.FONT_NAMES_PATH){
+            String fullFontNamePath = AppResources.getFullFontNamePath(fontNamePath);
+            System.out.println(fullFontNamePath);
+            File fontFile = new File(fullFontNamePath);
+
+            if (!fontFile.exists()){
+                throw new ResourceNotFoundException(fullFontNamePath);
+            }
+
+            try {
+                Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+                String javaFontName = fromFontNameToJavaName(fontNamePath);
+                customFonts.put(javaFontName, font);
+            } catch (FontFormatException | IOException e) {
+                throw new ResourceNotLoadedException(fullFontNamePath, "Couldn't read the font");
+            }
+
+        }
+
+        AppResources.customFonts = customFonts;
+
     }
 
     public String getErrorMessage(){
@@ -106,4 +137,9 @@ public class ResourcesLoader {
         return areAllResourcesLoaded;
     }
 
+    public String fromFontNameToJavaName(String fontName){
+
+        String fontNamePhase1 = fontName.toLowerCase().replace('-', '_');
+        return fontNamePhase1.substring(1, fontNamePhase1.indexOf('.'));
+    }
 }

@@ -4,13 +4,11 @@ public class R {
     
     public enum strings {
     
-        welcome_message,
         app_name,
-        new_key,
-        wow_key,
-        the_end,
-        alpha,
-        new_string
+        main_start_button,
+        main_settings_button,
+        main_about_us_button
+        
     }
 
     public enum colors {
@@ -27,11 +25,10 @@ public class R {
         white_text
     }
 
+    public enum fonts{
 
-    public static class fonts{
-
-        public final static String roboto_regular = "/Roboto-Regular.ttf"; 
-        public final static String montserrat_regular = "/Montserrat-Regular.ttf"; 
+        roboto_regular,
+        montserrat_regular
         
     }
     

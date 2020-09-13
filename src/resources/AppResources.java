@@ -2,14 +2,15 @@ package resources;
 
 import java.io.File;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-
+import java.util.HashMap;
+import java.awt.Font;
 import java.awt.Color;
 
 import com.github.cliftonlabs.json_simple.JsonObject;
 
 import resources.R.colors;
+import resources.R.fonts;
 import resources.R.strings;
 
 public class AppResources {
@@ -25,11 +26,18 @@ public class AppResources {
     public final static String THEMES_PATH = "/json_resources/themes";
     public final static String FONTS_PATH = "/fonts";
 
+    public final static String[] FONT_NAMES_PATH = {
+        "/Roboto-Regular.ttf",
+        "/Montserrat-Regular.ttf"
+    };
+
     private final static String DEFAULT_STRINGS_NAME = "strings_es.json";
     private final static String DEFAULT_THEME_NAME = "default_theme.json";
 
     public static JsonObject stringsJsonObject = null;
     public static JsonObject themeJsonObject = null;
+
+    public static HashMap<String, Font> customFonts;
 
     // ---------- Paths ----------- //
 
@@ -61,6 +69,10 @@ public class AppResources {
         return getConcatPath(BASE_PATH, FONTS_PATH);
     }
 
+    public static String getFullFontNamePath(String fontNamePath){
+        return getConcatPath(getFullFontsPath(), fontNamePath);
+    }
+
     public static String getFullStringFilePath() {
         return getConcatPath(getFullStringsPath(), DEFAULT_STRINGS_NAME);
     }
@@ -79,7 +91,6 @@ public class AppResources {
 
     public static Color getColor(colors colorKey) {
         String hexColor = (String)themeJsonObject.getOrDefault((String) colorKey.name(), "#FFFFFF");
-        System.out.println(hexColor);
         try{
             return Color.decode(hexColor);
         }catch(NumberFormatException e){
@@ -90,6 +101,18 @@ public class AppResources {
     public static ImageIcon getIcon(String iconName){
         String stringPath = getConcatPath(getFullIconsPath(), iconName);
         return new ImageIcon(stringPath);
+    }
+
+    public static Font getFont(fonts fontName, float fontSize){
+        Font baseFont = customFonts.getOrDefault(
+            fontName.name(), new Font("Tahoma", Font.PLAIN, 16));
+        return baseFont.deriveFont(fontSize);
+    }
+
+    public static Font getFont(fonts fontName, float fontSize, int fontStyle){
+        Font baseFont = customFonts.getOrDefault(
+            fontName.name(), new Font("Tahoma", Font.PLAIN, 16));
+        return baseFont.deriveFont(fontStyle, fontSize);
     }
 
     public static String getConcatPath(String basePath, String childrenPath) {
