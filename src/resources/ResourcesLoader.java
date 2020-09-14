@@ -108,7 +108,6 @@ public class ResourcesLoader {
 
         for (String fontNamePath: AppResources.FONT_NAMES_PATH){
             String fullFontNamePath = AppResources.getFullFontNamePath(fontNamePath);
-            System.out.println(fullFontNamePath);
             File fontFile = new File(fullFontNamePath);
 
             if (!fontFile.exists()){

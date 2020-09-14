@@ -99,8 +99,13 @@ public class AppResources {
     }
 
     public static ImageIcon getIcon(String iconName){
-        String stringPath = getConcatPath(getFullIconsPath(), iconName);
-        return new ImageIcon(stringPath);
+        String iconPath = getConcatPath(getFullIconsPath(), iconName);
+        return new ImageIcon(iconPath);
+    }
+
+    public static ImageIcon getImage(String imageName) {
+        String imagePath = getConcatPath(getFullIconsPath(), imageName);
+        return new ImageIcon(imagePath);
     }
 
     public static Font getFont(fonts fontName, float fontSize){
