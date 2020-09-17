@@ -52,7 +52,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <Component id="header" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="card_content_layout" pref="409" max="32767" attributes="0"/>
+                  <Component id="card_content_layout" pref="407" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -68,7 +68,7 @@
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout">
             <Property name="alignment" type="int" value="0"/>
             <Property name="horizontalGap" type="int" value="25"/>
-            <Property name="verticalGap" type="int" value="30"/>
+            <Property name="verticalGap" type="int" value="24"/>
           </Layout>
           <SubComponents>
             <Component class="javax.swing.JLabel" name="header_title">
@@ -79,7 +79,11 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/data/icons/menu_header_home.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Simulador de Gases Ideales"/>
+                <Property name="iconTextGap" type="int" value="10"/>
               </Properties>
             </Component>
           </SubComponents>

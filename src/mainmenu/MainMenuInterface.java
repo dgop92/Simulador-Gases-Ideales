@@ -4,24 +4,35 @@ import java.awt.CardLayout;
 import resources.AppResources;
 import resources.R;
 
-public class MainMenuInterface extends javax.swing.JFrame {
+public class MainMenuInterface extends javax.swing.JFrame implements MenuActions{
     
-    CardLayout contentCardLayout;
-    Home homeView;
-    Instructions instructionsView;
-    Settings settingsView;
+    private CardLayout contentCardLayout;
+    private Home homeView;
+    private Instructions instructionsView;
+    private Settings settingsView;
     
   
     public MainMenuInterface() {
         initComponents();
-        //AppResources.getColor(R.colors.dark);
+        initCustomResources();
         initCardLayout();
     }
     
+    private void initCustomResources(){
+        card_content_layout.setBackground(AppResources.getColor(R.colors.background_color));
+
+        header.setBackground(AppResources.getColor(R.colors.dark));
+        header_title.setForeground(AppResources.getColor(R.colors.white_text));
+        header_title.setFont(AppResources.getFont(R.fonts.montserrat_bold, 18));
+        header_title.setIcon(AppResources.getIcon(R.icons.menu_header_home));
+        header_title.setText(AppResources.getString(R.strings.app_name));
+
+    }
+    
     private void initCardLayout(){
-        homeView = new Home();
-        instructionsView = new Instructions();
-        settingsView = new Settings();
+        homeView = new Home(this);
+        instructionsView = new Instructions(this);
+        settingsView = new Settings(this);
         
         contentCardLayout = (CardLayout) (card_content_layout.getLayout());
         
@@ -31,6 +42,32 @@ public class MainMenuInterface extends javax.swing.JFrame {
         
         //The home view is the first view to be render
         contentCardLayout.show(card_content_layout, "homeview");
+    }
+    
+    @Override
+    public void setHomeView() {
+        contentCardLayout.show(card_content_layout, "homeview");
+        header_title.setIcon(AppResources.getIcon(R.icons.menu_header_home));
+        header_title.setText(AppResources.getString(R.strings.app_name));
+    }
+
+    @Override
+    public void setSettingView() {
+        contentCardLayout.show(card_content_layout, "settingsView");
+        header_title.setIcon(AppResources.getIcon(R.icons.menu_header_settings));
+        header_title.setText(AppResources.getString(R.strings.menu_settings_title));
+    }
+
+    @Override
+    public void setInstructionsView() {
+        contentCardLayout.show(card_content_layout, "instructionsView");
+        header_title.setIcon(AppResources.getIcon(R.icons.menu_header_instructions));
+        header_title.setText(AppResources.getString(R.strings.menu_instructions_title));
+    }
+
+    @Override
+    public void setAboutView() {
+        
     }
 
     
@@ -48,11 +85,13 @@ public class MainMenuInterface extends javax.swing.JFrame {
         parent_layout.setBackground(new java.awt.Color(248, 249, 250));
 
         header.setBackground(new java.awt.Color(0, 47, 108));
-        header.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 25, 30));
+        header.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 25, 24));
 
         header_title.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         header_title.setForeground(new java.awt.Color(255, 255, 255));
+        header_title.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/icons/menu_header_home.png"))); // NOI18N
         header_title.setText("Simulador de Gases Ideales");
+        header_title.setIconTextGap(10);
         header.add(header_title);
 
         card_content_layout.setBackground(new java.awt.Color(248, 249, 250));
@@ -70,7 +109,7 @@ public class MainMenuInterface extends javax.swing.JFrame {
             .addGroup(parent_layoutLayout.createSequentialGroup()
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(card_content_layout, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE))
+                .addComponent(card_content_layout, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

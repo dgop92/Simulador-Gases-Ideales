@@ -1,8 +1,10 @@
 {
 	"app_name": "Simulador de Gases Ideales",
 
-	"main_start_button": "start",
-	"main_settings_button": "settings",
-	"main_about_us_button": "about us"
+	"menu_start_title": "Empezar",
+	"menu_settings_title": "Configuraciones",
+	"menu_instructions_title": "Instrucciones",
+
+    "menu_back_home_title": "Regresar"
 	
 }

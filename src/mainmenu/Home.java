@@ -1,9 +1,45 @@
 package mainmenu;
 
-public class Home extends javax.swing.JPanel {
+import resources.AppResources;
+import resources.R;
 
-    public Home() {
+public class Home extends javax.swing.JPanel {
+    
+    //800, 410
+    private MenuActions menuActions;
+
+    public Home(MenuActions menuActions){
         initComponents();
+        this.menuActions = menuActions;
+        
+        initCustomResources();
+        
+    }
+    
+    private void initCustomResources(){
+        home_content_layout.setBackground(AppResources.getColor(R.colors.background_color));
+        //Inheritance from parent layout?
+        button_menu.setBackground(AppResources.getColor(R.colors.background_color));
+
+        start_button.setBackground(AppResources.getColor(R.colors.primary));
+        start_button_title.setForeground(AppResources.getColor(R.colors.white_text));
+        start_button_title.setFont(AppResources.getFont(R.fonts.roboto_regular, 16));
+        start_button_title.setIcon(AppResources.getIcon(R.icons.menu_play));
+        start_button_title.setText(AppResources.getString(R.strings.menu_start_title));
+
+        instructions_button.setBackground(AppResources.getColor(R.colors.primary));
+        instructions_button_title.setForeground(AppResources.getColor(R.colors.white_text));
+        instructions_button_title.setFont(AppResources.getFont(R.fonts.roboto_regular, 16));
+        instructions_button_title.setIcon(AppResources.getIcon(R.icons.menu_instructions));
+        instructions_button_title.setText(AppResources.getString(R.strings.menu_instructions_title));
+
+        settings_button.setBackground(AppResources.getColor(R.colors.primary));
+        settings_button_title.setForeground(AppResources.getColor(R.colors.white_text));
+        settings_button_title.setFont(AppResources.getFont(R.fonts.roboto_regular, 16));
+        settings_button_title.setIcon(AppResources.getIcon(R.icons.menu_settings));
+        settings_button_title.setText(AppResources.getString(R.strings.menu_settings_title));
+
+
     }
 
     @SuppressWarnings("unchecked")
@@ -25,31 +61,52 @@ public class Home extends javax.swing.JPanel {
         button_menu.setLayout(new java.awt.GridLayout(3, 1, 10, 15));
 
         start_button.setBackground(new java.awt.Color(1, 87, 155));
+        start_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        start_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                OnStartButton(evt);
+            }
+        });
         start_button.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 15, 10));
 
         start_button_title.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         start_button_title.setForeground(new java.awt.Color(255, 255, 255));
         start_button_title.setText("Empezar");
+        start_button_title.setIconTextGap(10);
         start_button.add(start_button_title);
 
         button_menu.add(start_button);
 
         instructions_button.setBackground(new java.awt.Color(1, 87, 155));
+        instructions_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        instructions_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                OnInstructionsButton(evt);
+            }
+        });
         instructions_button.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 15, 10));
 
         instructions_button_title.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         instructions_button_title.setForeground(new java.awt.Color(255, 255, 255));
         instructions_button_title.setText("Instrucciones");
+        instructions_button_title.setIconTextGap(10);
         instructions_button.add(instructions_button_title);
 
         button_menu.add(instructions_button);
 
         settings_button.setBackground(new java.awt.Color(1, 87, 155));
+        settings_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        settings_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                OnSettingsButton(evt);
+            }
+        });
         settings_button.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 15, 10));
 
         settings_button_title.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         settings_button_title.setForeground(new java.awt.Color(255, 255, 255));
         settings_button_title.setText("Configuraciones");
+        settings_button_title.setIconTextGap(10);
         settings_button.add(settings_button_title);
 
         button_menu.add(settings_button);
@@ -59,7 +116,7 @@ public class Home extends javax.swing.JPanel {
         home_content_layoutLayout.setHorizontalGroup(
             home_content_layoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, home_content_layoutLayout.createSequentialGroup()
-                .addContainerGap(511, Short.MAX_VALUE)
+                .addContainerGap(520, Short.MAX_VALUE)
                 .addComponent(button_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(69, 69, 69))
         );
@@ -82,6 +139,18 @@ public class Home extends javax.swing.JPanel {
             .addComponent(home_content_layout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void OnStartButton(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OnStartButton
+        // TODO Instance here AppControl or ControlInterface
+    }//GEN-LAST:event_OnStartButton
+
+    private void OnInstructionsButton(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OnInstructionsButton
+        menuActions.setInstructionsView();
+    }//GEN-LAST:event_OnInstructionsButton
+
+    private void OnSettingsButton(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OnSettingsButton
+        menuActions.setSettingView();
+    }//GEN-LAST:event_OnSettingsButton
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
