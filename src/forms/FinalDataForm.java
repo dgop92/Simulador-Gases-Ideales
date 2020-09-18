@@ -5,11 +5,16 @@ public class FinalDataForm extends DataForm {
     private String p2, v2, t2;
     private TransformationType transformationType;
 
+    private boolean isDataValid;
+
     public FinalDataForm(String p2, String v2, String t2, TransformationType transformationType) {
         this.p2 = p2;
         this.v2 = v2;
         this.t2 = t2;
         this.transformationType = transformationType;
+
+        isDataValid = false;
+
         validatef();
 
     }
@@ -110,5 +115,9 @@ public class FinalDataForm extends DataForm {
             }
         }
 
+    }
+
+    public boolean isDataValid(){
+        return isDataValid;
     }
 }

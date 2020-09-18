@@ -5,6 +5,7 @@ public class InitialDataForm extends DataForm {
     private String p1, v1, t1;
     private String n;
     
+    private boolean isDataValid;
 
     public InitialDataForm(String p1, String v1, String t1, String n) {
         this.p1 = p1;
@@ -12,6 +13,7 @@ public class InitialDataForm extends DataForm {
         this.t1 = t1;
         this.n = n;
         
+        isDataValid = false;
 
         validate();
     }
@@ -25,7 +27,7 @@ public class InitialDataForm extends DataForm {
             // validation3();
             // validation4();
 
-            // at the end isDataValid = true
+            isDataValid = true;
         } catch (ValidationError e) {
             System.out.println(e);
         }
@@ -59,5 +61,9 @@ public class InitialDataForm extends DataForm {
 
         }
 
+    }
+
+    public boolean isDataValid(){
+        return isDataValid;
     }
 }
