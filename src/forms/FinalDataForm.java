@@ -7,6 +7,12 @@ public class FinalDataForm extends DataForm {
 
     private boolean isDataValid;
 
+    private boolean isPressureUsed;
+    private boolean isVolumeUsed;
+    private boolean isTemperatureUsed;
+
+    private float finalPressure, finalVolumen, finalTemperature;
+
     public FinalDataForm(String p2, String v2, String t2, TransformationType transformationType) {
         this.p2 = p2;
         this.v2 = v2;
@@ -14,188 +20,103 @@ public class FinalDataForm extends DataForm {
         this.transformationType = transformationType;
 
         isDataValid = false;
-
-        validatef();
-
+ 
+        validate();
     }
 
-    private void validatef() {
+    private void validate() {
 
         try {
-            //validateEmtytextfieldf();
-            //validatexor();
-            //transformation();
-            //validatenegativef();
-            validateIsobaric();
-            // validation4();
-            
+            validateTypesOfTransformation();
+            validateData();
+            validateRange();
+
             isDataValid = true;
         } catch (ValidationError e) {
             System.out.println(e);
         }
     }
 
-    private void transformation() throws ValidationError {
-        try {
-            if (transformationType == TransformationType.ISOBARIC) {
-                Float.parseFloat(v2);
-                Float.parseFloat(t2);
-            }
-            if (transformationType == TransformationType.ISOVOLUMETRIC) {
-                Float.parseFloat(p2);
-                Float.parseFloat(t2);
-            }
-            if (transformationType == TransformationType.ISOTHERMAL) {
-                Float.parseFloat(v2);
-                Float.parseFloat(p2);
-            }
-            if (transformationType == TransformationType.ADIABATIC) {
-                Float.parseFloat(v2);
-                Float.parseFloat(t2);
-                Float.parseFloat(p2);
+    private void validateTypesOfTransformation() throws ValidationError {
 
+        switch (transformationType) {
+            case ISOBARIC:
+
+                if (!(isJustOneEmpty(v2, t2) && p2.isBlank())) {
+                    throw new ValidationError("Wrong inputs");
+                }
+
+                break;
+
+            case ISOTHERMAL:
+
+                if (!(isJustOneEmpty(v2, p2) && t2.isBlank())) {
+                    throw new ValidationError("Wrong inputs");
+                }
+                break;
+
+            case ISOVOLUMETRIC:
+
+                if (!(isJustOneEmpty(t2, p2) && v2.isBlank())) {
+                    throw new ValidationError("Wrong inputs");
+                }
+                break;
+
+            case ADIABATIC:
+
+                if (!isJustOneEmpty(t2, p2, v2)) {
+                    throw new ValidationError("Wrong inputs");
+                }
+                break;
+        }
+
+    }
+
+    private void validateData() throws ValidationError {
+
+        try {
+
+            if (!p2.isBlank()) {
+                finalPressure = Float.parseFloat(p2);
+                isPressureUsed = true;
+            } else if (!v2.isBlank()) {
+                finalVolumen = Float.parseFloat(v2);
+                isVolumeUsed = true;
+            } else {
+                finalTemperature = Float.parseFloat(t2);
+                isTemperatureUsed = true;
             }
 
         } catch (Exception e) {
-
-            throw new ValidationError("Valores invalidos");
-
-        }
-
-    }
-
-    private void validateEmtytextfieldf() throws ValidationError {
-        if (transformationType == TransformationType.ISOBARIC) {
-            if (v2 == null || v2.isEmpty() || t2 == null || t2.isEmpty()) {
-                throw new ValidationError("Valores invalidos");
-
-            }
-        if (transformationType == TransformationType.ISOVOLUMETRIC) {
-            if (p2 == null || p2.isEmpty() || t2 == null || t2.isEmpty()) {
-                throw new ValidationError("Valores invalidos");
-
-                }
-            }
-        if (transformationType == TransformationType.ISOTHERMAL) {
-            if (p2 == null || p2.isEmpty() || v2 == null || v2.isEmpty()) {
-                throw new ValidationError("Valores invalidos");
-
-                }
-            }
-        if (transformationType == TransformationType.ADIABATIC) {
-            if (p2 == null || p2.isEmpty() || t2 == null || t2.isEmpty() || v2 == null || v2.isEmpty()) {
-                throw new ValidationError("Valores invalidos");
-
-                }
-            }
+            throw new ValidationError("Datos Invalidos");
         }
     }
-    private void validatenegativef() throws ValidationError{
-        if (transformationType == TransformationType.ISOBARIC) {
-            if (Float.parseFloat(v2)< 0  || Float.parseFloat(t2) <0) {
-                throw new ValidationError("Valores invalidos");
 
+    private void validateRange() throws ValidationError{
+        if(isPressureUsed){
+            if (finalPressure <= 0){
+                throw new ValidationError("Rango Invalido");
             }
-        if (transformationType == TransformationType.ISOVOLUMETRIC) {
-            if (Float.parseFloat(p2)< 0  || Float.parseFloat(t2) <0){
-                throw new ValidationError("Valores invalidos");
-
-                }
+        }else if(isVolumeUsed){
+            if (finalVolumen <= 0) {
+                throw new ValidationError("Rango Invalido");
             }
-        if (transformationType == TransformationType.ISOTHERMAL) {
-            if (Float.parseFloat(v2)< 0  || Float.parseFloat(p2) <0){
-                throw new ValidationError("Valores invalidos");
-
-                }
-            }
-        if (transformationType == TransformationType.ADIABATIC) {
-            if (Float.parseFloat(v2)< 0  || Float.parseFloat(t2) <0  || Float.parseFloat(p2)<0 ){
-                throw new ValidationError("Valores invalidos");
-
-                }
-            }
+        }else{
+            if (finalTemperature <= 0) {
+                throw new ValidationError("Rango Invalido");
+            }    
         }
-
     }
 
-    private void validateIsobaric() throws ValidationError{
-
-        if(transformationType == TransformationType.ISOBARIC){
-
-            if(!((t2.isEmpty() ^ v2.isEmpty() ) && p2.isEmpty())){
-                throw new ValidationError("Invalid data");
-            }
-
-        }
-
+    private boolean isJustOneEmpty(String text1, String text2) {
+        return text1.isBlank() ^ text2.isBlank();
     }
 
-    // TODO: Creo que ese es el condicional ( a.isEmpty() ^ b.isEmpty() ) && c.isEmpty()
-    private void validatexor() throws ValidationError{
-        if(transformationType == TransformationType.ISOBARIC){
-            boolean data1= v2.isEmpty();
-            boolean data2= t2.isEmpty();
-            boolean data3= data1 ^ data2;
-            if(data3 == false){
-                throw new ValidationError("Ingresar solo un valor");
-
-
-            }
-            if((!v2.isEmpty() || !t2.isEmpty()) && (p2.isEmpty())){
-                isDataValid = true;
-
-
-            }
-
-        }
-        if (transformationType == TransformationType.ISOVOLUMETRIC) {
-            boolean data1= t2.isEmpty();
-            boolean data2= p2.isEmpty();
-            boolean data3= data1 ^ data2;
-            if(data3 == false){
-                throw new ValidationError("Ingresar solo un valor");
-
-
-            }
-            if((!p2.isEmpty() || !t2.isEmpty()) && (v2.isEmpty())){
-                isDataValid = true;
-
-
-            }
-            
-        }
-        if (transformationType == TransformationType.ISOTHERMAL) {
-            boolean data1= v2.isEmpty();
-            boolean data2= p2.isEmpty();
-            boolean data3= data1 ^ data2;
-            if(data3 == false){
-                throw new ValidationError("Ingresar solo un valor");
-
-
-            }
-            if((!p2.isEmpty() || !v2.isEmpty()) && (t2.isEmpty())){
-                isDataValid = true;
-
-
-            }
-        }
-        if (transformationType == TransformationType.ADIABATIC) {
-            boolean data1= v2.isEmpty();
-            boolean data2= p2.isEmpty();
-            boolean data3= t2.isEmpty();
-            boolean data4= data1 ^ data2 ^ data3;
-            if(data4 == false){
-                throw new ValidationError("Ingresar solo un valor");
-
-
-            }
-            
-        }
-
-
+    private boolean isJustOneEmpty(String text1, String text2, String text3) {
+        return text1.isBlank() ^ text2.isBlank() ^ text3.isBlank();
     }
-    //this comment is for testing live shared extension
-    public boolean isDataValid(){
+
+    public boolean isDataValid() {
         return isDataValid;
     }
 }
