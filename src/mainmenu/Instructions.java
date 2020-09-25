@@ -6,21 +6,23 @@ import resources.R;
 public class Instructions extends javax.swing.JPanel {
 
     private MenuActions menuActions;
+    private AppResources appResources;
 
     public Instructions(MenuActions menuActions){
-        initComponents();
         this.menuActions = menuActions;
-        
+        appResources = AppResources.getAppResources();
+
+        initComponents();
         initCustomResources();
     }
 
     private void initCustomResources(){
 
-        home_back_button.setBackground(AppResources.getColor(R.colors.primary));
-        home_back_title.setForeground(AppResources.getColor(R.colors.white_text));
-        home_back_title.setFont(AppResources.getFont(R.fonts.roboto_regular, 16));
-        home_back_title.setIcon(AppResources.getIcon(R.icons.menu_back_arrow));
-        home_back_title.setText(AppResources.getString(R.strings.menu_back_home_title));
+        home_back_button.setBackground(appResources.getColor(R.colors.primary));
+        home_back_title.setForeground(appResources.getColor(R.colors.white_text));
+        home_back_title.setFont(appResources.getFont(R.fonts.roboto_regular, 16));
+        home_back_title.setIcon(appResources.getIcon(R.icons.menu_back_arrow));
+        home_back_title.setText(appResources.getString(R.strings.menu_back_home_title));
     }
 
     @SuppressWarnings("unchecked")

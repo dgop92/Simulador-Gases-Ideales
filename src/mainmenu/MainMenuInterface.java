@@ -11,21 +11,24 @@ public class MainMenuInterface extends javax.swing.JFrame implements MenuActions
     private Instructions instructionsView;
     private Settings settingsView;
     
+    private AppResources appResources;
   
     public MainMenuInterface() {
+        appResources = AppResources.getAppResources();
+        
         initComponents();
         initCustomResources();
         initCardLayout();
     }
     
     private void initCustomResources(){
-        card_content_layout.setBackground(AppResources.getColor(R.colors.background_color));
+        card_content_layout.setBackground(appResources.getColor(R.colors.background_color));
 
-        header.setBackground(AppResources.getColor(R.colors.dark));
-        header_title.setForeground(AppResources.getColor(R.colors.white_text));
-        header_title.setFont(AppResources.getFont(R.fonts.montserrat_bold, 18));
-        header_title.setIcon(AppResources.getIcon(R.icons.menu_header_home));
-        header_title.setText(AppResources.getString(R.strings.app_name));
+        header.setBackground(appResources.getColor(R.colors.dark));
+        header_title.setForeground(appResources.getColor(R.colors.white_text));
+        header_title.setFont(appResources.getFont(R.fonts.montserrat_bold, 18));
+        header_title.setIcon(appResources.getIcon(R.icons.menu_header_home));
+        header_title.setText(appResources.getString(R.strings.app_name));
 
     }
     
@@ -47,22 +50,22 @@ public class MainMenuInterface extends javax.swing.JFrame implements MenuActions
     @Override
     public void setHomeView() {
         contentCardLayout.show(card_content_layout, "homeview");
-        header_title.setIcon(AppResources.getIcon(R.icons.menu_header_home));
-        header_title.setText(AppResources.getString(R.strings.app_name));
+        header_title.setIcon(appResources.getIcon(R.icons.menu_header_home));
+        header_title.setText(appResources.getString(R.strings.app_name));
     }
 
     @Override
     public void setSettingView() {
         contentCardLayout.show(card_content_layout, "settingsView");
-        header_title.setIcon(AppResources.getIcon(R.icons.menu_header_settings));
-        header_title.setText(AppResources.getString(R.strings.menu_settings_title));
+        header_title.setIcon(appResources.getIcon(R.icons.menu_header_settings));
+        header_title.setText(appResources.getString(R.strings.menu_settings_title));
     }
 
     @Override
     public void setInstructionsView() {
         contentCardLayout.show(card_content_layout, "instructionsView");
-        header_title.setIcon(AppResources.getIcon(R.icons.menu_header_instructions));
-        header_title.setText(AppResources.getString(R.strings.menu_instructions_title));
+        header_title.setIcon(appResources.getIcon(R.icons.menu_header_instructions));
+        header_title.setText(appResources.getString(R.strings.menu_instructions_title));
     }
 
     @Override

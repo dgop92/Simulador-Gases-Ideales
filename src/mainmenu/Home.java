@@ -7,37 +7,39 @@ public class Home extends javax.swing.JPanel {
     
     //800, 410
     private MenuActions menuActions;
+    private AppResources appResources;
 
     public Home(MenuActions menuActions){
-        initComponents();
+        appResources = AppResources.getAppResources();
         this.menuActions = menuActions;
         
+        initComponents();
         initCustomResources();
         
     }
     
     private void initCustomResources(){
-        home_content_layout.setBackground(AppResources.getColor(R.colors.background_color));
+        home_content_layout.setBackground(appResources.getColor(R.colors.background_color));
         //Inheritance from parent layout?
-        button_menu.setBackground(AppResources.getColor(R.colors.background_color));
+        button_menu.setBackground(appResources.getColor(R.colors.background_color));
 
-        start_button.setBackground(AppResources.getColor(R.colors.primary));
-        start_button_title.setForeground(AppResources.getColor(R.colors.white_text));
-        start_button_title.setFont(AppResources.getFont(R.fonts.roboto_regular, 16));
-        start_button_title.setIcon(AppResources.getIcon(R.icons.menu_play));
-        start_button_title.setText(AppResources.getString(R.strings.menu_start_title));
+        start_button.setBackground(appResources.getColor(R.colors.primary));
+        start_button_title.setForeground(appResources.getColor(R.colors.white_text));
+        start_button_title.setFont(appResources.getFont(R.fonts.roboto_regular, 16));
+        start_button_title.setIcon(appResources.getIcon(R.icons.menu_play));
+        start_button_title.setText(appResources.getString(R.strings.menu_start_title));
 
-        instructions_button.setBackground(AppResources.getColor(R.colors.primary));
-        instructions_button_title.setForeground(AppResources.getColor(R.colors.white_text));
-        instructions_button_title.setFont(AppResources.getFont(R.fonts.roboto_regular, 16));
-        instructions_button_title.setIcon(AppResources.getIcon(R.icons.menu_instructions));
-        instructions_button_title.setText(AppResources.getString(R.strings.menu_instructions_title));
+        instructions_button.setBackground(appResources.getColor(R.colors.primary));
+        instructions_button_title.setForeground(appResources.getColor(R.colors.white_text));
+        instructions_button_title.setFont(appResources.getFont(R.fonts.roboto_regular, 16));
+        instructions_button_title.setIcon(appResources.getIcon(R.icons.menu_instructions));
+        instructions_button_title.setText(appResources.getString(R.strings.menu_instructions_title));
 
-        settings_button.setBackground(AppResources.getColor(R.colors.primary));
-        settings_button_title.setForeground(AppResources.getColor(R.colors.white_text));
-        settings_button_title.setFont(AppResources.getFont(R.fonts.roboto_regular, 16));
-        settings_button_title.setIcon(AppResources.getIcon(R.icons.menu_settings));
-        settings_button_title.setText(AppResources.getString(R.strings.menu_settings_title));
+        settings_button.setBackground(appResources.getColor(R.colors.primary));
+        settings_button_title.setForeground(appResources.getColor(R.colors.white_text));
+        settings_button_title.setFont(appResources.getFont(R.fonts.roboto_regular, 16));
+        settings_button_title.setIcon(appResources.getIcon(R.icons.menu_settings));
+        settings_button_title.setText(appResources.getString(R.strings.menu_settings_title));
 
 
     }

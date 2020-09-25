@@ -13,12 +13,14 @@ public class ClassBuilder {
     private String classPath;
 
     private String generatedClassText;
+    private AppResources appResources;
 
     public ClassBuilder(String packageName, String className, String classPath) {
         this.className = className;
         this.classPath = classPath;
         this.packageName = packageName;
 
+        appResources = AppResources.getAppResources();
         generatedClassText = "";
     }
 
@@ -46,13 +48,13 @@ public class ClassBuilder {
         String base = 
             String.format("package %s;\n\n%s\n\npublic class %s {\n", packageName, comment , className);
         
-        String stringEnum = createEnum("strings ", AppResources.stringsJsonObject.keySet());
-        String colorEnum = createEnum("colors ", AppResources.themeJsonObject.keySet());
-        String fontsEnum = createEnum("fonts", AppResources.customFonts.keySet());
+        String stringEnum = createEnum("strings ", appResources.getStringsJsonObject().keySet());
+        String colorEnum = createEnum("colors ", appResources.getThemeJsonObject().keySet());
+        String fontsEnum = createEnum("fonts", appResources.getCustomFonts().keySet());
 
-        String imagesClass = createStaticResource("images", new File(AppResources.getFullImagesPath()));
-        String iconsClass = createStaticResource("icons", new File(AppResources.getFullIconsPath()));
-        String soundsClass = createStaticResource("sounds", new File(AppResources.getFullSoundsPath()));
+        String imagesClass = createStaticResource("images", new File(ResourcesPath.getFullImagesPath()));
+        String iconsClass = createStaticResource("icons", new File(ResourcesPath.getFullIconsPath()));
+        String soundsClass = createStaticResource("sounds", new File(ResourcesPath.getFullSoundsPath()));
         
         String close = "\n}"; 
 
