@@ -6,7 +6,9 @@ public class Main {
     
     public static void main(String[] args) {
         
-        InitialDataForm initialDataForm = new InitialDataForm("h", "1", "10", "2");
+        InitialDataForm initialDataForm = new InitialDataForm("0", "1", "10", "2");
+        
+        
         
     }
 

@@ -22,13 +22,14 @@ public class FinalDataForm extends DataForm {
     private void validatef() {
 
         try {
-            validateEmtytextfieldf();
-            transformation();
-            
-            validatenegativef();
+            //validateEmtytextfieldf();
+            //validatexor();
+            //transformation();
+            //validatenegativef();
+            validateIsobaric();
             // validation4();
-
-            // at the end isDataValid = true
+            
+            isDataValid = true;
         } catch (ValidationError e) {
             System.out.println(e);
         }
@@ -117,6 +118,83 @@ public class FinalDataForm extends DataForm {
 
     }
 
+    private void validateIsobaric() throws ValidationError{
+
+        if(transformationType == TransformationType.ISOBARIC){
+
+            if(!((t2.isEmpty() ^ v2.isEmpty() ) && p2.isEmpty())){
+                throw new ValidationError("Invalid data");
+            }
+
+        }
+
+    }
+
+    // TODO: Creo que ese es el condicional ( a.isEmpty() ^ b.isEmpty() ) && c.isEmpty()
+    private void validatexor() throws ValidationError{
+        if(transformationType == TransformationType.ISOBARIC){
+            boolean data1= v2.isEmpty();
+            boolean data2= t2.isEmpty();
+            boolean data3= data1 ^ data2;
+            if(data3 == false){
+                throw new ValidationError("Ingresar solo un valor");
+
+
+            }
+            if((!v2.isEmpty() || !t2.isEmpty()) && (p2.isEmpty())){
+                isDataValid = true;
+
+
+            }
+
+        }
+        if (transformationType == TransformationType.ISOVOLUMETRIC) {
+            boolean data1= t2.isEmpty();
+            boolean data2= p2.isEmpty();
+            boolean data3= data1 ^ data2;
+            if(data3 == false){
+                throw new ValidationError("Ingresar solo un valor");
+
+
+            }
+            if((!p2.isEmpty() || !t2.isEmpty()) && (v2.isEmpty())){
+                isDataValid = true;
+
+
+            }
+            
+        }
+        if (transformationType == TransformationType.ISOTHERMAL) {
+            boolean data1= v2.isEmpty();
+            boolean data2= p2.isEmpty();
+            boolean data3= data1 ^ data2;
+            if(data3 == false){
+                throw new ValidationError("Ingresar solo un valor");
+
+
+            }
+            if((!p2.isEmpty() || !v2.isEmpty()) && (t2.isEmpty())){
+                isDataValid = true;
+
+
+            }
+        }
+        if (transformationType == TransformationType.ADIABATIC) {
+            boolean data1= v2.isEmpty();
+            boolean data2= p2.isEmpty();
+            boolean data3= t2.isEmpty();
+            boolean data4= data1 ^ data2 ^ data3;
+            if(data4 == false){
+                throw new ValidationError("Ingresar solo un valor");
+
+
+            }
+            
+        }
+
+
+    }
+    //this comment is for testing live shared extension
     public boolean isDataValid(){
         return isDataValid;
     }
