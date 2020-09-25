@@ -4,11 +4,13 @@ package resources;
 
 public class R {
 public enum strings  {
-main_settings_button,
 app_name,
-main_about_us_button,
-main_start_button
+menu_settings_title,
+menu_start_title,
+menu_instructions_title,
+menu_back_home_title
 }public enum colors  {
+background_color,
 light,
 secondary_text,
 divider,
@@ -19,17 +21,19 @@ primary_text,
 primary
 }public enum fonts {
 roboto_regular,
-montserrat_regular
+montserrat_regular,
+montserrat_bold
 }public static class images {
 public final static String images = "/images.txt";
 
 }public static class icons {
-public final static String icons8_cancel_24 = "/icons8-cancel-24.png";
-public final static String icons8_cancel_white_24 = "/icons8-cancel-white-24.png";
-public final static String icons8_info_24 = "/icons8-info-24.png";
-public final static String icons8_ok_24 = "/icons8-ok-24.png";
-public final static String icons8_ok_nowhite_24 = "/icons8-ok-nowhite-24.png";
-public final static String icons8_warning_24 = "/icons8-warning-24.png";
+public final static String menu_back_arrow = "/menu_back_arrow.png";
+public final static String menu_header_home = "/menu_header_home.png";
+public final static String menu_header_instructions = "/menu_header_instructions.png";
+public final static String menu_header_settings = "/menu_header_settings.png";
+public final static String menu_instructions = "/menu_instructions.png";
+public final static String menu_play = "/menu_play.png";
+public final static String menu_settings = "/menu_settings.png";
 
 }public static class sounds {
 public final static String sounds = "/sounds.txt";

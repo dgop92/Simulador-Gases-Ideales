@@ -8,5 +8,7 @@
 	"divider": "#BDBDBD",
 	
 	"semi_white_text": "#e6e6e6",
-	"white_text": "#FFFFFF"
+	"white_text": "#FFFFFF",
+
+	"background_color": "#F8F9FA"
 }

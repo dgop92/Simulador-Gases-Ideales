@@ -28,7 +28,8 @@ public class AppResources {
 
     public final static String[] FONT_NAMES_PATH = {
         "/Roboto-Regular.ttf",
-        "/Montserrat-Regular.ttf"
+        "/Montserrat-Regular.ttf",
+        "/Montserrat-Bold.ttf"
     };
 
     private final static String DEFAULT_STRINGS_NAME = "strings_es.json";
