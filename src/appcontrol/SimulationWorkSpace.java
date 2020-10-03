@@ -2,16 +2,20 @@ package appcontrol;
 
 import processing.core.PApplet;
 
-public class SimulationWorkSpace extends PApplet{
+public class SimulationWorkspace extends PApplet{
+
+    private final int SKETCH_WIDTH = 800;
+    private final int SKETCH_HEIGHT = 600;
     
     @Override
     public void settings() {
-        size(800, 600);
+        size(SKETCH_WIDTH, SKETCH_HEIGHT);
     }
 
     @Override
     public void setup() {
         //frameRate(30);
+        
     }
 
     @Override
@@ -23,7 +27,7 @@ public class SimulationWorkSpace extends PApplet{
 
 
     public void run() {
-        String[] processingArgs = { SimulationWorkSpace.class.getName() };
+        String[] processingArgs = { SimulationWorkspace.class.getName() };
         PApplet.runSketch(processingArgs, this);
     }
 
