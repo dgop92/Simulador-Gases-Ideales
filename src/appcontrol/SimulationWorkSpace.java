@@ -1,11 +1,25 @@
 package appcontrol;
 
 import processing.core.PApplet;
+import appcontrol.sketchs.Barometer;
+import appcontrol.sketchs.Cylinder;
+import appcontrol.sketchs.HeatSource;
+import appcontrol.sketchs.PVGraph;
+import appcontrol.sketchs.StatusBar;
+import appcontrol.sketchs.Thermometer;
 
 public class SimulationWorkspace extends PApplet{
 
     private final int SKETCH_WIDTH = 800;
-    private final int SKETCH_HEIGHT = 600;
+    private final int SKETCH_HEIGHT = 650;
+
+    private StatusBar statusBar;
+    private Thermometer thermometer;
+    private Barometer barometer;
+    private PVGraph pvGraph;
+    private HeatSource heatSource;
+    private Cylinder cylinder;
+    
     
     @Override
     public void settings() {
@@ -15,14 +29,31 @@ public class SimulationWorkspace extends PApplet{
     @Override
     public void setup() {
         //frameRate(30);
-        
+        initSketchFragments();
+    }
+
+    private void initSketchFragments(){
+
+        statusBar = new StatusBar(this, 0, 0, 600, 60);
+        thermometer = new Thermometer(this, 600, 0, 200, 200);
+        barometer = new Barometer(this, 600, 200, 200, 200);
+        pvGraph = new PVGraph(this, 500, 400, 300, 250);
+        cylinder = new Cylinder(this, 0, 60, 500, 480);
     }
 
     @Override
     public void draw() {
         background(0);
-        stroke(255);
-        line(0, 0, width, height);
+        
+        drawSketchFragmentsDivisions();
+    }
+
+    private void drawSketchFragmentsDivisions(){
+        statusBar.drawDivison();
+        thermometer.drawDivison();
+        barometer.drawDivison();
+        pvGraph.drawDivison();
+        cylinder.drawDivison();
     }
 
 

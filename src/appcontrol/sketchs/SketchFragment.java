@@ -2,7 +2,7 @@ package appcontrol.sketchs;
 
 import appcontrol.SimulationWorkspace;
 
-public class SketchFragment {
+public abstract class SketchFragment {
     
     private SimulationWorkspace sketch;
     protected float x;
@@ -20,8 +20,14 @@ public class SketchFragment {
         this.fragmentHeight = fragmentHeight;
     }
 
-    protected void draw(){
-        
+    public void drawDivison(){
+        sketch.stroke(255);
+        sketch.line(x, y, x + fragmentWidth, y);
+        sketch.line(x + fragmentWidth, y, x + fragmentWidth, y + fragmentHeight);
+        sketch.line(x + fragmentWidth, y + fragmentHeight, x, y + fragmentHeight);
+        sketch.line(x, y + fragmentHeight, x, y);
     }
+
+    abstract public void update();
 
 }
