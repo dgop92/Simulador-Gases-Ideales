@@ -4,7 +4,7 @@ import appcontrol.SimulationWorkspace;
 
 public abstract class SketchFragment {
     
-    private SimulationWorkspace sketch;
+    protected SimulationWorkspace sketch;
     protected float x;
     protected float y;
     protected float fragmentWidth;

@@ -23,7 +23,7 @@ public abstract class BaseTransformation {
     public BaseTransformation(HashMap<String, Float> initialData) {
         this.pressure0 = initialData.get("pressure");
         this.volume0 = initialData.get("volume");
-        this.temperature0 = initialData.get("pressure");
+        this.temperature0 = initialData.get("temperature");
         this.nMoles = initialData.get("n"); //Must be divided
     }
 

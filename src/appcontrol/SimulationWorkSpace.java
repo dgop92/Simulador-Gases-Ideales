@@ -28,10 +28,26 @@ public class SimulationWorkspace extends PApplet{
 
     @Override
     public void setup() {
-        //frameRate(30);
+        frameRate(60);
         initSketchFragments();
+        initComponents();
     }
 
+    @Override
+    public void draw() {
+        background(0);
+
+        cylinder.update();
+    
+        drawSketchFragmentsDivisions();
+    }
+
+    
+    public void run() {
+        String[] processingArgs = { SimulationWorkspace.class.getName() };
+        PApplet.runSketch(processingArgs, this);
+    }
+    
     private void initSketchFragments(){
 
         statusBar = new StatusBar(this, 0, 0, 600, 60);
@@ -39,13 +55,12 @@ public class SimulationWorkspace extends PApplet{
         barometer = new Barometer(this, 600, 200, 200, 200);
         pvGraph = new PVGraph(this, 500, 400, 300, 250);
         cylinder = new Cylinder(this, 0, 60, 500, 480);
+        heatSource = new HeatSource(this, 0, 540, 500, 650);
     }
 
-    @Override
-    public void draw() {
-        background(0);
+    private void initComponents(){
+        cylinder.fillCylinder(100);
         
-        drawSketchFragmentsDivisions();
     }
 
     private void drawSketchFragmentsDivisions(){
@@ -54,12 +69,7 @@ public class SimulationWorkspace extends PApplet{
         barometer.drawDivison();
         pvGraph.drawDivison();
         cylinder.drawDivison();
-    }
-
-
-    public void run() {
-        String[] processingArgs = { SimulationWorkspace.class.getName() };
-        PApplet.runSketch(processingArgs, this);
+        heatSource.drawDivison();
     }
 
 }
