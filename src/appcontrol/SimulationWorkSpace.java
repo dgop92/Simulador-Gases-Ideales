@@ -36,10 +36,13 @@ public class SimulationWorkspace extends PApplet{
     @Override
     public void draw() {
         background(0);
-
         cylinder.update();
-    
         drawSketchFragmentsDivisions();
+    }
+
+    @Override
+    public void mouseDragged() {
+        //cylinder.update();
     }
 
     
@@ -59,8 +62,7 @@ public class SimulationWorkspace extends PApplet{
     }
 
     private void initComponents(){
-        cylinder.fillCylinder(100);
-        
+        cylinder.fillCylinder(5, 0.5f);
     }
 
     private void drawSketchFragmentsDivisions(){
