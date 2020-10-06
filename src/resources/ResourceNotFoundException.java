@@ -1,10 +1,10 @@
 package resources;
-
+/**
+ * Esta clase determina cuando los recursos no son encontrados. 
+ */
 public class ResourceNotFoundException extends Exception {
 
-    /**
-     *
-     */
+    
     private static final long serialVersionUID = -734139226522061245L;
     
     private String resourcePath;

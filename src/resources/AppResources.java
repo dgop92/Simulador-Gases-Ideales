@@ -19,7 +19,9 @@ import com.github.cliftonlabs.json_simple.Jsoner;
 import resources.R.colors;
 import resources.R.fonts;
 import resources.R.strings;
-
+/**
+ * Esta clase se encarga de
+ */
 public class AppResources {
 
     private static AppResources appResources = null;
@@ -44,7 +46,9 @@ public class AppResources {
         areAllResourcesLoaded = false;
 
     }
-
+    /**
+     * Esta función se encarga de revisar que todos los recursos estén cargados y si son encontrados, si no es así arroja las excepciones. 
+     */
     public void loadResources() {
 
         try {
@@ -69,7 +73,7 @@ public class AppResources {
     public boolean AreAllResourcesLoaded() {
         return areAllResourcesLoaded;
     }
-
+  
     private void checkFoldersExistence() throws ResourceNotFoundException {
 
         String[] paths = { ResourcesPath.BASE_PATH, ResourcesPath.getFullImagesPath(),
@@ -83,7 +87,7 @@ public class AppResources {
             }
         }
     }
-
+    
     private void loadStrings() throws ResourceNotLoadedException, ResourceNotFoundException {
 
         String stringsPath = ResourcesPath.getFullStringFilePath();
@@ -100,7 +104,7 @@ public class AppResources {
             throw new ResourceNotLoadedException(stringsPath, "Couldn't parse the string json file");
         }
     }
-
+ 
     private void loadTheme() throws ResourceNotLoadedException, ResourceNotFoundException {
 
         String themesPath = ResourcesPath.getFullThemesFilePath();
@@ -121,7 +125,7 @@ public class AppResources {
     private boolean checkFileExistence(String filePath) {
         return new File(filePath).exists();
     }
-
+   
     private void loadFonts() throws ResourceNotLoadedException, ResourceNotFoundException {
 
         customFonts = new HashMap<>();

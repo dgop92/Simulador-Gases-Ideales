@@ -1,7 +1,9 @@
 package resources;
 
 import java.io.File;
-
+/**
+ * Esta clasee determina cada una de las rutas de los diferentes recursos como sonido, imágenes, íconos, fuentes, texto. 
+ */
 public class ResourcesPath {
     
     public final static String BASE_PATH = "src/data";

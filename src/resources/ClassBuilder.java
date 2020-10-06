@@ -5,7 +5,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Set;
-
+/**
+ * Esta clase se encarga de crear la clase R dependiendo de los recursos que se encuentren en la carpeta "Data".  
+ */
 public class ClassBuilder {
 
     private String className;
@@ -23,7 +25,9 @@ public class ClassBuilder {
         appResources = AppResources.getAppResources();
         generatedClassText = "";
     }
-
+    /**
+     * Esta función se encarga de generar la clase y luego escribirla. 
+     */
     public void generateClass(){
 
         try {
