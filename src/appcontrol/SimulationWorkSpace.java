@@ -1,12 +1,21 @@
 package appcontrol;
 
 import processing.core.PApplet;
+
+import java.util.HashMap;
+
 import appcontrol.sketchs.Barometer;
 import appcontrol.sketchs.Cylinder;
 import appcontrol.sketchs.HeatSource;
 import appcontrol.sketchs.PVGraph;
 import appcontrol.sketchs.StatusBar;
 import appcontrol.sketchs.Thermometer;
+import appcontrol.transformations.AdiabaticTransformation;
+import appcontrol.transformations.IsobaricTransformation;
+import appcontrol.transformations.IsothermalTransformation;
+import appcontrol.transformations.IsovolumetricTransformation;
+import appcontrol.transformations.TransformationStrategy;
+import forms.TransformationType;
 
 public class SimulationWorkspace extends PApplet{
 
@@ -20,7 +29,8 @@ public class SimulationWorkspace extends PApplet{
     private HeatSource heatSource;
     private Cylinder cylinder;
     
-    
+    private TransformationStrategy transformationStrategy;
+
     @Override
     public void settings() {
         size(SKETCH_WIDTH, SKETCH_HEIGHT);
@@ -29,6 +39,7 @@ public class SimulationWorkspace extends PApplet{
     @Override
     public void setup() {
         frameRate(60);
+
         initSketchFragments();
         initComponents();
     }
@@ -36,16 +47,39 @@ public class SimulationWorkspace extends PApplet{
     @Override
     public void draw() {
         background(0);
-        cylinder.update();
+        
+
         drawSketchFragmentsDivisions();
     }
 
     @Override
     public void mouseDragged() {
-        //cylinder.update();
+        transformationStrategy.updateData();
+        println(transformationStrategy.getData().toString());
+        if (transformationStrategy.IsTheTransformationFinished()){
+            println("FINISH!!!!");
+        }
     }
 
-    
+    public void setGasTransformation(HashMap<String, Float> initialData, 
+        HashMap<String, Float> finalData, TransformationType transformationType){
+        
+        switch (transformationType) {
+            case ISOBARIC:
+                transformationStrategy = new IsobaricTransformation(initialData, finalData);
+                break;
+            case ISOVOLUMETRIC:
+                transformationStrategy = new IsovolumetricTransformation(initialData, finalData);
+                break;
+            case ISOTHERMAL:
+                transformationStrategy = new IsothermalTransformation(initialData, finalData);
+                break;
+            case ADIABATIC:
+                transformationStrategy = new AdiabaticTransformation(initialData, finalData);
+                break;
+        }
+    }
+
     public void run() {
         String[] processingArgs = { SimulationWorkspace.class.getName() };
         PApplet.runSketch(processingArgs, this);

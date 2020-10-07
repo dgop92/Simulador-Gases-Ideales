@@ -15,5 +15,7 @@ public interface TransformationStrategy {
     public boolean isGasBeingCompressed();
 
     public HashMap<String, Float> getData();
+
+    public boolean IsTheTransformationFinished();
     
 }

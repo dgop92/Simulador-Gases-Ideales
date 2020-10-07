@@ -2,7 +2,7 @@ package appcontrol.transformations;
 
 public class GasConstants {
     
-    public static final float R = 0.082f;
+    public static final float R = 8.314f;
 
     public static final float CVM = R*3/2;
 

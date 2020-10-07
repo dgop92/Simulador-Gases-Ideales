@@ -2,14 +2,14 @@ package appcontrol.transformations;
 
 import java.util.HashMap;
 
-public class IsobaricTransformation extends BaseTransformation implements TransformationStrategy {
+public class IsovolumetricTransformation extends BaseTransformation implements TransformationStrategy {
 
-    public IsobaricTransformation(HashMap<String, Float> initialData, HashMap<String, Float> finalData) {
+    public IsovolumetricTransformation(HashMap<String, Float> initialData, HashMap<String, Float> finalData) {
         super(initialData, finalData);
 
-        pressure = pressure0;
-
         volume = volume0;
+        
+        pressure = pressure0;
         temperature = temperature0;
 
         setTemperatureDeltaSign();
@@ -17,16 +17,15 @@ public class IsobaricTransformation extends BaseTransformation implements Transf
 
     @Override
     public void updateData() {
-        volume = volume0*temperature / temperature0;
 
-        work = pressure0 * (volume - volume0);
-        internalEnergy = nMoles * GasConstants.CPM * (temperature0 - temperature);
+        pressure = pressure0 * temperature / temperature0;
 
-        heat = internalEnergy + work;
+        internalEnergy = nMoles * GasConstants.CVM * (temperature0 - temperature);
+        heat = internalEnergy;
 
         temperature += deltaT;
-        
-        this.updateData();
+
+        this.updateGasData();
     }
 
     @Override
@@ -41,12 +40,12 @@ public class IsobaricTransformation extends BaseTransformation implements Transf
 
     @Override
     public boolean isGasBeingExpanded() {
-        return work > 0;
+        return false;
     }
 
     @Override
     public boolean isGasBeingCompressed() {
-        return work < 0;
+        return false;
     }
 
     @Override
@@ -56,30 +55,29 @@ public class IsobaricTransformation extends BaseTransformation implements Transf
 
     @Override
     public boolean IsTheTransformationFinished() {
-
         float finalTemperature = finalData.get("temperature");
-        float finalVolume = finalData.get("volume");
+        float finalPressure = finalData.get("pressure");
 
         if (deltaT <= 0){
-            // Temperatura bajando, volumen tambien
+            // Temperatura bajando, presion tambien
 
             if (finalTemperature != 0){
                 return temperature < finalTemperature;
             }
 
-            if (finalVolume != 0){
-                return volume < finalVolume;
+            if (finalPressure != 0){
+                return pressure < finalPressure;
             }
 
         }else{
-            // Temperatura subiendo, volumen subiendo
+            // Temperatura subiendo, presion tambien
 
             if (finalTemperature != 0){
                 return temperature > finalTemperature;
             }
 
-            if (finalVolume != 0){
-                return volume > finalVolume;
+            if (finalPressure != 0){
+                return pressure > finalPressure;
             }
         }
 
@@ -93,11 +91,12 @@ public class IsobaricTransformation extends BaseTransformation implements Transf
             deltaT *= -1;
         }
 
-        float finalVolume = finalData.get("volume");
-        if (volume0 > finalVolume && finalVolume != 0){
+        float finalPressure = finalData.get("pressure");
+        if (pressure0 > finalPressure && finalPressure != 0){
             deltaT *= -1;
         }
 
     }
+    
     
 }
