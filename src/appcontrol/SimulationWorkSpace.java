@@ -31,6 +31,9 @@ public class SimulationWorkspace extends PApplet{
     
     private TransformationStrategy transformationStrategy;
 
+    public boolean isRunning;
+    public boolean isPaused;
+
     @Override
     public void settings() {
         size(SKETCH_WIDTH, SKETCH_HEIGHT);
@@ -40,26 +43,55 @@ public class SimulationWorkspace extends PApplet{
     public void setup() {
         frameRate(60);
 
-        initSketchFragments();
-        initComponents();
+        isRunning = false;
+        isPaused = false;
+
+        statusBar = new StatusBar(this, 0, 0, 600, 60);
+        thermometer = new Thermometer(this, 600, 0, 200, 200);
+        barometer = new Barometer(this, 600, 200, 200, 200);
+        pvGraph = new PVGraph(this, 500, 400, 300, 250);
+        cylinder = new Cylinder(this, 0, 60, 500, 480);
+        heatSource = new HeatSource(this, 0, 540, 500, 650);
+
+        cylinder.fillCylinder(55, 0.5f);
+
+        isRunning = true;
     }
 
     @Override
     public void draw() {
         background(0);
         
+        if (isRunning && !isPaused){
+            transformationStrategy.updateData();
+
+            statusBar.setData(transformationStrategy.getData());
+            cylinder.setVolume(transformationStrategy.getData().get("volume"));
+            
+            thermometer.setTemperature(transformationStrategy.getData().get("temperature"));
+            barometer.setPressure(transformationStrategy.getData().get("pressure"));
+
+            heatSource.setTemperature(transformationStrategy.getData().get("temperature"));
+            heatSource.setLosingHeat(transformationStrategy.isLosingHeat());
+            heatSource.setAbsorbingHeat(transformationStrategy.isAbsorbingHeat());
+
+            statusBar.update();
+            thermometer.update();
+            barometer.update();
+            pvGraph.update();
+
+            cylinder.update();
+            heatSource.update();
+
+            isRunning = !transformationStrategy.IsTheTransformationFinished();
+        }else{
+            statusBar.draw();
+            cylinder.drawParticles();
+        }
 
         drawSketchFragmentsDivisions();
     }
 
-    @Override
-    public void mouseDragged() {
-        transformationStrategy.updateData();
-        println(transformationStrategy.getData().toString());
-        if (transformationStrategy.IsTheTransformationFinished()){
-            println("FINISH!!!!");
-        }
-    }
 
     public void setGasTransformation(HashMap<String, Float> initialData, 
         HashMap<String, Float> finalData, TransformationType transformationType){
@@ -85,20 +117,6 @@ public class SimulationWorkspace extends PApplet{
         PApplet.runSketch(processingArgs, this);
     }
     
-    private void initSketchFragments(){
-
-        statusBar = new StatusBar(this, 0, 0, 600, 60);
-        thermometer = new Thermometer(this, 600, 0, 200, 200);
-        barometer = new Barometer(this, 600, 200, 200, 200);
-        pvGraph = new PVGraph(this, 500, 400, 300, 250);
-        cylinder = new Cylinder(this, 0, 60, 500, 480);
-        heatSource = new HeatSource(this, 0, 540, 500, 650);
-    }
-
-    private void initComponents(){
-        cylinder.fillCylinder(5, 0.5f);
-    }
-
     private void drawSketchFragmentsDivisions(){
         statusBar.drawDivison();
         thermometer.drawDivison();

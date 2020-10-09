@@ -2,6 +2,8 @@ package appcontrol.transformations;
 
 import java.util.HashMap;
 
+import processing.core.PApplet;
+
 public abstract class BaseTransformation {
     
     protected float pressure0;
@@ -36,7 +38,7 @@ public abstract class BaseTransformation {
 
         //A 60FPS
         deltaT = 0.06491f;
-        deltaV = 0.06491f;
+        deltaV = 0.02091f;
 
         initGasDataHashMap();
     }
@@ -53,6 +55,9 @@ public abstract class BaseTransformation {
 
         gasData.put("velocity", velocity);
 
+        gasData.put("fake_velocity", GasDataMap.MIN_FAKE_VELOCITY);
+        gasData.put("fake_volume", GasDataMap.MIN_FAKE_VOLUME);
+
         //moles and mass
     }
 
@@ -66,6 +71,17 @@ public abstract class BaseTransformation {
         gasData.replace("heat", heat);
 
         gasData.replace("velocity", velocity);
+
+        float fakeVelocity = PApplet.map(velocity, 
+            GasDataMap.MIN_REAL_VELOCITY, GasDataMap.MAX_REAL_VELOCITY, 
+            GasDataMap.MIN_FAKE_VELOCITY, GasDataMap.MAX_FAKE_VELOCITY);
+        
+        float fakeVolume = PApplet.map(volume, 
+            GasDataMap.MIN_PROCESS_VOLUME, GasDataMap.MAX_PROCESS_VOLUME, 
+            GasDataMap.MIN_FAKE_VOLUME, GasDataMap.MAX_FAKE_VOLUME);
+
+        gasData.replace("fake_velocity", fakeVelocity);
+        gasData.replace("fake_volume", fakeVolume);
 
         //here you put fake vel and fake volume as well the real ones
     }

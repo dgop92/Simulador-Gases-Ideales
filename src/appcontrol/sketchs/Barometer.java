@@ -19,11 +19,11 @@ public class Barometer extends SketchFragment {
         
     }
 
-    public void setTemperature(float pressure) {
+    public void setPressure(float pressure) {
         this.pressure = pressure;
     }
 
-    private void draw() {
+    public void draw() {
 
     }
 }

@@ -2,9 +2,7 @@ package appcontrol;
 
 import java.util.HashMap;
 
-import appcontrol.transformations.TransformationStrategy;
 import forms.TransformationType;
-import processing.core.PVector;
 
 public class MainTest {
     
@@ -15,23 +13,17 @@ public class MainTest {
         HashMap<String, Float> initialData = new HashMap<String, Float>();
         initialData.put("pressure", 50662.5f);
         initialData.put("volume", 100f);
-        initialData.put("temperature", 350f);
+        initialData.put("temperature", 283.15f);
         initialData.put("n", 1.5f);
 
         HashMap<String, Float> finalData = new HashMap<String, Float>();
-        finalData.put("pressure", 0f);
+        finalData.put("pressure", 48000f);
         finalData.put("volume", 0f);
-        finalData.put("temperature", 380f);
+        finalData.put("temperature", 0f);
 
-        sm.setGasTransformation(initialData, finalData, TransformationType.ISOBARIC);
+        sm.setGasTransformation(initialData, finalData, TransformationType.ISOTHERMAL);
 
-        sm.run();
-        
-        /* PVector p = new PVector(10, 20);
-        System.out.println(p.toString());
-        p.rotate((float)Math.PI);
-        System.out.println(p.toString()); */
-        
+        sm.run(); 
     }
     
 }

@@ -29,6 +29,9 @@ public class IsothermalTransformation extends BaseTransformation implements Tran
         heat = work;
 
         volume += deltaV;
+
+        this.updateVelocity(temperature);
+        this.updateGasData();
     }
 
     @Override

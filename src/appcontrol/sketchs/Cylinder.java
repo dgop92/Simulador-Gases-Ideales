@@ -51,14 +51,20 @@ public class Cylinder extends SketchFragment {
         }
     }
 
+    public void drawParticles(){
+        for (Particle particle : particles) {
+            particle.draw();
+        }
+    }
+
     private void analizeCollisions() {
         for (int i = 0; i < particles.length; i++) {
             particles[i].checkBorderCollision();
-            for (int j = 0; j < particles.length; j++) {
+            /* for (int j = 0; j < particles.length; j++) {
                 if (i != j) {
-                    particles[i].checkParticleCollision2(particles[j]);
+                    particles[i].checkParticleCollision(particles[j]);
                 }
-            }
+            } */
         }
     }
 
@@ -135,7 +141,7 @@ public class Cylinder extends SketchFragment {
             position.y += velocity.y;
         }
 
-        public void checkParticleCollision2(Particle p){
+        public void checkParticleCollision(Particle p){
 
             float xVelocityDiff = this.velocity.x - p.velocity.x;
             float yVelocityDiff = this.velocity.y - p.velocity.y;
@@ -146,8 +152,11 @@ public class Cylinder extends SketchFragment {
             ////float dist = this.position.dist(p.position);
             //xVelocityDiff * xDist + yVelocityDiff * yDist >= 0
 
-            if (this.position.dist(p.position) <= 2*RADIUS) {
-                float angle = (float) -Math.atan2(yDist, xDist);
+            if (xVelocityDiff * xDist + yVelocityDiff * yDist >= 0) {
+
+
+
+                /* float angle = (float) -Math.atan2(yDist, xDist);
 
                 float m1 = 1, m2 = 1;
 
@@ -169,7 +178,7 @@ public class Cylinder extends SketchFragment {
                 this.velocity.y = v1final.y;
 
                 p.velocity.x = v2final.x;
-                p.velocity.y = v2final.y;
+                p.velocity.y = v2final.y; */
 
             }
         }

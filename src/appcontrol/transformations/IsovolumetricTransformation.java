@@ -25,6 +25,7 @@ public class IsovolumetricTransformation extends BaseTransformation implements T
 
         temperature += deltaT;
 
+        this.updateVelocity(temperature);
         this.updateGasData();
     }
 

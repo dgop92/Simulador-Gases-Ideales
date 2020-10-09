@@ -23,7 +23,7 @@ public class Thermometer extends SketchFragment {
         this.temperature = temperature;
     }
 
-    private void draw(){
+    public void draw(){
 
     }
 }

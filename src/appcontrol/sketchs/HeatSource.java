@@ -9,6 +9,7 @@ public class HeatSource extends SketchFragment {
     private PImage flameImage;
     private float temperature;
     private boolean isLosingHeat;
+    private boolean isAbsorbingHeat;
 
     public HeatSource(SimulationWorkspace sketch, float x, float y, 
         float fragmentWidth, float fragmentHeight) {
@@ -32,8 +33,12 @@ public class HeatSource extends SketchFragment {
 
     }
 
-    private void setLosingHeat(boolean b){
+    public void setLosingHeat(boolean b){
         isLosingHeat = b;
+    }
+
+    public void setAbsorbingHeat(boolean b){
+        isAbsorbingHeat = b;
     }
     
 }

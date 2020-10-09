@@ -26,7 +26,8 @@ public class IsobaricTransformation extends BaseTransformation implements Transf
 
         temperature += deltaT;
         
-        this.updateData();
+        this.updateVelocity(temperature);
+        this.updateGasData();
     }
 
     @Override
