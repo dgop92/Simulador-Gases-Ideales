@@ -1,7 +1,7 @@
 package main;
 
-import mainmenu.MainMenuInterface;
-import resources.AppResources;
+import interfaces.mainmenu.MainMenuInterface;
+import inevaup.resources.AppResources;
 
 public class Main {
 
