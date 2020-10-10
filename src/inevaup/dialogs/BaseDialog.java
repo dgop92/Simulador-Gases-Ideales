@@ -2,11 +2,15 @@ package inevaup.dialogs;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-
+/**
+*Genera la estructura principal de los diálogos y su composición, además de determinar el diseño gráfico de estos, y heredar las características a las subclases.    
+ */
 public class BaseDialog extends javax.swing.JDialog {
     
     private DialogActions dialogActions;
-    
+    /**
+     * Inicializa los componentes y los recursos y ordena la visualización de los diálogos. 
+     */
     public BaseDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
                 
@@ -15,7 +19,7 @@ public class BaseDialog extends javax.swing.JDialog {
         setBaseResources();
 
     }
-    
+  
     private void setBaseResources(){
         parent_layout.setBackground(DialogConstantData.BACKGROUND_COLOR);
         content_panel.setBackground(DialogConstantData.BACKGROUND_COLOR);
@@ -31,26 +35,26 @@ public class BaseDialog extends javax.swing.JDialog {
     protected void setActionInterface(DialogActions dialogActions){
         this.dialogActions = dialogActions;
     }
-    
+ 
     protected void setDialogIcon(String path){
         title_label.setIcon(new javax.swing.ImageIcon(
                 getClass().getResource(path)));
     }
-    
+  
     protected void setDialogTitle(String title){
         title_label.setText(title);
     }
-    
+  
     protected void setDialogHeaderColor(java.awt.Color color){
         title_layout.setBackground(color);
     }
-    
+  
     protected void setDialogMessage(String message){
         setNewHeight(message);
         message_label.setText("<html>" + message + "</html>");
         
     }
-    
+
     private void setNewHeight(String message){
         
         int maxChar = 43;
@@ -88,6 +92,7 @@ public class BaseDialog extends javax.swing.JDialog {
  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    
     private void initComponents() {
 
         parent_layout = new javax.swing.JPanel();
@@ -211,6 +216,7 @@ public class BaseDialog extends javax.swing.JDialog {
         dialogActions.onCacelAction();
     }//GEN-LAST:event_cancel_buttonMouseClicked
         
+ 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -252,6 +258,9 @@ public class BaseDialog extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            /**
+             * Hace visible la ventana de diálogos. 
+             */
             public void run() {
                 BaseDialog dialog = new BaseDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
