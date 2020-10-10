@@ -32,44 +32,41 @@ public class Design extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
+        titulo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel14 = new javax.swing.JPanel();
-        jPanel15 = new javax.swing.JPanel();
+        Separador = new javax.swing.JPanel();
+        design = new javax.swing.JPanel();
         ImputPanel = new javax.swing.JPanel();
-        jPanel18 = new javax.swing.JPanel();
+        P1 = new javax.swing.JPanel();
         jTextField9 = new javax.swing.JTextField();
         jPanel20 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        jPanel21 = new javax.swing.JPanel();
+        P2 = new javax.swing.JPanel();
         jTextField10 = new javax.swing.JTextField();
         jPanel22 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        jPanel23 = new javax.swing.JPanel();
+        V1 = new javax.swing.JPanel();
         jTextField11 = new javax.swing.JTextField();
         jPanel24 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
-        jPanel25 = new javax.swing.JPanel();
+        V2 = new javax.swing.JPanel();
         jTextField12 = new javax.swing.JTextField();
         jPanel26 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        jPanel27 = new javax.swing.JPanel();
+        T1 = new javax.swing.JPanel();
         jTextField13 = new javax.swing.JTextField();
         jPanel28 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
-        jPanel29 = new javax.swing.JPanel();
+        T2 = new javax.swing.JPanel();
         jTextField14 = new javax.swing.JTextField();
         jPanel30 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
         RadioButtons = new javax.swing.JPanel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
-        jPanel13 = new javax.swing.JPanel();
-        jPanel16 = new javax.swing.JPanel();
-        jPanel32 = new javax.swing.JPanel();
+        Icons = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
@@ -80,7 +77,8 @@ public class Design extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jPanel31 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
+        ImputPanelI = new javax.swing.JPanel();
+        N = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
         jTextField8 = new javax.swing.JTextField();
         jPanel19 = new javax.swing.JPanel();
@@ -124,44 +122,44 @@ public class Design extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel5.setBackground(new java.awt.Color(0, 47, 108));
+        titulo.setBackground(new java.awt.Color(0, 47, 108));
 
         jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 1, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Interfaz de Control");
-        jPanel5.add(jLabel1);
+        titulo.add(jLabel1);
 
-        jPanel14.setBackground(new java.awt.Color(0, 47, 108));
+        Separador.setBackground(new java.awt.Color(0, 47, 108));
 
-        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
-        jPanel14.setLayout(jPanel14Layout);
-        jPanel14Layout.setHorizontalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout SeparadorLayout = new javax.swing.GroupLayout(Separador);
+        Separador.setLayout(SeparadorLayout);
+        SeparadorLayout.setHorizontalGroup(
+            SeparadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel14Layout.setVerticalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        SeparadorLayout.setVerticalGroup(
+            SeparadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 29, Short.MAX_VALUE)
         );
 
-        jPanel15.setBackground(new java.awt.Color(0, 47, 108));
+        design.setBackground(new java.awt.Color(0, 47, 108));
 
-        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
-        jPanel15.setLayout(jPanel15Layout);
-        jPanel15Layout.setHorizontalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout designLayout = new javax.swing.GroupLayout(design);
+        design.setLayout(designLayout);
+        designLayout.setHorizontalGroup(
+            designLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel15Layout.setVerticalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        designLayout.setVerticalGroup(
+            designLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 63, Short.MAX_VALUE)
         );
 
         ImputPanel.setBackground(new java.awt.Color(255, 255, 255));
-        ImputPanel.setLayout(new java.awt.GridLayout(3, 3, 40, 40));
+        ImputPanel.setLayout(new java.awt.GridLayout(2, 3, 20, 50));
 
-        jPanel18.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel18.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+        P1.setBackground(new java.awt.Color(255, 255, 255));
+        P1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         jTextField9.setBackground(new java.awt.Color(255, 255, 255));
         jTextField9.setText("                              ");
@@ -170,7 +168,7 @@ public class Design extends javax.swing.JFrame {
                 jTextField9ActionPerformed(evt);
             }
         });
-        jPanel18.add(jTextField9);
+        P1.add(jTextField9);
 
         jPanel20.setBackground(new java.awt.Color(0, 47, 108));
         jPanel20.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
@@ -180,12 +178,12 @@ public class Design extends javax.swing.JFrame {
         jLabel10.setText("P1");
         jPanel20.add(jLabel10);
 
-        jPanel18.add(jPanel20);
+        P1.add(jPanel20);
 
-        ImputPanel.add(jPanel18);
+        ImputPanel.add(P1);
 
-        jPanel21.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel21.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+        P2.setBackground(new java.awt.Color(255, 255, 255));
+        P2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         jTextField10.setBackground(new java.awt.Color(255, 255, 255));
         jTextField10.setText("                              ");
@@ -194,7 +192,7 @@ public class Design extends javax.swing.JFrame {
                 jTextField10ActionPerformed(evt);
             }
         });
-        jPanel21.add(jTextField10);
+        P2.add(jTextField10);
 
         jPanel22.setBackground(new java.awt.Color(0, 47, 108));
         jPanel22.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
@@ -205,12 +203,12 @@ public class Design extends javax.swing.JFrame {
         jLabel11.setText("P2");
         jPanel22.add(jLabel11);
 
-        jPanel21.add(jPanel22);
+        P2.add(jPanel22);
 
-        ImputPanel.add(jPanel21);
+        ImputPanel.add(P2);
 
-        jPanel23.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel23.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+        V1.setBackground(new java.awt.Color(255, 255, 255));
+        V1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         jTextField11.setBackground(new java.awt.Color(255, 255, 255));
         jTextField11.setText("                              ");
@@ -219,7 +217,7 @@ public class Design extends javax.swing.JFrame {
                 jTextField11ActionPerformed(evt);
             }
         });
-        jPanel23.add(jTextField11);
+        V1.add(jTextField11);
 
         jPanel24.setBackground(new java.awt.Color(0, 47, 108));
         jPanel24.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
@@ -229,12 +227,12 @@ public class Design extends javax.swing.JFrame {
         jLabel12.setText("V1");
         jPanel24.add(jLabel12);
 
-        jPanel23.add(jPanel24);
+        V1.add(jPanel24);
 
-        ImputPanel.add(jPanel23);
+        ImputPanel.add(V1);
 
-        jPanel25.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel25.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+        V2.setBackground(new java.awt.Color(255, 255, 255));
+        V2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         jTextField12.setBackground(new java.awt.Color(255, 255, 255));
         jTextField12.setText("                              ");
@@ -243,7 +241,7 @@ public class Design extends javax.swing.JFrame {
                 jTextField12ActionPerformed(evt);
             }
         });
-        jPanel25.add(jTextField12);
+        V2.add(jTextField12);
 
         jPanel26.setBackground(new java.awt.Color(0, 47, 108));
         jPanel26.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
@@ -253,12 +251,12 @@ public class Design extends javax.swing.JFrame {
         jLabel13.setText("V2");
         jPanel26.add(jLabel13);
 
-        jPanel25.add(jPanel26);
+        V2.add(jPanel26);
 
-        ImputPanel.add(jPanel25);
+        ImputPanel.add(V2);
 
-        jPanel27.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel27.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+        T1.setBackground(new java.awt.Color(255, 255, 255));
+        T1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         jTextField13.setBackground(new java.awt.Color(255, 255, 255));
         jTextField13.setText("                              ");
@@ -267,7 +265,7 @@ public class Design extends javax.swing.JFrame {
                 jTextField13ActionPerformed(evt);
             }
         });
-        jPanel27.add(jTextField13);
+        T1.add(jTextField13);
 
         jPanel28.setBackground(new java.awt.Color(0, 47, 108));
         jPanel28.setForeground(new java.awt.Color(255, 255, 255));
@@ -278,12 +276,12 @@ public class Design extends javax.swing.JFrame {
         jLabel14.setText("T1");
         jPanel28.add(jLabel14);
 
-        jPanel27.add(jPanel28);
+        T1.add(jPanel28);
 
-        ImputPanel.add(jPanel27);
+        ImputPanel.add(T1);
 
-        jPanel29.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel29.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+        T2.setBackground(new java.awt.Color(255, 255, 255));
+        T2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         jTextField14.setBackground(new java.awt.Color(255, 255, 255));
         jTextField14.setText("                              ");
@@ -292,7 +290,7 @@ public class Design extends javax.swing.JFrame {
                 jTextField14ActionPerformed(evt);
             }
         });
-        jPanel29.add(jTextField14);
+        T2.add(jTextField14);
 
         jPanel30.setBackground(new java.awt.Color(0, 47, 108));
         jPanel30.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
@@ -302,13 +300,12 @@ public class Design extends javax.swing.JFrame {
         jLabel15.setText("T2");
         jPanel30.add(jLabel15);
 
-        jPanel29.add(jPanel30);
+        T2.add(jPanel30);
 
-        ImputPanel.add(jPanel29);
-
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+        ImputPanel.add(T2);
 
         RadioButtons.setBackground(new java.awt.Color(255, 255, 255));
+        RadioButtons.setLayout(new java.awt.GridLayout(2, 2, 30, 30));
 
         jRadioButton1.setBackground(new java.awt.Color(255, 255, 255));
         jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -354,11 +351,7 @@ public class Design extends javax.swing.JFrame {
         });
         RadioButtons.add(jRadioButton4);
 
-        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
-
-        jPanel16.setBackground(new java.awt.Color(255, 255, 255));
-
-        jPanel32.setBackground(new java.awt.Color(255, 255, 255));
+        Icons.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -433,10 +426,12 @@ public class Design extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel32.add(jPanel8);
+        Icons.add(jPanel8);
 
-        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel6.setLayout(new java.awt.GridLayout(1, 2, 10, 5));
+        ImputPanelI.setBackground(new java.awt.Color(255, 255, 255));
+
+        N.setBackground(new java.awt.Color(255, 255, 255));
+        N.setLayout(new java.awt.GridLayout(1, 2, 10, 5));
 
         jPanel17.setBackground(new java.awt.Color(255, 255, 255));
         jPanel17.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
@@ -460,72 +455,61 @@ public class Design extends javax.swing.JFrame {
 
         jPanel17.add(jPanel19);
 
-        jPanel6.add(jPanel17);
+        N.add(jPanel17);
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/002-okay.png"))); // NOI18N
-        jPanel6.add(jLabel2);
+        N.add(jLabel2);
+
+        ImputPanelI.add(N);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Separador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(design, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Icons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(RadioButtons, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 62, Short.MAX_VALUE)
+                        .addComponent(RadioButtons, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(89, 89, 89)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(ImputPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(73, 73, 73)
-                                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(246, 246, 246)
-                                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(89, 89, 89)
+                        .addComponent(ImputPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addComponent(jPanel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(ImputPanelI, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(ImputPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ImputPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(ImputPanelI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(Separador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(RadioButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                .addComponent(Icons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76)
-                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addComponent(jPanel32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(design, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -615,9 +599,20 @@ public class Design extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Icons;
     private javax.swing.JPanel ImputPanel;
+    private javax.swing.JPanel ImputPanelI;
+    private javax.swing.JPanel N;
+    private javax.swing.JPanel P1;
+    private javax.swing.JPanel P2;
     private javax.swing.JPanel RadioButtons;
+    private javax.swing.JPanel Separador;
+    private javax.swing.JPanel T1;
+    private javax.swing.JPanel T2;
+    private javax.swing.JPanel V1;
+    private javax.swing.JPanel V2;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JPanel design;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -635,32 +630,18 @@ public class Design extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
-    private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
-    private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
-    private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel24;
-    private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
-    private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel28;
-    private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel30;
     private javax.swing.JPanel jPanel31;
-    private javax.swing.JPanel jPanel32;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JRadioButton jRadioButton1;
@@ -674,5 +655,6 @@ public class Design extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JPanel titulo;
     // End of variables declaration//GEN-END:variables
 }
