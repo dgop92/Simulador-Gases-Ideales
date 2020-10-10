@@ -1,17 +1,19 @@
 package inevaup.dialogs;
 
 import java.awt.Frame;
-
+/**
+ * 
+ */
 public class WarningDialog extends BaseDialog implements DialogActions{
     
     private final String title;
     private final String message;
     private boolean warningAccepted;
     /**
-     * Esta clase define e inicializa los diálogos de advertencia. 
-     * @param parent
-     * @param title
-     * @param message
+     * Construye e inicializa la ventana de diálogo de advertencia con su respectivo contenido.
+     * @param parent:
+     * @param title:
+     * @param message: 
      */
     public WarningDialog(Frame parent, String title, String message) {
         super(parent, true);
@@ -22,9 +24,7 @@ public class WarningDialog extends BaseDialog implements DialogActions{
 
         initDialog();
     }
-    /** 
-     * Esta función inicializa los diálogos con su respectivo diseño y contenido. 
-     */
+   
     private void initDialog(){
         
         this.setActionInterface(this);

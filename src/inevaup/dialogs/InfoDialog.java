@@ -3,10 +3,12 @@ package inevaup.dialogs;
 
 import java.awt.Frame;
 /**
- En esta clase determina lo que va a heredar la sección de diálogos de información y la interfaz que se va a implmentar. 
+ * 
  */
 public class InfoDialog extends BaseDialog implements DialogActions{
-
+    /**
+     * Enumera los tres diferentes tipos de diálogos. 
+     */
     public enum TypeInfoDialog {
         INFO_DIALOG, SUCCESS_DIALOG, ERROR_DIALOG
     }
@@ -14,6 +16,13 @@ public class InfoDialog extends BaseDialog implements DialogActions{
     private final String title; 
     private final String message;
     private final TypeInfoDialog type;
+    /**
+     * Construye la ventana de diálogo de información con su respectivo contenido. 
+     * @param parent: Cuadro Padre del que hereda sus características.
+     * @param title: Título del diálogo.
+     * @param message: Mensaje a desplegar en el diálogo. 
+     * @param type: Tipo de diálogo: InfoDialog, WarningDialog, SuccesDialog. 
+     */
     
     public InfoDialog(Frame parent, String title, String message, TypeInfoDialog type) {
         super(parent, true);
@@ -24,7 +33,9 @@ public class InfoDialog extends BaseDialog implements DialogActions{
         
         initDialog();
     }
-    
+    /**
+     * Inicializa los diálogos con su contenido dependiendo de su tipo. 
+     */
     private void initDialog(){
         
         this.setActionInterface(this);
@@ -46,23 +57,17 @@ public class InfoDialog extends BaseDialog implements DialogActions{
                 initInfoDialog();
         }
     }
-/**
- * Esta función inicializa el diálogo de de información. 
- */
+
     private void initInfoDialog(){
         this.setDialogIcon(DialogConstantData.INFO_DIALOG_ICON_PATH);
         this.setDialogHeaderColor(DialogConstantData.INFO_DIALOG_COLOR);
     }
-/**
- * Esta función inicializa el diálogo de de éxito. 
- */
+
     private void initSuccessDialog(){
         this.setDialogIcon(DialogConstantData.SUCCESS_DIALOG_ICON_PATH);
         this.setDialogHeaderColor(DialogConstantData.SUCCESS_DIALOG_COLOR);
     }
-/**
- * Esta función inicializa el diálogo de de error. 
- */
+
     private void initErrorDialog() {
         this.setDialogIcon(DialogConstantData.ERROR_DIALOG_ICON_PATH);
         this.setDialogHeaderColor(DialogConstantData.ERROR_DIALOG_COLOR);

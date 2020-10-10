@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.Set;
 /**
- * Esta clase se encarga de crear la clase R dependiendo de los recursos que se encuentren en la carpeta "Data".  
+ * Construyela clase R dependiendo de los recursos que se encuentren en la carpeta "Data".  
  */
 public class ClassBuilder {
 
@@ -16,7 +16,12 @@ public class ClassBuilder {
 
     private String generatedClassText;
     private AppResources appResources;
-
+    /**
+     * Construye la clase con sus rutas, paquetes y su nombre.
+     * @param packageName Nombre del paquete
+     * @param className Nombre de la clase 
+     * @param classPath Ruta de acceso de la clase. 
+     */
     public ClassBuilder(String packageName, String className, String classPath) {
         this.className = className;
         this.classPath = classPath;
@@ -26,7 +31,7 @@ public class ClassBuilder {
         generatedClassText = "";
     }
     /**
-     * Esta función se encarga de generar la clase y luego escribirla. 
+     * Genera la clase, luego la escribe y controla las excepciones. 
      */
     public void generateClass(){
 

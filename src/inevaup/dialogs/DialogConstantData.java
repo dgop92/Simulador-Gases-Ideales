@@ -3,8 +3,7 @@ package inevaup.dialogs;
 import java.awt.Font;
 import java.awt.Color;
 /**
- * Esta clase determina los colores dependiendo del tipo de diálogo que se va a mostrar. así como pequeños rasgos del diseño y sus respectivas
- * rutas de acceso. 
+ * Crea constantes para definir los colores de los diálogos, el fondo, el texto del título, el texto del contenido, y asocia las rutas de los iconos de cada diálogo. 
  */
 public class DialogConstantData {
 

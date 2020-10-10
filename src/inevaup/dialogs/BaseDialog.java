@@ -3,13 +3,14 @@ package inevaup.dialogs;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 /**
-*Esta clase permite generar la estructura principal de los diálogos y su composición, además de determinar el diseño gráfico de estos, y a partir de 
-esta clase se heredan las mismas características para sus subclases.    
+*Genera la estructura principal de los diálogos y su composición, además de determinar el diseño gráfico de estos, y heredar las características a las subclases.    
  */
 public class BaseDialog extends javax.swing.JDialog {
     
     private DialogActions dialogActions;
-    
+    /**
+     * Inicializa los componentes y los recursos y ordena la visualización de los diálogos. 
+     */
     public BaseDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
                 
@@ -18,9 +19,7 @@ public class BaseDialog extends javax.swing.JDialog {
         setBaseResources();
 
     }
-    /**
-     En esta función se inicializan los recursos de base necesarios para visualizar contenido en la ventana.  
-     */
+  
     private void setBaseResources(){
         parent_layout.setBackground(DialogConstantData.BACKGROUND_COLOR);
         content_panel.setBackground(DialogConstantData.BACKGROUND_COLOR);
@@ -55,9 +54,7 @@ public class BaseDialog extends javax.swing.JDialog {
         message_label.setText("<html>" + message + "</html>");
         
     }
-    /**
-     * Esta función ajusta el tamaño y las dimensiones de la ventana de diálogo dependiendo del mensaje para una correcta visualización. 
-     */
+
     private void setNewHeight(String message){
         
         int maxChar = 43;
@@ -95,10 +92,7 @@ public class BaseDialog extends javax.swing.JDialog {
  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    /**
-     *Esta función crea ciertas variables con componentes del paquete de javaswing y luego determina detalladamente cada uno de los recursos de diseño
-     gráfico, referente a colores, tipografías, texto, fondo y contenido de la ventana en general. 
-     */
+    
     private void initComponents() {
 
         parent_layout = new javax.swing.JPanel();
@@ -222,6 +216,7 @@ public class BaseDialog extends javax.swing.JDialog {
         dialogActions.onCacelAction();
     }//GEN-LAST:event_cancel_buttonMouseClicked
         
+ 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -264,7 +259,7 @@ public class BaseDialog extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             /**
-             * Esta función inicializa la ventana de diálogo para que pueda ser visualizada. 
+             * Hace visible la ventana de diálogos. 
              */
             public void run() {
                 BaseDialog dialog = new BaseDialog(new javax.swing.JFrame(), true);

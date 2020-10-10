@@ -1,6 +1,6 @@
 package resources;
 /**
- * Esta clase se determina los errores y las razones cuando los recursos no están totalmente cargados. 
+ * Determina la excepción cuando no es cargado un recurso. 
  */
 public class ResourceNotLoadedException extends Exception{
 
@@ -10,24 +10,24 @@ public class ResourceNotLoadedException extends Exception{
     private String reason;
     private String resourcePath;
     /**
-     *  Esta función genera las diferentes razones. 
-     * @param resourcePath
-     * @param reason
+     * Genera las diferentes razones para cada excepción. 
+     * @param resourcePath Ruta del recurso
+     * @param reason Razón
      */
     public ResourceNotLoadedException(String resourcePath, String reason) {
         this.resourcePath = resourcePath;
         this.reason = reason;
     }
     /**
-     * Esta función determina cuando es un error inexplicable.
-     * @param resourcePath
+     * Determina cuando ocurre un error inesperado.
+     * @param resourcePath Ruta del recurso
      */
     public ResourceNotLoadedException(String resourcePath) {
         this.resourcePath = resourcePath;
         this.reason = "Unexpected reason";
     }
     /**
-     * Esta función muestra la rasón más la ruta de ubicación del recurso no cargado. 
+     * Devuelve la ruta del recurso no cargado y añade la razón. 
      */
     public String toString() {
         return "The following resource path couldn't be loaded " + "[" + resourcePath + "]" +
