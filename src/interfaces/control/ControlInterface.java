@@ -1,10 +1,16 @@
 package interfaces.control;
 
+import simulation.SimulationWorkspace;
+
 public class ControlInterface extends javax.swing.JFrame {
 
-   
+    private SimulationWorkspace simulationWorkspace;
+
     public ControlInterface() {
         initComponents();
+
+        simulationWorkspace = new SimulationWorkspace();
+        simulationWorkspace.run();
     }
     
     @SuppressWarnings("unchecked")

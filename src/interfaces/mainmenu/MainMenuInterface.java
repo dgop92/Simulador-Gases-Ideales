@@ -3,6 +3,8 @@ package interfaces.mainmenu;
 import java.awt.CardLayout;
 import inevaup.resources.AppResources;
 import inevaup.resources.R;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 public class MainMenuInterface extends javax.swing.JFrame implements MenuActions{
     
@@ -19,6 +21,15 @@ public class MainMenuInterface extends javax.swing.JFrame implements MenuActions
         initComponents();
         initCustomResources();
         initCardLayout();
+
+        centreWindow();
+    }
+
+    private void centreWindow() {
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
+        int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
+        this.setLocation(x, y - 25);
     }
     
     private void initCustomResources(){

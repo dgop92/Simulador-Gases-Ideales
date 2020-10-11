@@ -175,7 +175,6 @@ public class TestFinalDataForm extends TestCase{
         assertEquals(expected, result);
     }
     
-
     private TransformationType[] getRandomTransformationType(){
 
         TransformationType[] transformationTypes = 

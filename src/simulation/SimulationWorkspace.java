@@ -54,8 +54,6 @@ public class SimulationWorkspace extends PApplet{
         heatSource = new HeatSource(this, 0, 540, 500, 650);
 
         cylinder.fillCylinder(55, 0.5f);
-
-        isRunning = true;
     }
 
     @Override
@@ -86,7 +84,7 @@ public class SimulationWorkspace extends PApplet{
             isRunning = !transformationStrategy.IsTheTransformationFinished();
         }else{
             statusBar.draw();
-            cylinder.drawParticles();
+            //cylinder.drawParticles();
         }
 
         drawSketchFragmentsDivisions();

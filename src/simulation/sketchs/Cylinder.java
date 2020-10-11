@@ -21,7 +21,7 @@ public class Cylinder extends SketchFragment {
     @Override
     public void update() {
 
-        updateParticles();
+        //updateParticles();
     }
 
     public void fillCylinder(int nParticle, float v) {

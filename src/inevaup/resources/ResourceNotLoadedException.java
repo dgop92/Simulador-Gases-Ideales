@@ -1,6 +1,6 @@
 package inevaup.resources;
 /**
- * Determina la excepción cuando no es cargado un recurso. 
+ * Excepción para cuando un recurso no se puede cargar
  */
 public class ResourceNotLoadedException extends Exception{
 
@@ -9,25 +9,32 @@ public class ResourceNotLoadedException extends Exception{
     
     private String reason;
     private String resourcePath;
+
     /**
-     * Genera las diferentes razones para cada excepción. 
+     * Construye la excepcion con sus respectivos parametros
+     * 
      * @param resourcePath Ruta del recurso
-     * @param reason Razón
+     * @param reason Razon por la cual el recurso no se cargo
      */
     public ResourceNotLoadedException(String resourcePath, String reason) {
         this.resourcePath = resourcePath;
         this.reason = reason;
     }
+
     /**
-     * Determina cuando ocurre un error inesperado.
+     * Construye la excepcion con la ruta del recurso pero sin razon
+     * 
      * @param resourcePath Ruta del recurso
      */
     public ResourceNotLoadedException(String resourcePath) {
         this.resourcePath = resourcePath;
         this.reason = "Unexpected reason";
     }
+
     /**
-     * Devuelve la ruta del recurso no cargado y añade la razón. 
+     * Muestra el mensaje de la excepción con la ruta y la razon por la cual fallo al cargar
+     * 
+     * @return Un {@code string} con el mensaje de error de la excepcion
      */
     public String toString() {
         return "The following resource path couldn't be loaded " + "[" + resourcePath + "]" +

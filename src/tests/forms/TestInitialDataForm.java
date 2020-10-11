@@ -133,6 +133,68 @@ public class TestInitialDataForm extends TestCase{
 
     }
 
+    @Test
+    public void testInvalidRangeGasData(){
+
+        InitialDataForm initialDataForm;
+        boolean result;
+        boolean expected = false;
+
+        String[][] listOfparameters = {
+                                {"60000", "50", "400", "10"},
+                                {"60000", "200", "400", "10"},
+
+                                {"60000", "100", "100", "10"},
+                                {"60000", "100", "800", "10"},
+
+                                {"10", "100", "350", "10"},
+                                {"130000", "100", "350", "10"},
+                                };
+        int n = 1;
+        for (String[] parameters: listOfparameters) {
+            
+            System.out.println("Test: " + n + "  " + Arrays.toString(parameters));
+            initialDataForm = 
+                new InitialDataForm(parameters[0], parameters[1], parameters[2], parameters[3]);
+            
+            result = initialDataForm.isDataValid();
+            assertEquals(expected, result);
+
+            n ++;
+        }
+
+    }
+
+    @Test
+    public void testValidRangeGasData(){
+
+        InitialDataForm initialDataForm;
+        boolean result;
+        boolean expected = true;
+
+        String[][] listOfparameters = {
+                                {"60000", "95", "350", "10"},
+                                {"58000", "110", "290", "10"},
+
+                                {"65000.40", "290.67", "125.3", "10"},
+                                {"54324.5", "380.15", "95.3", "10"},
+                                };
+        int n = 1;
+        for (String[] parameters: listOfparameters) {
+            
+            System.out.println("Test: " + n + "  " + Arrays.toString(parameters));
+            initialDataForm = 
+                new InitialDataForm(parameters[0], parameters[1], parameters[2], parameters[3]);
+            
+            result = initialDataForm.isDataValid();
+            assertEquals(expected, result);
+
+            n ++;
+        }
+
+    }
+    
+
     private void shuffleParameterArray(String[] parameters){
 
         Random rand = new Random();

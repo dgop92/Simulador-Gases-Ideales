@@ -19,8 +19,9 @@ import com.github.cliftonlabs.json_simple.Jsoner;
 import inevaup.resources.R.colors;
 import inevaup.resources.R.fonts;
 import inevaup.resources.R.strings;
+
 /**
- * 
+ * Appresources carga y da acesso a los recursos usados por la app.  
  */
 public class AppResources {
 
@@ -32,9 +33,11 @@ public class AppResources {
     private JsonObject stringsJsonObject;
     private JsonObject themeJsonObject;
     private HashMap<String, Font> customFonts;
+
     /**
+     * Obtener la intancia de AppResources 
      * 
-     * @return
+     * @return intancia de appResources 
      */
     public static AppResources getAppResources() {
         if (appResources == null) {
@@ -49,8 +52,9 @@ public class AppResources {
         areAllResourcesLoaded = false;
 
     }
+
     /**
-     * Controla las excepciones que se pueden presentar en la ejecución del programa. 
+     * Carga los recursos de la app 
      */
     public void loadResources() {
 
@@ -68,16 +72,20 @@ public class AppResources {
             errorMessage = e.toString();
         }
     }
+
     /**
-     * Genera un mensaje de error. 
-     * @return Devuelve el mensaje de error. 
+     * Obtener el mensaje de error si los recursos no se lograron cargar 
+     * 
+     * @return un String con la razon de porque los recursos no se cargaron 
      */
     public String getErrorMessage() {
         return errorMessage;
     }
+
     /**
      * Verifica si los recursos están cargados.
-     * @return Devuelve los recursos cargados- 
+     * 
+     * @return true si los recursos se cargaron exitosamente- 
      */
     public boolean AreAllResourcesLoaded() {
         return areAllResourcesLoaded;
@@ -159,21 +167,23 @@ public class AppResources {
 
     }
 
-    // ---------- Resources Getters ----------- //
-
     // Note: Check the type of the object to avoid execptions
+
     /**
-     * Obtiene las strings de su ruta de acceso.
-     * @param key String
-     * @return Devuelve la string. 
+     * Metodo para acceder a los strings de la app 
+     * 
+     * @param key La llave del string a obtener
+     * @return El string relacionado a la llave 
      */
     public String getString(strings key) {
         return (String) stringsJsonObject.getOrDefault((String) key.name(), "None");
     }
+
     /**
-     * Controla las excepciones que presenten los colores.
-     * @param colorKey Valor del color. 
-     * @return Devuelve el color decodificado o un nuevo color. 
+     * Metodo para acceder a los colores de la app 
+     * 
+     * @param colorKey la llave del color a obtener 
+     * @return El color relacionado a la llave
      */
     public Color getColor(colors colorKey) {
         String hexColor = (String) themeJsonObject.getOrDefault((String) colorKey.name(), "#FFFFFF");
@@ -183,63 +193,89 @@ public class AppResources {
             return new Color(255, 0, 255);
         }
     }
+
     /**
-     * Obtiene el ícono de su ruta de acceso. 
-     * @param iconName: Parámetro del nombre del ícono.
-     * @return: Devuelve la ruta del ícono. 
+     * Metodo para acceder a los iconos de la app 
+     * 
+     * @param iconName La llave del icono a obtener 
+     * @return: El icono relacionado a la llave 
      */
     public ImageIcon getIcon(String iconName) {
         String iconPath = ResourcesPath.getConcatPath(ResourcesPath.getFullIconsPath(), iconName);
         return new ImageIcon(iconPath);
     }
+
     /**
-     * Obtiene la imagen de su ruta de acceso 
-     * @param imageName: Parámetro de la imagen.  
-     * @return: Devuelve la ruta del ícono. 
+     * Metodo para acceder a las imagenes de la app en java swing
+     *  
+     * @param imageName: La llave de la imagen a obtener.
+     * @return: la imagen relacionado a la llave 
      */
     public ImageIcon getImage(String imageName) {
-        String imagePath = ResourcesPath.getConcatPath(ResourcesPath.getFullIconsPath(), imageName);
+        String imagePath = ResourcesPath.getConcatPath(ResourcesPath.getFullImagesPath(), imageName);
         return new ImageIcon(imagePath);
     }
+
     /**
+     * Metodo para acceder a las imagenes de la app en processing
+     *  
+     * @param imageName: La llave de la imagen a obtener.
+     * @return: la ruta de la imagen relacionda a la llave 
+     */
+    public String getImageP(String imageName) {
+        String imagesPath = ResourcesPath.getFullImagesPath();
+        String imagesPathReduceOneLevel = imagesPath.substring(imagesPath.indexOf('\\') + 1);
+        String imagePath = ResourcesPath.getConcatPath(imagesPathReduceOneLevel, imageName);
+        return imagePath;
+    }
+
+    /**
+     * Metodo para acceder a los sonidos de la app en processing
+     *  
+     * @param soundName: La llave del sonido a obtener
+     * @return: la ruta del sonido relacionda a la llave 
+     */
+    public String getSoundP(String soundName) {
+        String soundsPath = ResourcesPath.getFullSoundsPath();
+        String soundsPathReduceOneLevel = soundsPath.substring(soundsPath.indexOf('\\') + 1);
+        String soundPath = ResourcesPath.getConcatPath(soundsPathReduceOneLevel, soundName);
+        return soundPath;
+    }
+
+    /**
+     * Metodo para acceder a las fuentes de la app 
      * 
-     * @param fontName
-     * @param fontSize
-     * @return
+     * @param fontName Nombre de la fuente
+     * @param fontSize Tamaño de la fuente
+     * @return La fuente relacionada al nombre
      */
     public Font getFont(fonts fontName, float fontSize) {
         Font baseFont = customFonts.getOrDefault(fontName.name(), new Font("Tahoma", Font.PLAIN, 16));
         return baseFont.deriveFont(fontSize);
     }
+
     /**
-     * Crea la base de las fuentes para el programa. 
-     * @param fontName Parámetro del nombre de la fuente.
-     * @param fontSize Parámetro del tamaño de la fuente.
-     * @param fontStyle Párametro del estilo o tipo de fuente. 
-     * @return Devuelve el estilo o tipo de la fuente y el tamaño de esta. 
+     * Metodo para acceder a las fuentes de la app 
+     * 
+     * @param fontName Nombre de la fuente
+     * @param fontSize Tamaño de la fuente
+     * @param fontStyle Estilo de la fuente
+     * @return La fuente relacionada al nombre
      */
     public Font getFont(fonts fontName, float fontSize, int fontStyle) {
         Font baseFont = customFonts.getOrDefault(fontName.name(), new Font("Tahoma", Font.PLAIN, 16));
         return baseFont.deriveFont(fontStyle, fontSize);
     }
-    /**
-     * Obtiene las strings del programa.
-     * @return Devuelve las strings.
-     */
+
+
     public JsonObject getStringsJsonObject() {
         return stringsJsonObject;
     }
-    /**
-     * Obtiene los temas o colores del programa. 
-     * @return Devuelve los colores o temas. 
-     */
+
     public JsonObject getThemeJsonObject() {
         return themeJsonObject;
     }
-    /**
-     * Obtiene las fuentes custom del programa
-     * @return Devuelve las fuentes customs. 
-     */
+
     public HashMap<String, Font> getCustomFonts() {
         return customFonts;
     }

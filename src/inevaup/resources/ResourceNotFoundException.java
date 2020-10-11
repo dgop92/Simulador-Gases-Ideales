@@ -1,30 +1,36 @@
 package inevaup.resources;
 /**
- * Determina la excepción cuando no es encontrado un recurso. 
+ * Excepción para cuando un recurso no es encontrado
  */
 public class ResourceNotFoundException extends Exception {
 
     
     private static final long serialVersionUID = -734139226522061245L;
-    
     private String resourcePath;
+
     /**
-     * Muestra la ruta del recurso
-     * @param resourcePath Ruta del recurso
+     * Construye la excepcion con la respectiva ruta del recurso
+     * 
+     * @param resourcePath Ruta del recurso no econtrado
      */
     public ResourceNotFoundException(String resourcePath) {
         this.resourcePath = resourcePath;
     }
+
     /**
-     * Muestra el mensaje de la excepción y la ruta donde debería estar.
+     * Muestra el mensaje de la excepción y la ruta donde debería estar
+     * 
+     * @return Un {@code string} con el mensaje de error de la excepcion
      */
     public String toString() {
         return "The following resource path couldn't be found " + 
-        "\n\n" + "Path:" + "[" + resourcePath + "]";
+        "\n\n" + "Path:  " + "[" + resourcePath + "]";
     }
+
     /**
-     * Obtiene la ruta del recurso.
-     * @return Devuelve la ruta del recurso
+     * Obtener la ruta del recurso.
+     * 
+     * @return La ruta del recurso
      */
     public String getResourcePath(){
         return resourcePath;

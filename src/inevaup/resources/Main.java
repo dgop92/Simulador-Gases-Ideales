@@ -12,7 +12,7 @@ public class Main {
         appResources.loadResources();
 
         if(appResources.AreAllResourcesLoaded()){
-            ClassBuilder classBuilder = new ClassBuilder("resources", "R", "src/resources/R.java");
+            ClassBuilder classBuilder = new ClassBuilder("inevaup.resources", "R", "src/inevaup/resources/R.java");
             classBuilder.generateClass();
         }else{
             System.out.println(appResources.getErrorMessage());
