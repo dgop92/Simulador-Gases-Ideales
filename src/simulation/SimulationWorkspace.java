@@ -53,7 +53,7 @@ public class SimulationWorkspace extends PApplet{
         cylinder = new Cylinder(this, 0, 60, 500, 480);
         heatSource = new HeatSource(this, 0, 540, 500, 650);
 
-        cylinder.fillCylinder(55, 0.5f);
+        //cylinder.fillCylinder(55, 0.5f);
     }
 
     @Override

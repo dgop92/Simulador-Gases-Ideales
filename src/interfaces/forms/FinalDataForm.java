@@ -26,7 +26,7 @@ public class FinalDataForm extends DataForm {
         validate();
     }
 
-    private void validate() {
+    public void validate() {
 
         try {
             validateTypesOfTransformation();
@@ -35,7 +35,7 @@ public class FinalDataForm extends DataForm {
 
             isDataValid = true;
         } catch (ValidationError e) {
-            System.out.println(e);
+            //System.out.println(e);
         }
     }
 
@@ -115,7 +115,7 @@ public class FinalDataForm extends DataForm {
     }
 
     private boolean isJustOneEmpty(String text1, String text2, String text3) {
-        return text1.isEmpty() ^ text2.isEmpty() ^ text3.isEmpty();
+        return !(text1.isEmpty() ^ text2.isEmpty() ^ text3.isEmpty());
     }
 
     public boolean isDataValid() {

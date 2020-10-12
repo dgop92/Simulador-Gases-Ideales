@@ -29,7 +29,7 @@ public class InitialDataForm extends DataForm {
 
             isDataValid = true;
         } catch (ValidationError e) {
-            System.out.println(e);
+            //System.out.println(e);
         }
     }
 

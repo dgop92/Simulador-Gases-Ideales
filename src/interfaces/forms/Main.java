@@ -8,8 +8,10 @@ public class Main {
     
     public static void main(String[] args) {
         
-        //InitialDataForm initialDataForm = new InitialDataForm("0", "1", "10", "2");
-        FinalDataForm finalDataForm = new FinalDataForm("", "", "123.5", TransformationType.ISOBARIC);
+        //InitialDataForm initialDataForm = new InitialDataForm("65000.40", "290.67", "125.3", "10");
+        //initialDataForm.validate();
+        FinalDataForm finalDataForm = new FinalDataForm("", "", "123.5", TransformationType.ADIABATIC);
+        finalDataForm.validate();
         System.out.println(finalDataForm.isDataValid());
 
         

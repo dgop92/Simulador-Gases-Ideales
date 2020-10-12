@@ -405,7 +405,7 @@ public class ControlInterface extends javax.swing.JFrame {
 
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/icons/003-boton-de-pausa-de-reproduccion.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/icons/control-play-pause.png"))); // NOI18N
         jPanel12.add(jLabel3);
 
         jPanel9.add(jPanel12);
@@ -420,7 +420,7 @@ public class ControlInterface extends javax.swing.JFrame {
 
         jPanel31.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/icons/004-actualizar-flecha.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/icons/control-reset.png"))); // NOI18N
         jPanel31.add(jLabel5);
 
         jPanel10.add(jPanel31);

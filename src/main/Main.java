@@ -5,7 +5,6 @@ import inevaup.dialogs.InfoDialog;
 import inevaup.dialogs.InfoDialog.TypeInfoDialog;
 import inevaup.preferences.Settings;
 import inevaup.resources.AppResources;
-import inevaup.resources.R;
 
 public class Main {
 
@@ -24,7 +23,6 @@ public class Main {
         appResources.loadResources();
 
         if (appResources.AreAllResourcesLoaded()) {
-            System.out.println(appResources.getSoundP(R.sounds.sounds));
             MainMenuInterface mainMenuInterface = new MainMenuInterface();
             mainMenuInterface.setVisible(true);
         } else {

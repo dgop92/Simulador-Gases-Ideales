@@ -17,6 +17,8 @@ public class TestInitialDataForm extends TestCase{
     @Test
     public void testInvalidEmptyData(){
 
+        System.out.println(" -- testInvalidEmptyData --");
+
         InitialDataForm initialDataForm;
         boolean result;
         boolean expected = false;
@@ -39,6 +41,8 @@ public class TestInitialDataForm extends TestCase{
 
     @Test
     public void testNegativeNumbers(){
+
+        System.out.println(" -- testNegativeNumbers --");
 
         InitialDataForm initialDataForm;
         boolean result;
@@ -63,6 +67,8 @@ public class TestInitialDataForm extends TestCase{
     @Test
     public void testZeroNumber(){
 
+        System.out.println(" -- testZeroNumber --");
+
         InitialDataForm initialDataForm;
         boolean result;
         boolean expected = false;
@@ -86,6 +92,8 @@ public class TestInitialDataForm extends TestCase{
     @Test
     public void testWrongNumber(){
 
+        System.out.println(" -- testWrongNumber --");
+        
         //n can't be float
 
         InitialDataForm initialDataForm;
@@ -110,45 +118,23 @@ public class TestInitialDataForm extends TestCase{
 
 
     @Test
-    public void testValidData(){
-
-        InitialDataForm initialDataForm;
-        boolean result;
-        boolean expected = true;
-
-        String[] parameters = {"100", "50", "5", "900"};
-
-        for (int n = 0; n < NUMBER_OF_TEST; n++) {
-
-            shuffleParameterArray(parameters);
-            
-            System.out.println("Test: " + n + "  " + Arrays.toString(parameters));
-
-            initialDataForm = 
-                new InitialDataForm(parameters[0], parameters[1], parameters[2], parameters[3]);
-            result = initialDataForm.isDataValid();
-            assertEquals(expected, result);
-            
-        }
-
-    }
-
-    @Test
     public void testInvalidRangeGasData(){
+
+        System.out.println(" -- testInvalidRangeGasData --");
 
         InitialDataForm initialDataForm;
         boolean result;
         boolean expected = false;
 
         String[][] listOfparameters = {
-                                {"60000", "50", "400", "10"},
-                                {"60000", "200", "400", "10"},
+                                    {"60000", "50", "400", "10"},
+                                    {"60000", "200", "400", "10"},
 
-                                {"60000", "100", "100", "10"},
-                                {"60000", "100", "800", "10"},
+                                    {"60000", "100", "100", "10"},
+                                    {"60000", "100", "800", "10"},
 
-                                {"10", "100", "350", "10"},
-                                {"130000", "100", "350", "10"},
+                                    {"10", "100", "350", "10"},
+                                    {"130000", "100", "350", "10"},
                                 };
         int n = 1;
         for (String[] parameters: listOfparameters) {
@@ -167,6 +153,8 @@ public class TestInitialDataForm extends TestCase{
 
     @Test
     public void testValidRangeGasData(){
+
+        System.out.println(" -- testValidRangeGasData --");
 
         InitialDataForm initialDataForm;
         boolean result;

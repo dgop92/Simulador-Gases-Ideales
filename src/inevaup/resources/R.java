@@ -27,6 +27,10 @@ montserrat_bold
 public final static String images = "/images.txt";
 
 }public static class icons {
+public final static String control_okay = "/control-okay.png";
+public final static String control_play_pause = "/control-play-pause.png";
+public final static String control_play = "/control-play.png";
+public final static String control_reset = "/control-reset.png";
 public final static String menu_back_arrow = "/menu_back_arrow.png";
 public final static String menu_header_home = "/menu_header_home.png";
 public final static String menu_header_instructions = "/menu_header_instructions.png";
