@@ -17,6 +17,9 @@ public class GasDataMap {
     public static float MIN_USER_PRESSURE = 50562.5f;
     public static float MAX_USER_PRESSURE = 71569.839f;
 
+    public static float MIN_PROCESS_PRESSURE = 421.61f;
+    public static float MAX_PROCESS_PRESSURE = 6063706.682f;
+
     public static float MIN_REAL_VELOCITY = 394.82f;
     public static float MAX_REAL_VELOCITY = 654.74f;
 

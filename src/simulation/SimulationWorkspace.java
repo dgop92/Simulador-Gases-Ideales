@@ -48,7 +48,7 @@ public class SimulationWorkspace extends PApplet{
 
     @Override
     public void setup() {
-        frameRate(60);
+        //frameRate(60);
 
         robotoFont = new PFont(
             AppResources.getAppResources().getFont(R.fonts.roboto_regular, 16), true);
@@ -91,15 +91,23 @@ public class SimulationWorkspace extends PApplet{
             cylinder.update();
             heatSource.update();
 
+            pvGraph.setPoint(transformationStrategy.getData().get("pressure"), 
+                            transformationStrategy.getData().get("volume"));
+
             isRunning = !transformationStrategy.IsTheTransformationFinished();
         }else{
             statusBar.draw();
             //cylinder.drawParticles();
+            pvGraph.draw();
+            line(10, 10, 100, 10);
         }
 
         drawSketchFragmentsDivisions();
     }
 
+    public void startSimulation(){
+        isRunning = true;
+    }
 
     public void setGasTransformation(HashMap<String, Float> initialData, 
         HashMap<String, Float> finalData, TransformationType transformationType){

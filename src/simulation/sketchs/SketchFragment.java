@@ -22,6 +22,7 @@ public abstract class SketchFragment {
 
     public void drawDivison(){
         sketch.stroke(255);
+        sketch.strokeWeight(1);
         sketch.line(x, y, x + fragmentWidth, y);
         sketch.line(x + fragmentWidth, y, x + fragmentWidth, y + fragmentHeight);
         sketch.line(x + fragmentWidth, y + fragmentHeight, x, y + fragmentHeight);

@@ -30,7 +30,8 @@ public class MainTestSimulation {
 
         //usando is running podras empezar la simulacion, si no se activa solo se dibujaran los componentes
         //no se actualizan
-        sm.isRunning = true;
+        sm.startSimulation();
+        System.out.println(sm.isRunning);
 
 
     }
