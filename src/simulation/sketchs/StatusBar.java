@@ -20,6 +20,7 @@ public class StatusBar extends SketchFragment {
 
     public void draw(){
         if (sketch.isRunning){
+            sketch.textFont(sketch.robotoFont);
             sketch.textSize(16);
             sketch.fill(255);
             sketch.text("V  " + currentGasData.get("volume"), x + 20, y + 20); 

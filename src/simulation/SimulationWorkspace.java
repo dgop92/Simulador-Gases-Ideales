@@ -1,6 +1,7 @@
 package simulation;
 
 import processing.core.PApplet;
+import processing.core.PFont;
 
 import java.util.HashMap;
 
@@ -10,11 +11,15 @@ import simulation.sketchs.HeatSource;
 import simulation.sketchs.PVGraph;
 import simulation.sketchs.StatusBar;
 import simulation.sketchs.Thermometer;
+
 import idealgas.transformations.AdiabaticTransformation;
 import idealgas.transformations.IsobaricTransformation;
 import idealgas.transformations.IsothermalTransformation;
 import idealgas.transformations.IsovolumetricTransformation;
 import idealgas.transformations.TransformationStrategy;
+
+import inevaup.resources.AppResources;
+import inevaup.resources.R;
 import idealgas.TransformationType;
 
 public class SimulationWorkspace extends PApplet{
@@ -34,6 +39,8 @@ public class SimulationWorkspace extends PApplet{
     public boolean isRunning;
     public boolean isPaused;
 
+    public PFont robotoFont;
+
     @Override
     public void settings() {
         size(SKETCH_WIDTH, SKETCH_HEIGHT);
@@ -42,6 +49,9 @@ public class SimulationWorkspace extends PApplet{
     @Override
     public void setup() {
         frameRate(60);
+
+        robotoFont = new PFont(
+            AppResources.getAppResources().getFont(R.fonts.roboto_regular, 16), true);
 
         isRunning = false;
         isPaused = false;
@@ -52,7 +62,7 @@ public class SimulationWorkspace extends PApplet{
         pvGraph = new PVGraph(this, 500, 400, 300, 250);
         cylinder = new Cylinder(this, 0, 60, 500, 480);
         heatSource = new HeatSource(this, 0, 540, 500, 650);
-
+        
         //cylinder.fillCylinder(55, 0.5f);
     }
 

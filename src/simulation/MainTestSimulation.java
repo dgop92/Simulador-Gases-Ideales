@@ -3,10 +3,14 @@ package simulation;
 import java.util.HashMap;
 
 import idealgas.TransformationType;
+import inevaup.resources.AppResources;
 
 public class MainTestSimulation {
     
     public static void main(String[] args) {
+
+        //Just for test
+        AppResources.getAppResources().loadResources();
         
         SimulationWorkspace sm = new SimulationWorkspace();
         sm.run();
