@@ -1,6 +1,8 @@
 package idealgas.transformations;
 
 import idealgas.GasConstants;
+import idealgas.GasPVRange;
+
 import java.util.HashMap;
 
 public class IsothermalTransformation extends BaseTransformation implements TransformationStrategy {
@@ -9,12 +11,12 @@ public class IsothermalTransformation extends BaseTransformation implements Tran
         super(initialData, finalData);
 
         temperature = temperature0;
-        
+
         pressure = pressure0;
         volume = volume0;
 
         setVolumeDeltaSign();
-        
+
     }
 
     @Override
@@ -22,9 +24,9 @@ public class IsothermalTransformation extends BaseTransformation implements Tran
 
         pressure = pressure0 * volume0 / volume;
 
-        if (deltaV < 0){
+        if (deltaV < 0) {
             work = nMoles * GasConstants.R * temperature0 * (float) Math.log(volume / volume0);
-        }else{
+        } else {
             work = nMoles * GasConstants.R * temperature0 * (float) Math.log(volume0 / volume);
         }
         heat = work;
@@ -65,25 +67,25 @@ public class IsothermalTransformation extends BaseTransformation implements Tran
         float finalPressure = finalData.get("pressure");
         float finalVolume = finalData.get("volume");
 
-        if (deltaV <= 0){
+        if (deltaV <= 0) {
             // Volumen bajando, presion subiendo
 
-            if (finalPressure != 0){
+            if (finalPressure != 0) {
                 return pressure > finalPressure;
             }
 
-            if (finalVolume != 0){
+            if (finalVolume != 0) {
                 return volume < finalVolume;
             }
 
-        }else{
+        } else {
             // Volumen subiendo, presion bajando
 
-            if (finalPressure != 0){
+            if (finalPressure != 0) {
                 return pressure < finalPressure;
             }
 
-            if (finalVolume != 0){
+            if (finalVolume != 0) {
                 return volume > finalVolume;
             }
         }
@@ -91,18 +93,23 @@ public class IsothermalTransformation extends BaseTransformation implements Tran
         return false;
     }
 
-    private void setVolumeDeltaSign(){
+    private void setVolumeDeltaSign() {
 
         float finalVolume = finalData.get("volume");
-        if (volume0 > finalVolume && finalVolume != 0){
+        if (volume0 > finalVolume && finalVolume != 0) {
             deltaV *= -1;
         }
 
         float finalPressure = finalData.get("pressure");
-        if (pressure0 < finalPressure && finalPressure != 0){
+        if (pressure0 < finalPressure && finalPressure != 0) {
             deltaV *= -1;
         }
 
+    }
+
+    @Override
+    public GasPVRange getPVrange() {
+        return null;
     }
     
 }

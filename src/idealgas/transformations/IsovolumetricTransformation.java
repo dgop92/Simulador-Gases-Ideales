@@ -1,6 +1,8 @@
 package idealgas.transformations;
 
 import idealgas.GasConstants;
+import idealgas.GasPVRange;
+
 import java.util.HashMap;
 
 public class IsovolumetricTransformation extends BaseTransformation implements TransformationStrategy {
@@ -9,7 +11,7 @@ public class IsovolumetricTransformation extends BaseTransformation implements T
         super(initialData, finalData);
 
         volume = volume0;
-        
+
         pressure = pressure0;
         temperature = temperature0;
 
@@ -60,25 +62,25 @@ public class IsovolumetricTransformation extends BaseTransformation implements T
         float finalTemperature = finalData.get("temperature");
         float finalPressure = finalData.get("pressure");
 
-        if (deltaT <= 0){
+        if (deltaT <= 0) {
             // Temperatura bajando, presion tambien
 
-            if (finalTemperature != 0){
+            if (finalTemperature != 0) {
                 return temperature < finalTemperature;
             }
 
-            if (finalPressure != 0){
+            if (finalPressure != 0) {
                 return pressure < finalPressure;
             }
 
-        }else{
+        } else {
             // Temperatura subiendo, presion tambien
 
-            if (finalTemperature != 0){
+            if (finalTemperature != 0) {
                 return temperature > finalTemperature;
             }
 
-            if (finalPressure != 0){
+            if (finalPressure != 0) {
                 return pressure > finalPressure;
             }
         }
@@ -86,18 +88,23 @@ public class IsovolumetricTransformation extends BaseTransformation implements T
         return false;
     }
 
-    private void setTemperatureDeltaSign(){
+    private void setTemperatureDeltaSign() {
 
         float finalTemperature = finalData.get("temperature");
-        if (temperature0 > finalTemperature && finalTemperature != 0){
+        if (temperature0 > finalTemperature && finalTemperature != 0) {
             deltaT *= -1;
         }
 
         float finalPressure = finalData.get("pressure");
-        if (pressure0 > finalPressure && finalPressure != 0){
+        if (pressure0 > finalPressure && finalPressure != 0) {
             deltaT *= -1;
         }
 
+    }
+
+    @Override
+    public GasPVRange getPVrange() {
+        return null;
     }
     
     

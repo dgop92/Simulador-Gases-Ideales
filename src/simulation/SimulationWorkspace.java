@@ -33,7 +33,7 @@ public class SimulationWorkspace extends PApplet{
     private PVGraph pvGraph;
     private HeatSource heatSource;
     private Cylinder cylinder;
-    
+
     private TransformationStrategy transformationStrategy;
 
     public boolean isRunning;
@@ -62,20 +62,20 @@ public class SimulationWorkspace extends PApplet{
         pvGraph = new PVGraph(this, 500, 400, 300, 250);
         cylinder = new Cylinder(this, 0, 60, 500, 480);
         heatSource = new HeatSource(this, 0, 540, 500, 650);
-        
+
         //cylinder.fillCylinder(55, 0.5f);
     }
 
     @Override
     public void draw() {
         background(0);
-        
+
         if (isRunning && !isPaused){
             transformationStrategy.updateData();
 
             statusBar.setData(transformationStrategy.getData());
             cylinder.setVolume(transformationStrategy.getData().get("volume"));
-            
+
             thermometer.setTemperature(transformationStrategy.getData().get("temperature"));
             barometer.setPressure(transformationStrategy.getData().get("pressure"));
 
@@ -91,9 +91,6 @@ public class SimulationWorkspace extends PApplet{
             cylinder.update();
             heatSource.update();
 
-            pvGraph.setPoint(transformationStrategy.getData().get("pressure"), 
-                            transformationStrategy.getData().get("volume"));
-
             isRunning = !transformationStrategy.IsTheTransformationFinished();
         }else{
             statusBar.draw();
@@ -103,15 +100,12 @@ public class SimulationWorkspace extends PApplet{
         }
 
         drawSketchFragmentsDivisions();
+        // delay(10);
     }
 
-    public void startSimulation(){
-        isRunning = true;
-    }
-
-    public void setGasTransformation(HashMap<String, Float> initialData, 
+    public void setGasTransformation(HashMap<String, Float> initialData,
         HashMap<String, Float> finalData, TransformationType transformationType){
-        
+
         switch (transformationType) {
             case ISOBARIC:
                 transformationStrategy = new IsobaricTransformation(initialData, finalData);
@@ -126,13 +120,24 @@ public class SimulationWorkspace extends PApplet{
                 transformationStrategy = new AdiabaticTransformation(initialData, finalData);
                 break;
         }
+
+        delay(100);
+        isRunning = true;
     }
 
     public void run() {
         String[] processingArgs = { SimulationWorkspace.class.getName() };
         PApplet.runSketch(processingArgs, this);
     }
-    
+
+    @Override
+    public void mouseClicked() {
+        super.mouseClicked();
+
+        print(isRunning + " ----  ", transformationStrategy.IsTheTransformationFinished());
+
+    }
+
     private void drawSketchFragmentsDivisions(){
         statusBar.drawDivison();
         thermometer.drawDivison();

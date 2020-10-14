@@ -1,6 +1,8 @@
 package idealgas.transformations;
 
 import idealgas.GasConstants;
+import idealgas.GasPVRange;
+
 import java.util.HashMap;
 
 public class IsobaricTransformation extends BaseTransformation implements TransformationStrategy {
@@ -18,7 +20,7 @@ public class IsobaricTransformation extends BaseTransformation implements Transf
 
     @Override
     public void updateData() {
-        volume = volume0*temperature / temperature0;
+        volume = volume0 * temperature / temperature0;
 
         work = pressure0 * (volume - volume0);
         internalEnergy = nMoles * GasConstants.CPM * (temperature0 - temperature);
@@ -26,7 +28,7 @@ public class IsobaricTransformation extends BaseTransformation implements Transf
         heat = internalEnergy + work;
 
         temperature += deltaT;
-        
+
         this.updateVelocity(temperature);
         this.updateGasData();
     }
@@ -62,25 +64,25 @@ public class IsobaricTransformation extends BaseTransformation implements Transf
         float finalTemperature = finalData.get("temperature");
         float finalVolume = finalData.get("volume");
 
-        if (deltaT <= 0){
+        if (deltaT <= 0) {
             // Temperatura bajando, volumen tambien
 
-            if (finalTemperature != 0){
+            if (finalTemperature != 0) {
                 return temperature < finalTemperature;
             }
 
-            if (finalVolume != 0){
+            if (finalVolume != 0) {
                 return volume < finalVolume;
             }
 
-        }else{
+        } else {
             // Temperatura subiendo, volumen subiendo
 
-            if (finalTemperature != 0){
+            if (finalTemperature != 0) {
                 return temperature > finalTemperature;
             }
 
-            if (finalVolume != 0){
+            if (finalVolume != 0) {
                 return volume > finalVolume;
             }
         }
@@ -88,18 +90,23 @@ public class IsobaricTransformation extends BaseTransformation implements Transf
         return false;
     }
 
-    private void setTemperatureDeltaSign(){
+    private void setTemperatureDeltaSign() {
 
         float finalTemperature = finalData.get("temperature");
-        if (temperature0 > finalTemperature && finalTemperature != 0){
+        if (temperature0 > finalTemperature && finalTemperature != 0) {
             deltaT *= -1;
         }
 
         float finalVolume = finalData.get("volume");
-        if (volume0 > finalVolume && finalVolume != 0){
+        if (volume0 > finalVolume && finalVolume != 0) {
             deltaT *= -1;
         }
 
+    }
+
+    @Override
+    public GasPVRange getPVrange() {
+        return null;
     }
     
 }

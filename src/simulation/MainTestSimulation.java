@@ -16,23 +16,19 @@ public class MainTestSimulation {
         sm.run();
 
         HashMap<String, Float> initialData = new HashMap<String, Float>();
-        initialData.put("pressure", 50662.5f);
-        initialData.put("volume", 100f);
-        initialData.put("temperature", 283.15f);
+        initialData.put("pressure", 60000f);
+        initialData.put("volume", 128f);
+        initialData.put("temperature", 400f);
         initialData.put("n", 1.5f);
 
         HashMap<String, Float> finalData = new HashMap<String, Float>();
-        finalData.put("pressure", 48000f);
+        finalData.put("pressure", 0f);
         finalData.put("volume", 0f);
-        finalData.put("temperature", 0f);
+        finalData.put("temperature", 283.15f);
 
-        sm.setGasTransformation(initialData, finalData, TransformationType.ISOTHERMAL);
-
-        //usando is running podras empezar la simulacion, si no se activa solo se dibujaran los componentes
-        //no se actualizan
-        sm.startSimulation();
+        //esto tambien inicia la trasnformacion
+        sm.setGasTransformation(initialData, finalData, TransformationType.ISOVOLUMETRIC);
         System.out.println(sm.isRunning);
-
 
     }
 }

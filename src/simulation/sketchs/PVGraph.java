@@ -2,6 +2,10 @@ package simulation.sketchs;
 
 import idealgas.GasDataMap;
 import simulation.SimulationWorkspace;
+import processing.core.PVector;
+
+import java.util.Iterator;
+import java.util.Vector;
 
 public class PVGraph extends SketchFragment {
 
@@ -19,6 +23,8 @@ public class PVGraph extends SketchFragment {
     private final float X_SCALE_FACTOR; 
     private final float Y_SCALE_FACTOR;
 
+    private Vector<PVector> points;
+
     public PVGraph(SimulationWorkspace sketch, float x, float y, 
         float fragmentWidth, float fragmentHeight) {
         super(sketch, x, y, fragmentWidth, fragmentHeight);
@@ -32,7 +38,10 @@ public class PVGraph extends SketchFragment {
         X_SCALE_FACTOR = (GasDataMap.MAX_PROCESS_VOLUME - GasDataMap.MIN_PROCESS_VOLUME) / Y_LINES;
         //Y_SCALE_FACTOR = (GasDataMap.MAX_PROCESS_PRESSURE - GasDataMap.MIN_PROCESS_PRESSURE) / X_LINES;
         Y_SCALE_FACTOR = (GasDataMap.MAX_USER_PRESSURE - GasDataMap.MIN_USER_PRESSURE) / X_LINES;
-        //System.out.println(X_SCALE_FACTOR + "  " + Y_SCALE_FACTOR);
+        // System.out.println(X_SCALE_FACTOR + "  " + Y_SCALE_FACTOR);
+        //System.out.println(X_LINES + "  " + Y_LINES);
+
+        points = new Vector<>();
     }
 
     @Override
@@ -43,6 +52,7 @@ public class PVGraph extends SketchFragment {
     public void draw(){
         drawAxes();
         drawGrid();
+        drawPoints();
     }
 
     private void drawAxes() {
@@ -103,24 +113,29 @@ public class PVGraph extends SketchFragment {
                         x + fragmentWidth - XY_BORDER_GAP, 
                         startY - i * XY_GRID_GAP);
         }
-        /* for (float i = y + fragmentHeight - XY_BORDER_GAP + XY_GRID_GAP; 
-            i > y + XY_BORDER_GAP; 
-            i -= XY_GRID_GAP) {
-            
-            sketch.line(x + XY_BORDER_GAP, i, x + fragmentWidth - XY_BORDER_GAP, i);
-        } */
+
+    }
+
+    public void drawPoints(){
+
+        sketch.stroke(0, 255, 0);
+        sketch.strokeWeight(2);
+
+        Iterator<PVector> pointsIterator =  points.iterator();
+        while (pointsIterator.hasNext()) {
+            PVector position = pointsIterator.next();
+            sketch.point(position.x, position.y);
+        }
     }
     
     public void setPoint(float p, float v){
-        sketch.stroke(0, 255, 0);
-        sketch.strokeWeight(5);
+        float xPoint = (v - GasDataMap.MIN_PROCESS_VOLUME) * XY_GRID_GAP / X_SCALE_FACTOR;
+        float yPoint = (p - GasDataMap.MIN_USER_PRESSURE) * XY_GRID_GAP / Y_SCALE_FACTOR;
 
-        float xPoint = p * XY_GRID_GAP / Y_SCALE_FACTOR;
-        float yPoint = v * XY_GRID_GAP / X_SCALE_FACTOR;
+        points.add(new PVector(x + XY_BORDER_GAP + xPoint,
+                               y + fragmentHeight - XY_BORDER_GAP - yPoint));
 
-        //sketch.println(x + " "+ y);
-
-        sketch.point(x + XY_BORDER_GAP + xPoint,
-                     y + fragmentHeight - XY_BORDER_GAP + yPoint);
+        /* System.out.println((x + XY_BORDER_GAP + xPoint) 
+        + "   -   " + (y + fragmentHeight - XY_BORDER_GAP - yPoint) + "  " + yPoint); */
     }
 }
