@@ -91,6 +91,9 @@ public class SimulationWorkspace extends PApplet{
             cylinder.update();
             heatSource.update();
 
+            pvGraph.setPoint(transformationStrategy.getData().get("pressure"),
+                             transformationStrategy.getData().get("volume"));
+
             isRunning = !transformationStrategy.IsTheTransformationFinished();
         }else{
             statusBar.draw();
@@ -121,7 +124,17 @@ public class SimulationWorkspace extends PApplet{
                 break;
         }
 
-        delay(100);
+        
+        System.out.println(transformationStrategy.getPVrange().minPressure);
+        System.out.println(transformationStrategy.getPVrange().maxPressure);
+        System.out.println(transformationStrategy.getPVrange().minVolume);
+        System.out.println(transformationStrategy.getPVrange().maxVolume);
+
+        //We must wait for processing to load its stuff
+        delay(150);
+
+        pvGraph.setPVScale(transformationStrategy.getPVrange());
+
         isRunning = true;
     }
 

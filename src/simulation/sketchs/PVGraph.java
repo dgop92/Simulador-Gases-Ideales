@@ -1,6 +1,7 @@
 package simulation.sketchs;
 
 import idealgas.GasDataMap;
+import idealgas.GasPVRange;
 import simulation.SimulationWorkspace;
 import processing.core.PVector;
 
@@ -20,10 +21,12 @@ public class PVGraph extends SketchFragment {
     
     private final float XY_GRID_GAP = 20f;
 
-    private final float X_SCALE_FACTOR; 
-    private final float Y_SCALE_FACTOR;
+    private float xScaleFactor; 
+    private float yScaleFactor;
 
     private Vector<PVector> points;
+    
+    private GasPVRange gasPVRange;
 
     public PVGraph(SimulationWorkspace sketch, float x, float y, 
         float fragmentWidth, float fragmentHeight) {
@@ -34,12 +37,12 @@ public class PVGraph extends SketchFragment {
         
         X_LINES = Math.round(Y_AXIS_SIZE / XY_GRID_GAP);
         Y_LINES = Math.round(X_AXIS_SIZE / XY_GRID_GAP);
-        
-        X_SCALE_FACTOR = (GasDataMap.MAX_PROCESS_VOLUME - GasDataMap.MIN_PROCESS_VOLUME) / Y_LINES;
-        //Y_SCALE_FACTOR = (GasDataMap.MAX_PROCESS_PRESSURE - GasDataMap.MIN_PROCESS_PRESSURE) / X_LINES;
-        Y_SCALE_FACTOR = (GasDataMap.MAX_USER_PRESSURE - GasDataMap.MIN_USER_PRESSURE) / X_LINES;
-        // System.out.println(X_SCALE_FACTOR + "  " + Y_SCALE_FACTOR);
-        //System.out.println(X_LINES + "  " + Y_LINES);
+
+        gasPVRange = new GasPVRange(GasDataMap.MIN_USER_PRESSURE, 
+                                    GasDataMap.MAX_USER_PRESSURE, 
+                                    GasDataMap.MIN_PROCESS_VOLUME, 
+                                    GasDataMap.MAX_PROCESS_VOLUME);
+        setPVScale(gasPVRange);
 
         points = new Vector<>();
     }
@@ -53,6 +56,15 @@ public class PVGraph extends SketchFragment {
         drawAxes();
         drawGrid();
         drawPoints();
+    }
+
+    public void setPVScale(GasPVRange gasPVRange){
+
+        xScaleFactor = (gasPVRange.maxVolume - gasPVRange.minVolume) / Y_LINES;
+        yScaleFactor = (gasPVRange.maxPressure - gasPVRange.minPressure) / X_LINES;
+        
+        this.gasPVRange = gasPVRange;
+
     }
 
     private void drawAxes() {
@@ -90,7 +102,7 @@ public class PVGraph extends SketchFragment {
         float startX = x + XY_BORDER_GAP;
         for (int i = 1; i <= Y_LINES; i++) {
             
-            sketch.text((int)(GasDataMap.MIN_PROCESS_VOLUME + (i - 1) * X_SCALE_FACTOR),
+            sketch.text((int)(gasPVRange.minVolume + (i - 1) * xScaleFactor),
                         startX + (i - 1) * XY_GRID_GAP, 
                         y + fragmentHeight - XY_BORDER_GAP + 10);
             sketch.line(startX + i * XY_GRID_GAP, 
@@ -104,7 +116,7 @@ public class PVGraph extends SketchFragment {
         float startY = y + fragmentHeight - XY_BORDER_GAP;
         for (int i = 0; i < X_LINES; i++) {
 
-            sketch.text((int)(GasDataMap.MIN_USER_PRESSURE + i * Y_SCALE_FACTOR),
+            sketch.text((int)(gasPVRange.minPressure + i * yScaleFactor),
                         x + 2, 
                         startY - i * XY_GRID_GAP);
 
@@ -129,8 +141,8 @@ public class PVGraph extends SketchFragment {
     }
     
     public void setPoint(float p, float v){
-        float xPoint = (v - GasDataMap.MIN_PROCESS_VOLUME) * XY_GRID_GAP / X_SCALE_FACTOR;
-        float yPoint = (p - GasDataMap.MIN_USER_PRESSURE) * XY_GRID_GAP / Y_SCALE_FACTOR;
+        float xPoint = (v - gasPVRange.minVolume) * XY_GRID_GAP / xScaleFactor;
+        float yPoint = (p - gasPVRange.minPressure) * XY_GRID_GAP / yScaleFactor;
 
         points.add(new PVector(x + XY_BORDER_GAP + xPoint,
                                y + fragmentHeight - XY_BORDER_GAP - yPoint));

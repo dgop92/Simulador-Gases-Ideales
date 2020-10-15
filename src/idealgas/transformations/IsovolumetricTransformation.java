@@ -104,7 +104,27 @@ public class IsovolumetricTransformation extends BaseTransformation implements T
 
     @Override
     public GasPVRange getPVrange() {
-        return null;
+
+        float finalTemperature = finalData.get("temperature");
+        float finalPressure = finalData.get("pressure");
+
+        float deltaPressure = 1000;
+        float deltaVolume = 10;
+
+        float minPressure, maxPressure; 
+
+        if (finalPressure != 0){
+            minPressure = Math.min(pressure0, finalPressure);
+            maxPressure = Math.max(pressure0, finalPressure);
+        }else{
+            minPressure = Math.min(pressure0, pressure0 * finalTemperature / temperature0);
+            maxPressure = Math.max(pressure0, pressure0 * finalTemperature / temperature0);
+        }
+
+        GasPVRange gasPVRange = new GasPVRange(minPressure - deltaPressure, maxPressure + deltaPressure, 
+            volume0 - deltaVolume, volume0 + deltaVolume);
+
+        return gasPVRange;
     }
     
     
