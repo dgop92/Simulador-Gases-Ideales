@@ -8,8 +8,8 @@ import processing.core.PImage;
 public class HeatSource extends SketchFragment {
 
 
-	private PImage fireIcon;
-    private PImage iceIcon; 
+	private PImage fireIconLeft;
+	private PImage fireIconRight;
     private PImage flameImage;
     private PImage stones; 
     private float temperature;
@@ -19,8 +19,9 @@ public class HeatSource extends SketchFragment {
     public HeatSource(SimulationWorkspace sketch, float x, float y, 
         float fragmentWidth, float fragmentHeight) {
         super(sketch, x, y, fragmentWidth, fragmentHeight);
-        fireIcon = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.leftarrow));
-        iceIcon = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.rightarrow));
+
+        fireIconLeft = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.fire_icon_left));
+        fireIconRight = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.fire_icon_right));
         flameImage = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.hotsource)); 
         stones = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.stones)); 
     }
@@ -33,9 +34,7 @@ public class HeatSource extends SketchFragment {
     public void draw() {
 
         if (isLosingHeat) {
-            //drawFlame();
-            //drawHeatLowerFireArrows();
-            //drawIceIcon();
+            drawFireIcons();
             drawStones();
         } else if (isAbsorbingHeat) {
             drawStones();
@@ -58,13 +57,9 @@ public class HeatSource extends SketchFragment {
         sketch.image(stones, x + 200, y, 110, 110);
     }
     
-    public void drawFireIcon() {
-        sketch.image(fireIcon, x + 150, y + 30, 50, 50);
-        sketch.image(fireIcon, x + 310, y + 30, 50, 50);
-    }
-
-    public void drawIceIcon() {
-        //sketch.image(iceIcon, x + 300,570,50,50);
+    public void drawFireIcons() {
+        sketch.image(fireIconLeft, x + 50, y + 5, 50, 50);
+        sketch.image(fireIconRight, x + fragmentWidth - 100, y + 5, 50, 50);
     }
 
     public void setLosingHeat(boolean b){

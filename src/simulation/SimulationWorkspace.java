@@ -122,7 +122,7 @@ public class SimulationWorkspace extends PApplet{
                 break;
         }
 
-        delay(500);
+        delay(800);
         isRunning = true;
     }
 

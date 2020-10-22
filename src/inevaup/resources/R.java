@@ -25,6 +25,8 @@ montserrat_regular,
 montserrat_bold
 }public static class images {
 public final static String cylinder = "/Cylinder.png";
+public final static String fire_icon_left = "/fire-icon-left.png";
+public final static String fire_icon_right = "/fire-icon-right.png";
 public final static String hotsource = "/hotSource.png";
 public final static String images = "/images.txt";
 public final static String leftarrow = "/leftArrow.png";

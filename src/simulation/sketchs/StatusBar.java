@@ -22,14 +22,46 @@ public class StatusBar extends SketchFragment {
     
     public void draw(){
         DecimalFormat roundFormat = new DecimalFormat("#.##");
+        
         if (sketch.isRunning){      
             sketch.fill(255);   
             sketch.textFont(sketch.robotoFont);
-            sketch.textSize(16);       
-            sketch.text("Volumen " + roundFormat.format(currentGasData.get("volume")) + "  litros", x + 20, y + 20); 
-            sketch.text("Presión  " + roundFormat.format(currentGasData.get("pressure"))+ "  atm", x + 20, y + 40); 
-            sketch.text("Temperatura  " + roundFormat.format(currentGasData.get("temperature"))+ "  Kelvin", x + 20, y + 60); 
-            sketch.text("                    Velocidad  " +roundFormat.format(currentGasData.get("velocity"))+ "  mts/segs", x + 150, y + 60);
+            sketch.textSize(14); 
+
+            // Primera Colunma
+
+            String internalEnergy = roundFormat.format(currentGasData.get("internalEnergy")).toString();
+            String heat = roundFormat.format(currentGasData.get("heat")).toString();
+            String work = roundFormat.format(currentGasData.get("work")).toString();
+            
+            sketch.text(String.format("U: %s J", internalEnergy), 
+                        x + 20, 
+                        y + 20);
+
+            sketch.text(String.format("Q: %s J", heat), 
+                        x + 20, 
+                        y + 40);
+
+            // Segunda Colunma
+
+            String volume = roundFormat.format(currentGasData.get("volume")).toString();
+
+            sketch.text(String.format("V: %s m^3", volume), 
+                        x + 150, 
+                        y + 20);
+
+            sketch.text(String.format("W: %s J", work), 
+                        x + 150, 
+                        y + 40);
+
+            // Tercera Colunma
+
+            String velocity = roundFormat.format(currentGasData.get("velocity")).toString();
+
+            sketch.text(String.format("Vel: %s m/s", velocity), 
+                        x + 300, 
+                        y + 20);
+
         }
          
     }
