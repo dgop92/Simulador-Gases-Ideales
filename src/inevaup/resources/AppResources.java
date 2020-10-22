@@ -224,9 +224,11 @@ public class AppResources {
      */
     public String getImageP(String imageName) {
         String imagesPath = ResourcesPath.getFullImagesPath();
-        String imagesPathReduceOneLevel = imagesPath.substring(imagesPath.indexOf('\\') + 1);
-        String imagePath = ResourcesPath.getConcatPath(imagesPathReduceOneLevel, imageName);
-        return imagePath;
+        if (ResourcesPath.BASE_PATH.equals("data")){
+            return ResourcesPath.getConcatPath(ResourcesPath.IMAGES_PATH, imageName);
+        }else{
+            return ResourcesPath.getConcatPath(imagesPath, imageName);
+        }
     }
 
     /**

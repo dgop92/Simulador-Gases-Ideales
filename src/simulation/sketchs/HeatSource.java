@@ -8,8 +8,8 @@ import processing.core.PImage;
 public class HeatSource extends SketchFragment {
 
 
-	private PImage fireUp;
-    private PImage lowerFire; 
+	private PImage fireIcon;
+    private PImage iceIcon; 
     private PImage flameImage;
     private PImage stones; 
     private float temperature;
@@ -19,45 +19,54 @@ public class HeatSource extends SketchFragment {
     public HeatSource(SimulationWorkspace sketch, float x, float y, 
         float fragmentWidth, float fragmentHeight) {
         super(sketch, x, y, fragmentWidth, fragmentHeight);
-        fireUp = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.leftarrow));
-        lowerFire = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.rightarrow));
+        fireIcon = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.leftarrow));
+        iceIcon = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.rightarrow));
         flameImage = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.hotsource)); 
         stones = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.stones)); 
     }
     
     @Override
     public void update() {
-    drawStones();
-    drawFlame();
+        draw();
     }
+
     public void draw() {
+
         if (isLosingHeat) {
-            drawFlame();
-            drawHeatLowerFireArrows();
+            //drawFlame();
+            //drawHeatLowerFireArrows();
+            //drawIceIcon();
+            drawStones();
         } else if (isAbsorbingHeat) {
             drawStones();
-            drawHeatFireUpArrows();
+            drawFlame();
+            //drawFireIcon();
         } else {
             drawStones(); 
         }
     }
+
     public void setTemperature(float temperature) {
         this.temperature = temperature;
     }
 
     public void drawFlame() {
-        sketch.image(flameImage,200, 540, 110, 110);    
+        sketch.image(flameImage, x + 200, y, 110, 110);    
     }
+
     public void drawStones() {
-        sketch.image(stones,200,540,110,110);
+        sketch.image(stones, x + 200, y, 110, 110);
     }
     
-    public void drawHeatFireUpArrows() {
-        sketch.image(fireUp, 160, 570,50,50);
+    public void drawFireIcon() {
+        sketch.image(fireIcon, x + 150, y + 30, 50, 50);
+        sketch.image(fireIcon, x + 310, y + 30, 50, 50);
     }
-    public void drawHeatLowerFireArrows() {
-        sketch.image(lowerFire, 300,570,50,50);
+
+    public void drawIceIcon() {
+        //sketch.image(iceIcon, x + 300,570,50,50);
     }
+
     public void setLosingHeat(boolean b){
         isLosingHeat = b;
     }

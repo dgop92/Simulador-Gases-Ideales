@@ -58,7 +58,7 @@ public abstract class BaseTransformation {
         gasData.put("velocity", velocity);
 
         gasData.put("fake_velocity", GasDataMap.MIN_FAKE_VELOCITY);
-        gasData.put("fake_volume", GasDataMap.MIN_FAKE_VOLUME);
+        gasData.put("fake_piston_height", GasDataMap.MIN_PISTON_HEIGHT);
 
         //moles and mass
     }
@@ -78,12 +78,12 @@ public abstract class BaseTransformation {
             GasDataMap.MIN_REAL_VELOCITY, GasDataMap.MAX_REAL_VELOCITY, 
             GasDataMap.MIN_FAKE_VELOCITY, GasDataMap.MAX_FAKE_VELOCITY);
         
-        float fakeVolume = PApplet.map(volume, 
+        float fakePistonHeight = PApplet.map(volume, 
             GasDataMap.MIN_PROCESS_VOLUME, GasDataMap.MAX_PROCESS_VOLUME, 
-            GasDataMap.MIN_FAKE_VOLUME, GasDataMap.MAX_FAKE_VOLUME);
+            GasDataMap.MAX_PISTON_HEIGHT, GasDataMap.MIN_PISTON_HEIGHT);
 
         gasData.replace("fake_velocity", fakeVelocity);
-        gasData.replace("fake_volume", fakeVolume);
+        gasData.replace("fake_piston_height", fakePistonHeight);
 
         //here you put fake vel and fake volume as well the real ones
     }

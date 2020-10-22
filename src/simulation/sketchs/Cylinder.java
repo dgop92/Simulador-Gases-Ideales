@@ -1,5 +1,6 @@
 package simulation.sketchs;
 import simulation.SimulationWorkspace;
+import idealgas.GasDataMap;
 import inevaup.resources.AppResources;
 import processing.core.PImage;
 import processing.core.PVector;
@@ -7,7 +8,7 @@ import inevaup.resources.R;
 
 public class Cylinder extends SketchFragment {
 
-    private float volume;
+    private float pistonHeight;
 
     private PImage cylinderImage;
     private PImage pistonImage;
@@ -20,39 +21,41 @@ public class Cylinder extends SketchFragment {
         cylinderImage = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.cylinder)); 
         pistonImage = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.piston1));
         pistonEngineImage = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.pistonengine));
+
+        pistonHeight = GasDataMap.MIN_PISTON_HEIGHT;
     }
 
     @Override
     public void update() {
-    drawCylinder();
-    drawPiston();     
+        drawCylinder();
+        drawPiston();     
     }
 
     public void draw() {
-    drawCylinder();
-    drawPiston();        
+        drawCylinder();
+        drawPiston();        
     }
+
+    public void setPistonHeight(float pistonHeight) {
+        this.pistonHeight = pistonHeight;
+    }
+
+    private void drawCylinder() {
+        sketch.image(cylinderImage, x, y, fragmentWidth, fragmentHeight);
+    }
+
+    private void drawPiston() {
+        sketch.image(pistonEngineImage, x + 226, y + 5, 45, pistonHeight); 
+        sketch.image(pistonImage, x + 68, y + pistonHeight, 366, 20);
+
+    }
+
     public void fillCylinder(int nParticle, float v) {
         particles = new Particle[nParticle];
         particles[0] = new Particle(getRandomPos(), new PVector(v, v));
         for (int i = 1; i < particles.length; i++) {
             particles[i] = new Particle(getAvaliablePos(i), new PVector(v, v));
         }
-    }
-
-    public void setVolume(float volume) {
-        this.volume = volume;
-    }
-
-    public void drawCylinder() {
-        sketch.image(cylinderImage,0, 60, 500, 480);
-
-    }
-
-    public void drawPiston() {
-        sketch.image(pistonImage,68,90,366,20);
-        sketch.image (pistonEngineImage,226,65,45,26); 
-
     }
 
     private void updateParticles() {
