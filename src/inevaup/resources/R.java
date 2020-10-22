@@ -24,7 +24,15 @@ roboto_regular,
 montserrat_regular,
 montserrat_bold
 }public static class images {
+public final static String cylinder = "/Cylinder.png";
+public final static String hotsource = "/hotSource.png";
 public final static String images = "/images.txt";
+public final static String leftarrow = "/leftArrow.png";
+public final static String piston1 = "/Piston1.png";
+public final static String pistonengine = "/PistonEngine.png";
+public final static String rightarrow = "/rightArrow.png";
+public final static String statusbar = "/StatusBar.png";
+public final static String stones = "/stones.png";
 
 }public static class icons {
 public final static String control_okay = "/control-okay.png";

@@ -1,8 +1,9 @@
 package simulation.sketchs;
-
 import simulation.SimulationWorkspace;
+import inevaup.resources.AppResources;
 import processing.core.PImage;
 import processing.core.PVector;
+import inevaup.resources.R;
 
 public class Cylinder extends SketchFragment {
 
@@ -10,20 +11,27 @@ public class Cylinder extends SketchFragment {
 
     private PImage cylinderImage;
     private PImage pistonImage;
+    private PImage pistonEngineImage; 
 
     private Particle[] particles;
 
     public Cylinder(SimulationWorkspace sketch, float x, float y, float fragmentWidth, float fragmentHeight) {
         super(sketch, x, y, fragmentWidth, fragmentHeight);
-
+        cylinderImage = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.cylinder)); 
+        pistonImage = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.piston1));
+        pistonEngineImage = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.pistonengine));
     }
 
     @Override
     public void update() {
-
-        //updateParticles();
+    drawCylinder();
+    drawPiston();     
     }
 
+    public void draw() {
+    drawCylinder();
+    drawPiston();        
+    }
     public void fillCylinder(int nParticle, float v) {
         particles = new Particle[nParticle];
         particles[0] = new Particle(getRandomPos(), new PVector(v, v));
@@ -37,10 +45,13 @@ public class Cylinder extends SketchFragment {
     }
 
     public void drawCylinder() {
+        sketch.image(cylinderImage,0, 60, 500, 480);
 
     }
 
     public void drawPiston() {
+        sketch.image(pistonImage,68,90,366,20);
+        sketch.image (pistonEngineImage,226,65,45,26); 
 
     }
 

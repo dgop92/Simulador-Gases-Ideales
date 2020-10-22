@@ -74,7 +74,7 @@ public class SimulationWorkspace extends PApplet{
             transformationStrategy.updateData();
 
             statusBar.setData(transformationStrategy.getData());
-            cylinder.setVolume(transformationStrategy.getData().get("volume"));
+            cylinder.setVolume(transformationStrategy.getData().get("fake_volume"));
 
             thermometer.setTemperature(transformationStrategy.getData().get("temperature"));
             barometer.setPressure(transformationStrategy.getData().get("pressure"));
@@ -96,6 +96,12 @@ public class SimulationWorkspace extends PApplet{
             statusBar.draw();
             //cylinder.drawParticles();
             pvGraph.draw();
+            cylinder.drawCylinder();
+            cylinder.drawPiston(); 
+            heatSource.drawFlame();
+            heatSource.drawHeatFireUpArrows();
+            heatSource.drawHeatLowerFireArrows();
+            heatSource.drawStones();
             line(10, 10, 100, 10);
         }
 
@@ -121,7 +127,7 @@ public class SimulationWorkspace extends PApplet{
                 break;
         }
 
-        delay(100);
+        delay(500);
         isRunning = true;
     }
 

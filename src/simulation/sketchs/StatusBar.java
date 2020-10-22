@@ -2,6 +2,8 @@ package simulation.sketchs;
 
 import java.util.HashMap;
 
+import java.text.DecimalFormat;
+
 import simulation.SimulationWorkspace;
 
 public class StatusBar extends SketchFragment {
@@ -17,19 +19,17 @@ public class StatusBar extends SketchFragment {
     public void update() {
         draw();
     }
-
+    
     public void draw(){
-        if (sketch.isRunning){
+        DecimalFormat roundFormat = new DecimalFormat("#.##");
+        if (sketch.isRunning){      
+            sketch.fill(255);   
             sketch.textFont(sketch.robotoFont);
-            sketch.textSize(16);
-            sketch.fill(255);
-            sketch.text("V  " + currentGasData.get("volume"), x + 20, y + 20); 
-            sketch.text("P  " + currentGasData.get("pressure"), x + 20, y + 40); 
-            sketch.text("T  " + currentGasData.get("temperature"), x + 20, y + 60); 
-
-            sketch.text("FV  " + currentGasData.get("fake_velocity"), x + 150, y + 20); 
-            sketch.text("FVol  " +currentGasData.get("fake_volume"), x + 150, y + 40); 
-            sketch.text("Vel  " +currentGasData.get("velocity"), x + 150, y + 60);
+            sketch.textSize(16);       
+            sketch.text("Volumen " + roundFormat.format(currentGasData.get("volume")) + "  litros", x + 20, y + 20); 
+            sketch.text("Presión  " + roundFormat.format(currentGasData.get("pressure"))+ "  atm", x + 20, y + 40); 
+            sketch.text("Temperatura  " + roundFormat.format(currentGasData.get("temperature"))+ "  Kelvin", x + 20, y + 60); 
+            sketch.text("                    Velocidad  " +roundFormat.format(currentGasData.get("velocity"))+ "  mts/segs", x + 150, y + 60);
         }
          
     }
