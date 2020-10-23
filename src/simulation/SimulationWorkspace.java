@@ -94,7 +94,8 @@ public class SimulationWorkspace extends PApplet{
             isRunning = !transformationStrategy.IsTheTransformationFinished();
         }else{
             statusBar.draw();
-            //cylinder.drawParticles();
+            thermometer.draw();
+            barometer.draw();
             pvGraph.draw();
             line(10, 10, 100, 10);
         }
@@ -121,7 +122,7 @@ public class SimulationWorkspace extends PApplet{
                 break;
         }
 
-        delay(100);
+        delay(400);
         isRunning = true;
     }
 

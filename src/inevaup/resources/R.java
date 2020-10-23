@@ -24,7 +24,9 @@ roboto_regular,
 montserrat_regular,
 montserrat_bold
 }public static class images {
+public final static String barometro = "/barometro.png";
 public final static String images = "/images.txt";
+public final static String temperatura2 = "/temperatura2.png";
 
 }public static class icons {
 public final static String control_okay = "/control-okay.png";
