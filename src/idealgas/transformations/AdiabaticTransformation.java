@@ -112,7 +112,51 @@ public class AdiabaticTransformation extends BaseTransformation implements Trans
 
     @Override
     public GasPVRange getPVrange() {
-        return null;
+        
+        float finalPressure = finalData.get("pressure");
+        float finalVolume = finalData.get("volume");
+        float finalTemperature = finalData.get("temperature");
+
+        float deltaPressure = 1000;
+        float deltaVolume = 10;
+
+        float minPressure, maxPressure, minVolume, maxVolume; 
+
+        if (finalVolume != 0){
+            float computeFinalPressure = pressure0 * 
+                (float) Math.pow(volume0 / finalVolume, GasConstants.Y_ADIABATIC);
+
+            minPressure = Math.min(pressure0, computeFinalPressure);
+            maxPressure = Math.max(pressure0, computeFinalPressure);
+
+            minVolume = Math.min(volume0, finalVolume);
+            maxVolume = Math.max(volume0, finalVolume);
+        }else if(finalPressure != 0){
+            float computeFinalVolume = volume0 * 
+                (float) Math.pow(pressure0 / finalPressure, 1 / (GasConstants.Y_ADIABATIC - 1));
+
+            minVolume = Math.min(volume0, computeFinalVolume);
+            maxVolume = Math.max(volume0, computeFinalVolume);
+
+            minPressure = Math.min(pressure0, finalPressure);
+            maxPressure = Math.max(pressure0, finalPressure);
+        }else{
+            float computeFinalVolume = volume0 * 
+                (float) Math.pow(temperature0 / finalTemperature, 1 / (GasConstants.Y_ADIABATIC - 1));
+            float computeFinalPressure = pressure0 * 
+                (float) Math.pow(volume0 / computeFinalVolume, GasConstants.Y_ADIABATIC);
+
+            minVolume = Math.min(volume0, computeFinalVolume);
+            maxVolume = Math.max(volume0, computeFinalVolume);
+
+            minPressure = Math.min(pressure0, computeFinalPressure);
+            maxPressure = Math.max(pressure0, computeFinalPressure);
+        }
+
+        GasPVRange gasPVRange = new GasPVRange(minPressure - deltaPressure, 
+            maxPressure + deltaPressure, minVolume - deltaVolume, maxVolume + deltaVolume);
+
+        return gasPVRange;
     }
     
 }

@@ -90,6 +90,9 @@ public class SimulationWorkspace extends PApplet{
             cylinder.update();
             heatSource.update();
 
+            pvGraph.setPoint(transformationStrategy.getData().get("pressure"),
+                             transformationStrategy.getData().get("volume"));
+
             isRunning = !transformationStrategy.IsTheTransformationFinished();
         }else{
             statusBar.draw();

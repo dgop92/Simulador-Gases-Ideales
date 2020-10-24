@@ -106,7 +106,27 @@ public class IsobaricTransformation extends BaseTransformation implements Transf
 
     @Override
     public GasPVRange getPVrange() {
-        return null;
+        
+        float finalTemperature = finalData.get("temperature");
+        float finalVolume = finalData.get("volume");
+
+        float deltaPressure = 1000;
+        float deltaVolume = 10;
+
+        float minVolume, maxVolume;
+
+        if (finalVolume != 0){
+            minVolume = Math.min(volume0, finalVolume);
+            maxVolume = Math.max(volume0, finalVolume);
+        }else{
+            minVolume = Math.min(volume0, volume0 * finalTemperature / temperature0);
+            maxVolume = Math.max(volume0, volume0 * finalTemperature / temperature0);
+        }
+
+        GasPVRange gasPVRange = new GasPVRange(pressure0 - deltaPressure, 
+            pressure0 + deltaPressure, minVolume - deltaVolume, maxVolume + deltaVolume);
+        
+        return gasPVRange;
     }
     
 }
