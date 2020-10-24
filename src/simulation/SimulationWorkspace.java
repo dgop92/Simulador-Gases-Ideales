@@ -121,8 +121,9 @@ public class SimulationWorkspace extends PApplet{
                 transformationStrategy = new AdiabaticTransformation(initialData, finalData);
                 break;
         }
-
+        
         delay(800);
+        cylinder.fillCylinder(initialData.get("volume"), 10, 0.5f);
         isRunning = true;
     }
 

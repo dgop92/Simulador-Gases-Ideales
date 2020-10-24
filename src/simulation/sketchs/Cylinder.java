@@ -1,10 +1,14 @@
 package simulation.sketchs;
+
 import simulation.SimulationWorkspace;
 import idealgas.GasDataMap;
 import inevaup.resources.AppResources;
+import processing.core.PApplet;
 import processing.core.PImage;
 import processing.core.PVector;
 import inevaup.resources.R;
+
+import java.awt.Rectangle;
 
 public class Cylinder extends SketchFragment {
 
@@ -16,6 +20,8 @@ public class Cylinder extends SketchFragment {
 
     private Particle[] particles;
 
+    private Rectangle cylinderDimension;
+
     public Cylinder(SimulationWorkspace sketch, float x, float y, float fragmentWidth, float fragmentHeight) {
         super(sketch, x, y, fragmentWidth, fragmentHeight);
         cylinderImage = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.cylinder)); 
@@ -23,17 +29,28 @@ public class Cylinder extends SketchFragment {
         pistonEngineImage = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.pistonengine));
 
         pistonHeight = GasDataMap.MIN_PISTON_HEIGHT;
+
+        cylinderDimension = new Rectangle();
+        cylinderDimension.setRect(x + 68, y + pistonHeight + 20, 366, fragmentHeight - 44 - pistonHeight - 20);
+
     }
 
     @Override
     public void update() {
-        drawCylinder();
-        drawPiston();     
+
+        cylinderDimension.setRect(x + 68, y + pistonHeight + 20, 366, fragmentHeight - 44 - pistonHeight - 20);
+        draw();
+        //updateParticles();
+        //drawParticles();
     }
 
     public void draw() {
+
         drawCylinder();
-        drawPiston();        
+        drawPiston();
+        //sketch.rect(cylinderDimension.x, cylinderDimension.y, cylinderDimension.width, cylinderDimension.height);
+        //sketch.point(cylinderDimension.x + cylinderDimension.width, y + fragmentHeight - 44);
+        
     }
 
     public void setPistonHeight(float pistonHeight) {
@@ -50,12 +67,20 @@ public class Cylinder extends SketchFragment {
 
     }
 
-    public void fillCylinder(int nParticle, float v) {
+    public void fillCylinder(float initialVolume, int nParticle, float v) {
+
+        float initialPistonHeight = PApplet.map(initialVolume, 
+            GasDataMap.MIN_PROCESS_VOLUME, GasDataMap.MAX_PROCESS_VOLUME, 
+            GasDataMap.MAX_PISTON_HEIGHT, GasDataMap.MIN_PISTON_HEIGHT);
+        
+        cylinderDimension.setRect(x + 68, y + initialPistonHeight + 20, 366, fragmentHeight - 44 - initialPistonHeight);
+
         particles = new Particle[nParticle];
         particles[0] = new Particle(getRandomPos(), new PVector(v, v));
         for (int i = 1; i < particles.length; i++) {
             particles[i] = new Particle(getAvaliablePos(i), new PVector(v, v));
         }
+
     }
 
     private void updateParticles() {
@@ -113,11 +138,13 @@ public class Cylinder extends SketchFragment {
 
     private PVector getRandomPos(){
         
-        float fromX = x + Particle.RADIUS;
-        float toWidth = fragmentWidth - Particle.RADIUS;
+        float yVariation = 15f; 
 
-        float fromY = y + Particle.RADIUS;
-        float toHeight =  y + fragmentHeight - Particle.RADIUS;
+        float fromX = cylinderDimension.x + Particle.RADIUS;
+        float toWidth = cylinderDimension.x + cylinderDimension.width - Particle.RADIUS;
+
+        float fromY = cylinderDimension.y + Particle.RADIUS;
+        float toHeight =  cylinderDimension.y + cylinderDimension.height - Particle.RADIUS - yVariation;
 
         float posX = (float) Math.random()*(toWidth - fromX) + fromX;
         float posY = (float) Math.random()*(toHeight - fromY) + fromY;
@@ -150,9 +177,9 @@ public class Cylinder extends SketchFragment {
         }
 
         public void update(){
-            draw();
             position.x += velocity.x;
             position.y += velocity.y;
+            draw();
         }
 
         public void checkParticleCollision(Particle p){
@@ -199,11 +226,11 @@ public class Cylinder extends SketchFragment {
 
         public void checkBorderCollision(){
 
-            if(position.x - RADIUS <= x || position.x + RADIUS >= x + fragmentWidth){
+            if(position.x - RADIUS <= cylinderDimension.x || position.x + RADIUS >= cylinderDimension.x + cylinderDimension.width){
                 this.velocity.x *= -1;
             }
     
-            if(position.y - RADIUS <= y || position.y + RADIUS >= y + fragmentHeight){
+            if(position.y - RADIUS <= cylinderDimension.y || position.y + RADIUS >= cylinderDimension.y + cylinderDimension.height){
                 this.velocity.y *= -1;
             }
         }
