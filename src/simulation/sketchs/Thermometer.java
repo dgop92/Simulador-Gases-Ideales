@@ -4,10 +4,6 @@ import simulation.SimulationWorkspace;
 import processing.core.PImage;
 import inevaup.resources.AppResources;
 import inevaup.resources.R;
-import java.util.*;
-
-
-
 
 public class Thermometer extends SketchFragment {
 
@@ -17,15 +13,10 @@ public class Thermometer extends SketchFragment {
     public Thermometer(SimulationWorkspace sketch, float x, float y, 
         float fragmentWidth, float fragmentHeight) {
         super(sketch, x, y, fragmentWidth, fragmentHeight);
-        thermotherImage=sketch.loadImage("images/temperatura2.png");
+        
+        thermotherImage=sketch.loadImage(AppResources.getAppResources().getImageP(R.images.temperatura2));
         sketch.noStroke();
 
-        
-        
-        
-
-        //thermotherImage=loadImage(AppResources.getAppResources().getImageP(R.images.temperatura2));
-        
     }
 
     @Override
@@ -51,10 +42,6 @@ public class Thermometer extends SketchFragment {
         sketch.textFont(sketch.robotoFont);
         sketch.fill(255,255,255);
         sketch.text(temperature + " K ",645,195);
-
-
-
-
-
+        
     }
 }

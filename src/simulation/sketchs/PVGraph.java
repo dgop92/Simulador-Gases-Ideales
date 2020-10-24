@@ -35,6 +35,7 @@ public class PVGraph extends SketchFragment {
         X_AXIS_SIZE = fragmentWidth - 2 * XY_BORDER_GAP;
         Y_AXIS_SIZE = fragmentHeight - 2 * XY_BORDER_GAP;
         
+        // Numero de lineas paralelas a su eje
         X_LINES = Math.round(Y_AXIS_SIZE / XY_GRID_GAP);
         Y_LINES = Math.round(X_AXIS_SIZE / XY_GRID_GAP);
 
@@ -60,6 +61,7 @@ public class PVGraph extends SketchFragment {
 
     public void setPVScale(GasPVRange gasPVRange){
 
+        //Escala de los valores de la grafica
         xScaleFactor = (gasPVRange.maxVolume - gasPVRange.minVolume) / Y_LINES;
         yScaleFactor = (gasPVRange.maxPressure - gasPVRange.minPressure) / X_LINES;
         
@@ -68,6 +70,7 @@ public class PVGraph extends SketchFragment {
     }
 
     private void drawAxes() {
+        sketch.fill(255);
         sketch.strokeWeight(4);
         sketch.stroke(255);
         sketch.textFont(sketch.robotoFont, 18);
@@ -147,7 +150,5 @@ public class PVGraph extends SketchFragment {
         points.add(new PVector(x + XY_BORDER_GAP + xPoint,
                                y + fragmentHeight - XY_BORDER_GAP - yPoint));
 
-        /* System.out.println((x + XY_BORDER_GAP + xPoint) 
-        + "   -   " + (y + fragmentHeight - XY_BORDER_GAP - yPoint) + "  " + yPoint); */
     }
 }

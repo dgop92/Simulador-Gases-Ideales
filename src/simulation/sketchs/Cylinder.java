@@ -22,16 +22,16 @@ public class Cylinder extends SketchFragment {
 
     private Rectangle cylinderDimension;
 
+
     public Cylinder(SimulationWorkspace sketch, float x, float y, float fragmentWidth, float fragmentHeight) {
         super(sketch, x, y, fragmentWidth, fragmentHeight);
+
         cylinderImage = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.cylinder)); 
         pistonImage = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.piston1));
         pistonEngineImage = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.pistonengine));
 
         pistonHeight = GasDataMap.MIN_PISTON_HEIGHT;
-
         cylinderDimension = new Rectangle();
-        cylinderDimension.setRect(x + 68, y + pistonHeight + 20, 366, fragmentHeight - 44 - pistonHeight - 20);
 
     }
 
@@ -40,31 +40,21 @@ public class Cylinder extends SketchFragment {
 
         cylinderDimension.setRect(x + 68, y + pistonHeight + 20, 366, fragmentHeight - 44 - pistonHeight - 20);
         draw();
-        //updateParticles();
-        //drawParticles();
+        updateParticles();
+
     }
 
     public void draw() {
 
         drawCylinder();
         drawPiston();
-        //sketch.rect(cylinderDimension.x, cylinderDimension.y, cylinderDimension.width, cylinderDimension.height);
-        //sketch.point(cylinderDimension.x + cylinderDimension.width, y + fragmentHeight - 44);
-        
+
+        drawParticles();
+
     }
 
     public void setPistonHeight(float pistonHeight) {
         this.pistonHeight = pistonHeight;
-    }
-
-    private void drawCylinder() {
-        sketch.image(cylinderImage, x, y, fragmentWidth, fragmentHeight);
-    }
-
-    private void drawPiston() {
-        sketch.image(pistonEngineImage, x + 226, y + 5, 45, pistonHeight); 
-        sketch.image(pistonImage, x + 68, y + pistonHeight, 366, 20);
-
     }
 
     public void fillCylinder(float initialVolume, int nParticle, float v) {
@@ -72,7 +62,12 @@ public class Cylinder extends SketchFragment {
         float initialPistonHeight = PApplet.map(initialVolume, 
             GasDataMap.MIN_PROCESS_VOLUME, GasDataMap.MAX_PROCESS_VOLUME, 
             GasDataMap.MAX_PISTON_HEIGHT, GasDataMap.MIN_PISTON_HEIGHT);
-        
+            
+        for (int i = (int)pistonHeight; i < initialPistonHeight; i += 3) {
+            pistonHeight += 3;
+            sketch.delay(64);
+        }
+
         cylinderDimension.setRect(x + 68, y + initialPistonHeight + 20, 366, fragmentHeight - 44 - initialPistonHeight);
 
         particles = new Particle[nParticle];
@@ -81,18 +76,14 @@ public class Cylinder extends SketchFragment {
             particles[i] = new Particle(getAvaliablePos(i), new PVector(v, v));
         }
 
+        sketch.delay(1000);
     }
 
-    private void updateParticles() {
-        analizeCollisions();
-        for (Particle particle : particles) {
-            particle.update();
-        }
-    }
-
-    public void drawParticles(){
-        for (Particle particle : particles) {
-            particle.draw();
+    private void drawParticles(){
+        if (particles != null){
+            for (Particle particle : particles) {
+                particle.draw();
+            }
         }
     }
 
@@ -105,6 +96,23 @@ public class Cylinder extends SketchFragment {
                 }
             } */
         }
+    }
+
+    private void updateParticles() {
+        analizeCollisions();
+        for (Particle particle : particles) {
+            particle.update();
+        }
+    }
+
+    private void drawCylinder() {
+        sketch.image(cylinderImage, x, y, fragmentWidth, fragmentHeight);
+    }
+
+    private void drawPiston() {
+        sketch.image(pistonEngineImage, x + 226, y + 5, 45, pistonHeight); 
+        sketch.image(pistonImage, x + 68, y + pistonHeight, 366, 20);
+
     }
 
     private PVector getAvaliablePos(int nParticles){

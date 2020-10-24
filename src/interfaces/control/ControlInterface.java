@@ -1,5 +1,10 @@
 package interfaces.control;
 
+import idealgas.TransformationType;
+import inevaup.dialogs.InfoDialog;
+import inevaup.dialogs.InfoDialog.TypeInfoDialog;
+
+import java.util.HashMap;
 import simulation.SimulationWorkspace;
 
 public class ControlInterface extends javax.swing.JFrame {
@@ -87,6 +92,11 @@ public class ControlInterface extends javax.swing.JFrame {
         header_title.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         header_title.setForeground(new java.awt.Color(255, 255, 255));
         header_title.setText("Interfaz de Control");
+        header_title.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                onHeaderButton(evt);
+            }
+        });
         header.add(header_title);
 
         data_panel_1.setBackground(new java.awt.Color(255, 255, 255));
@@ -112,11 +122,6 @@ public class ControlInterface extends javax.swing.JFrame {
         jTextField12.setColumns(6);
         jTextField12.setForeground(new java.awt.Color(0, 0, 0));
         jTextField12.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTextField12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField12ActionPerformed(evt);
-            }
-        });
         V2.add(jTextField12);
 
         input_panel.add(V2);
@@ -138,11 +143,6 @@ public class ControlInterface extends javax.swing.JFrame {
         jTextField15.setColumns(6);
         jTextField15.setForeground(new java.awt.Color(0, 0, 0));
         jTextField15.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTextField15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField15ActionPerformed(evt);
-            }
-        });
         V3.add(jTextField15);
 
         input_panel.add(V3);
@@ -164,11 +164,6 @@ public class ControlInterface extends javax.swing.JFrame {
         jTextField16.setColumns(6);
         jTextField16.setForeground(new java.awt.Color(0, 0, 0));
         jTextField16.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTextField16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField16ActionPerformed(evt);
-            }
-        });
         V4.add(jTextField16);
 
         input_panel.add(V4);
@@ -190,11 +185,6 @@ public class ControlInterface extends javax.swing.JFrame {
         jTextField17.setColumns(6);
         jTextField17.setForeground(new java.awt.Color(0, 0, 0));
         jTextField17.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTextField17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField17ActionPerformed(evt);
-            }
-        });
         V5.add(jTextField17);
 
         input_panel.add(V5);
@@ -216,11 +206,6 @@ public class ControlInterface extends javax.swing.JFrame {
         jTextField18.setColumns(6);
         jTextField18.setForeground(new java.awt.Color(0, 0, 0));
         jTextField18.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTextField18.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField18ActionPerformed(evt);
-            }
-        });
         V6.add(jTextField18);
 
         input_panel.add(V6);
@@ -242,11 +227,6 @@ public class ControlInterface extends javax.swing.JFrame {
         jTextField19.setColumns(6);
         jTextField19.setForeground(new java.awt.Color(0, 0, 0));
         jTextField19.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTextField19.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField19ActionPerformed(evt);
-            }
-        });
         V7.add(jTextField19);
 
         input_panel.add(V7);
@@ -276,11 +256,6 @@ public class ControlInterface extends javax.swing.JFrame {
         jTextField13.setColumns(6);
         jTextField13.setForeground(new java.awt.Color(0, 0, 0));
         jTextField13.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTextField13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField13ActionPerformed(evt);
-            }
-        });
         V8.add(jTextField13);
 
         data_panel_left_side.add(V8);
@@ -326,11 +301,6 @@ public class ControlInterface extends javax.swing.JFrame {
         jRadioButton1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jRadioButton1.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton1.setText("P.Isobarico");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
-            }
-        });
         RadioButtons.add(jRadioButton1);
 
         jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
@@ -338,11 +308,6 @@ public class ControlInterface extends javax.swing.JFrame {
         jRadioButton2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jRadioButton2.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton2.setText("P.Isotermico");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
-            }
-        });
         RadioButtons.add(jRadioButton2);
 
         jRadioButton3.setBackground(new java.awt.Color(255, 255, 255));
@@ -350,11 +315,6 @@ public class ControlInterface extends javax.swing.JFrame {
         jRadioButton3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jRadioButton3.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton3.setText("P.Isovolumetrico");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
-            }
-        });
         RadioButtons.add(jRadioButton3);
 
         jRadioButton4.setBackground(new java.awt.Color(255, 255, 255));
@@ -362,11 +322,6 @@ public class ControlInterface extends javax.swing.JFrame {
         jRadioButton4.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jRadioButton4.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton4.setText("P.Adiabatico");
-        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton4ActionPerformed(evt);
-            }
-        });
         RadioButtons.add(jRadioButton4);
 
         transformation_layout.add(RadioButtons);
@@ -513,49 +468,29 @@ public class ControlInterface extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    private void onHeaderButton(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onHeaderButton
+        // Este metodo solo es de testeo
+        
+        HashMap<String, Float> initialData = new HashMap<>();
+        initialData.put("pressure", 60000f);
+        initialData.put("volume", 91f);
+        initialData.put("temperature", 400f);
+        initialData.put("n", 25f);
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
+        HashMap<String, Float> finalData = new HashMap<>();
+        finalData.put("pressure", 0f);
+        finalData.put("volume", 128f);
+        finalData.put("temperature", 0f);
+        
+        //esto tambien inicia la trasnformacion
+        boolean isRunning = simulationWorkspace.requestStartOfSimulation(initialData, finalData, TransformationType.ISOBARIC);
+        if (!isRunning){
+            InfoDialog particleErrorDialog = new InfoDialog(null, "Numero de particles exedidas", 
+                simulationWorkspace.runErrorMessage, TypeInfoDialog.ERROR_DIALOG);
+            particleErrorDialog.setVisible(true);
+        }
 
-    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton4ActionPerformed
-
-    private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField12ActionPerformed
-
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
-
-    private void jTextField15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField15ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField15ActionPerformed
-
-    private void jTextField16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField16ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField16ActionPerformed
-
-    private void jTextField17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField17ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField17ActionPerformed
-
-    private void jTextField18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField18ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField18ActionPerformed
-
-    private void jTextField19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField19ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField19ActionPerformed
-
-    private void jTextField13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField13ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField13ActionPerformed
+    }//GEN-LAST:event_onHeaderButton
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

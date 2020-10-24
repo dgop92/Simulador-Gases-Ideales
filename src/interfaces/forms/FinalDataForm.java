@@ -1,5 +1,7 @@
 package interfaces.forms;
 
+import java.util.HashMap;
+
 import idealgas.TransformationType;
 
 public class FinalDataForm extends DataForm {
@@ -9,11 +11,9 @@ public class FinalDataForm extends DataForm {
 
     private boolean isDataValid;
 
-    private boolean isPressureUsed;
-    private boolean isVolumeUsed;
-    private boolean isTemperatureUsed;
+    private boolean isPressureUsed, isVolumeUsed, isTemperatureUsed;
 
-    private float finalPressure, finalVolumen, finalTemperature;
+    private float finalPressure, finalVolume, finalTemperature;
 
     public FinalDataForm(String p2, String v2, String t2, TransformationType transformationType) {
         this.p2 = p2;
@@ -37,6 +37,17 @@ public class FinalDataForm extends DataForm {
         } catch (ValidationError e) {
             //System.out.println(e);
         }
+    }
+
+    public boolean isDataValid() {
+        return isDataValid;
+    }
+
+    public void getValidatedData(){
+        HashMap<String, Float> data = new HashMap<>();
+        data.put("pressure", finalPressure);
+        data.put("volume", finalVolume);
+        data.put("temperature", finalTemperature);
     }
 
     private void validateTypesOfTransformation() throws ValidationError {
@@ -82,7 +93,7 @@ public class FinalDataForm extends DataForm {
                 finalPressure = Float.parseFloat(p2);
                 isPressureUsed = true;
             } else if (!v2.isEmpty()) {
-                finalVolumen = Float.parseFloat(v2);
+                finalVolume = Float.parseFloat(v2);
                 isVolumeUsed = true;
             } else {
                 finalTemperature = Float.parseFloat(t2);
@@ -94,13 +105,14 @@ public class FinalDataForm extends DataForm {
         }
     }
 
+    //Este metodo debe ser remplazado por los rangos originales, ver clase GasDataMap.java
     private void validateRange() throws ValidationError{
         if(isPressureUsed){
             if (finalPressure <= 0){
                 throw new ValidationError("Rango Invalido");
             }
         }else if(isVolumeUsed){
-            if (finalVolumen <= 0) {
+            if (finalVolume <= 0) {
                 throw new ValidationError("Rango Invalido");
             }
         }else{
@@ -116,9 +128,5 @@ public class FinalDataForm extends DataForm {
 
     private boolean isJustOneEmpty(String text1, String text2, String text3) {
         return !(text1.isEmpty() ^ text2.isEmpty() ^ text3.isEmpty());
-    }
-
-    public boolean isDataValid() {
-        return isDataValid;
     }
 }

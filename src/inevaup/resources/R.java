@@ -24,18 +24,16 @@ roboto_regular,
 montserrat_regular,
 montserrat_bold
 }public static class images {
+public final static String barometro = "/barometro.png";
 public final static String cylinder = "/Cylinder.png";
 public final static String fire_icon_left = "/fire-icon-left.png";
 public final static String fire_icon_right = "/fire-icon-right.png";
 public final static String hotsource = "/hotSource.png";
 public final static String images = "/images.txt";
-public final static String leftarrow = "/leftArrow.png";
 public final static String piston1 = "/Piston1.png";
 public final static String pistonengine = "/PistonEngine.png";
-public final static String rightarrow = "/rightArrow.png";
 public final static String statusbar = "/StatusBar.png";
 public final static String stones = "/stones.png";
-public final static String barometro = "/barometro.png";
 public final static String temperatura2 = "/temperatura2.png";
 
 }public static class icons {

@@ -20,6 +20,7 @@ import idealgas.transformations.TransformationStrategy;
 
 import inevaup.resources.AppResources;
 import inevaup.resources.R;
+import idealgas.GasDataMap;
 import idealgas.TransformationType;
 
 public class SimulationWorkspace extends PApplet{
@@ -41,6 +42,8 @@ public class SimulationWorkspace extends PApplet{
 
     public PFont robotoFont;
 
+    public String runErrorMessage;
+
     @Override
     public void settings() {
         size(SKETCH_WIDTH, SKETCH_HEIGHT);
@@ -55,6 +58,7 @@ public class SimulationWorkspace extends PApplet{
 
         isRunning = false;
         isPaused = false;
+        runErrorMessage = "";
 
         statusBar = new StatusBar(this, 0, 0, 600, 60);
         thermometer = new Thermometer(this, 600, 0, 200, 200);
@@ -108,7 +112,7 @@ public class SimulationWorkspace extends PApplet{
         // delay(10);
     }
 
-    public void setGasTransformation(HashMap<String, Float> initialData,
+    public boolean requestStartOfSimulation(HashMap<String, Float> initialData,
         HashMap<String, Float> finalData, TransformationType transformationType){
 
         switch (transformationType) {
@@ -126,9 +130,26 @@ public class SimulationWorkspace extends PApplet{
                 break;
         }
         
-        delay(800);
-        cylinder.fillCylinder(initialData.get("volume"), 10, 0.5f);
+        if(isMaxParticleReached(initialData.get("n"), transformationStrategy.getPVrange().minVolume)){
+            return false;
+        }
+        
+        pvGraph.setPVScale(transformationStrategy.getPVrange());
+        cylinder.fillCylinder(initialData.get("volume"), 
+                              initialData.get("n").intValue(), 
+                              GasDataMap.MIN_FAKE_VELOCITY);
         isRunning = true;
+        return isRunning;
+    }
+
+    @Override
+    public void mouseClicked() {
+        super.mouseClicked();
+
+        
+        //cylinder.fillCylinder(GasDataMap.MIN_PROCESS_VOLUME, 25, 0.5f);
+        //cylinder.fillCylinder(GasDataMap.MAX_USER_VOLUME, 25, 0.5f);
+        cylinder.fillCylinder(GasDataMap.MAX_PROCESS_VOLUME, 80, 0.5f);
     }
 
     public void run() {
@@ -136,12 +157,20 @@ public class SimulationWorkspace extends PApplet{
         PApplet.runSketch(processingArgs, this);
     }
 
-    @Override
-    public void mouseClicked() {
-        super.mouseClicked();
+    private boolean isMaxParticleReached(float userParticles, float minVolume){
+        
+        float maxNumerOfParticles = map(minVolume, 
+                                        GasDataMap.MIN_PROCESS_VOLUME, 
+                                        GasDataMap.MAX_PROCESS_VOLUME, 
+                                        GasDataMap.MIN_NUMBER_OF_PARTICLES, 
+                                        GasDataMap.MAX_NUMBER_OF_PARTICLES);
 
-        print(isRunning + " ----  ", transformationStrategy.IsTheTransformationFinished());
-
+        if (userParticles > maxNumerOfParticles){
+            runErrorMessage = "El maximo numero de particulas para esta simulacion es de " +  (int)maxNumerOfParticles;
+            return true;
+        }
+        
+        return false;
     }
 
     private void drawSketchFragmentsDivisions(){

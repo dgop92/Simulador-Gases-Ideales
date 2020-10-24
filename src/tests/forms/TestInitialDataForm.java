@@ -181,6 +181,39 @@ public class TestInitialDataForm extends TestCase{
         }
 
     }
+
+    @Test
+    public void testParticles(){
+        System.out.println(" -- Test particles --");
+
+        InitialDataForm initialDataForm;
+        boolean result;
+        boolean expected = true;
+
+        
+            
+        System.out.println("Test: " + "1");
+        initialDataForm = 
+            new InitialDataForm("60000", "95", "350", "40");
+            
+        result = initialDataForm.isDataValid();
+        assertEquals(expected, result);
+
+        System.out.println("Test: " + "2");
+        expected = false;
+        initialDataForm = 
+            new InitialDataForm("60000", "95", "350", "10");
+        result = initialDataForm.isDataValid();
+        assertEquals(expected, result);
+
+        System.out.println("Test: " + "3");
+        expected = false;
+        initialDataForm = 
+            new InitialDataForm("60000", "95", "350", "120");
+        result = initialDataForm.isDataValid();
+        assertEquals(expected, result);
+
+    }
     
 
     private void shuffleParameterArray(String[] parameters){

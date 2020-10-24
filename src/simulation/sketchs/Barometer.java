@@ -2,18 +2,21 @@ package simulation.sketchs;
 
 import simulation.SimulationWorkspace;
 import processing.core.PImage;
-
+import inevaup.resources.AppResources;
+import inevaup.resources.R;
 
 
 public class Barometer extends SketchFragment {
 
     private float pressure;
-    private PImage thermotherImage;
+    private PImage barometerImage;
 
     public Barometer(SimulationWorkspace sketch, float x, float y, 
         float fragmentWidth, float fragmentHeight) {
         super(sketch, x, y, fragmentWidth, fragmentHeight);
-        thermotherImage=sketch.loadImage("images/barometro.png");
+
+        barometerImage= sketch.loadImage(AppResources.getAppResources().getImageP(R.images.barometro));
+
     }
 
     @Override
@@ -29,20 +32,16 @@ public class Barometer extends SketchFragment {
     public void draw() {
         float transformation;
         float[] temp = new float[1] ;
+        
         transformation=(pressure*40)/20000;
         if(pressure <temp[0]){
             transformation=-transformation;
 
         }
 
-
         temp[0]=pressure;
-        
-        
-
-
-        
-        sketch.image(thermotherImage, 600,200);
+    
+        sketch.image(barometerImage, 600,200);
         sketch.stroke(5);
         sketch.fill(132,0,0);
         sketch.line(700,300,700+transformation,250);
