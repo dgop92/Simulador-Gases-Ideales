@@ -35,6 +35,8 @@ public final static String pistonengine = "/PistonEngine.png";
 public final static String rightarrow = "/rightArrow.png";
 public final static String statusbar = "/StatusBar.png";
 public final static String stones = "/stones.png";
+public final static String barometro = "/barometro.png";
+public final static String temperatura2 = "/temperatura2.png";
 
 }public static class icons {
 public final static String control_okay = "/control-okay.png";

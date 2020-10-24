@@ -96,7 +96,8 @@ public class SimulationWorkspace extends PApplet{
             isRunning = !transformationStrategy.IsTheTransformationFinished();
         }else{
             statusBar.draw();
-            //cylinder.drawParticles();
+            thermometer.draw();
+            barometer.draw();
             pvGraph.draw();
             cylinder.draw();
             heatSource.draw();
