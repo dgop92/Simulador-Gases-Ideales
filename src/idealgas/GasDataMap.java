@@ -30,6 +30,9 @@ public class GasDataMap {
     public static final float MIN_FAKE_VELOCITY = 0.2f;
     public static final float MAX_FAKE_VELOCITY = 2f;
 
+    public static final float MIN_PROCESS_VELOCITY = 0.2f;
+    public static final float MAX_PROCESS_VELOCITY = 5f;
+
     public static final float MIN_PISTON_HEIGHT = 0f;
     public static final float MAX_PISTON_HEIGHT = 300f;
 

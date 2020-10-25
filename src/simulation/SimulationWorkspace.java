@@ -13,6 +13,7 @@ import simulation.sketchs.StatusBar;
 import simulation.sketchs.Thermometer;
 
 import idealgas.transformations.AdiabaticTransformation;
+import idealgas.transformations.BaseTransformation;
 import idealgas.transformations.IsobaricTransformation;
 import idealgas.transformations.IsothermalTransformation;
 import idealgas.transformations.IsovolumetricTransformation;
@@ -78,6 +79,7 @@ public class SimulationWorkspace extends PApplet{
 
             statusBar.setData(transformationStrategy.getData());
             cylinder.setPistonHeight(transformationStrategy.getData().get("fake_piston_height"));
+            cylinder.increaseVelocity(transformationStrategy.getData().get("deltaVel"));
 
             thermometer.setTemperature(transformationStrategy.getData().get("temperature"));
             barometer.setPressure(transformationStrategy.getData().get("pressure"));
@@ -137,19 +139,9 @@ public class SimulationWorkspace extends PApplet{
         pvGraph.setPVScale(transformationStrategy.getPVrange());
         cylinder.fillCylinder(initialData.get("volume"), 
                               initialData.get("n").intValue(), 
-                              GasDataMap.MIN_FAKE_VELOCITY);
+                              4f);
         isRunning = true;
         return isRunning;
-    }
-
-    @Override
-    public void mouseClicked() {
-        super.mouseClicked();
-
-        
-        //cylinder.fillCylinder(GasDataMap.MIN_PROCESS_VOLUME, 25, 0.5f);
-        //cylinder.fillCylinder(GasDataMap.MAX_USER_VOLUME, 25, 0.5f);
-        cylinder.fillCylinder(GasDataMap.MAX_PROCESS_VOLUME, 80, 0.5f);
     }
 
     public void run() {
@@ -166,7 +158,8 @@ public class SimulationWorkspace extends PApplet{
                                         GasDataMap.MAX_NUMBER_OF_PARTICLES);
 
         if (userParticles > maxNumerOfParticles){
-            runErrorMessage = "El maximo numero de particulas para esta simulacion es de " +  (int)maxNumerOfParticles;
+            runErrorMessage = AppResources.getAppResources().getString(R.strings.sm_error_message) 
+                +  (int)maxNumerOfParticles;
             return true;
         }
         

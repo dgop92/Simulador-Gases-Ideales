@@ -15,7 +15,7 @@ public class IsovolumetricTransformation extends BaseTransformation implements T
         pressure = pressure0;
         temperature = temperature0;
 
-        setTemperatureDeltaSign();
+        setTemperatureVelocityDeltaSign();
     }
 
     @Override
@@ -88,16 +88,18 @@ public class IsovolumetricTransformation extends BaseTransformation implements T
         return false;
     }
 
-    private void setTemperatureDeltaSign() {
+    private void setTemperatureVelocityDeltaSign() {
 
         float finalTemperature = finalData.get("temperature");
         if (temperature0 > finalTemperature && finalTemperature != 0) {
             deltaT *= -1;
+            deltaVel *= -1;
         }
 
         float finalPressure = finalData.get("pressure");
         if (pressure0 > finalPressure && finalPressure != 0) {
             deltaT *= -1;
+            deltaVel *= -1;
         }
 
     }

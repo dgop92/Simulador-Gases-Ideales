@@ -5,6 +5,7 @@
 	"menu_settings_title": "Configuraciones",
 	"menu_instructions_title": "Instrucciones",
 
-    "menu_back_home_title": "Regresar"
+    "menu_back_home_title": "Regresar",
 	
+	"sm_error_message": "El maximo numero de particulas para esta simulacion es de "
 }

@@ -1,5 +1,6 @@
 package simulation.sketchs;
 
+import processing.core.PVector;
 import simulation.SimulationWorkspace;
 
 public abstract class SketchFragment {
@@ -27,6 +28,12 @@ public abstract class SketchFragment {
         sketch.line(x + fragmentWidth, y, x + fragmentWidth, y + fragmentHeight);
         sketch.line(x + fragmentWidth, y + fragmentHeight, x, y + fragmentHeight);
         sketch.line(x, y + fragmentHeight, x, y);
+    }
+
+    public PVector getPosForCenterImage(int imageWidth, int imageHeight){
+        float xPos = (fragmentWidth - imageWidth) / 2;
+        float yPos = (fragmentHeight - imageHeight) / 2;
+        return new PVector(x + xPos, y + yPos);
     }
 
     abstract public void update();

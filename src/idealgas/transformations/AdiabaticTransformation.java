@@ -96,16 +96,20 @@ public class AdiabaticTransformation extends BaseTransformation implements Trans
         float finalTemperature = finalData.get("temperature");
         if (temperature0 > finalTemperature && finalTemperature != 0) {
             deltaT *= -1;
+            deltaVel *= -1;
         }
 
         float finalVolume = finalData.get("volume");
         if (volume0 < finalVolume && finalVolume != 0) {
             deltaT *= -1;
+            deltaVel *= -1;
+
         }
 
         float finalPressure = finalData.get("pressure");
         if (pressure0 > finalPressure && finalPressure != 0) {
             deltaT *= -1;
+            deltaVel *= -1;
         }
 
     }

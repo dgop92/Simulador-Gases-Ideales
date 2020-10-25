@@ -15,7 +15,7 @@ public class IsothermalTransformation extends BaseTransformation implements Tran
         pressure = pressure0;
         volume = volume0;
 
-        setVolumeDeltaSign();
+        setVolumeVelocityDeltaSign();
 
     }
 
@@ -93,7 +93,7 @@ public class IsothermalTransformation extends BaseTransformation implements Tran
         return false;
     }
 
-    private void setVolumeDeltaSign() {
+    private void setVolumeVelocityDeltaSign() {
 
         float finalVolume = finalData.get("volume");
         if (volume0 > finalVolume && finalVolume != 0) {
@@ -104,6 +104,8 @@ public class IsothermalTransformation extends BaseTransformation implements Tran
         if (pressure0 < finalPressure && finalPressure != 0) {
             deltaV *= -1;
         }
+        
+        deltaVel = 0f;
 
     }
 

@@ -15,7 +15,7 @@ public class IsobaricTransformation extends BaseTransformation implements Transf
         volume = volume0;
         temperature = temperature0;
 
-        setTemperatureDeltaSign();
+        setTemperatureVelocityDeltaSign();
     }
 
     @Override
@@ -90,16 +90,18 @@ public class IsobaricTransformation extends BaseTransformation implements Transf
         return false;
     }
 
-    private void setTemperatureDeltaSign() {
+    private void setTemperatureVelocityDeltaSign() {
 
         float finalTemperature = finalData.get("temperature");
         if (temperature0 > finalTemperature && finalTemperature != 0) {
             deltaT *= -1;
+            deltaVel *= -1;
         }
 
         float finalVolume = finalData.get("volume");
         if (volume0 > finalVolume && finalVolume != 0) {
             deltaT *= -1;
+            deltaVel *= -1;
         }
 
     }

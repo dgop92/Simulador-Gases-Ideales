@@ -21,7 +21,9 @@ public class Cylinder extends SketchFragment {
     private Particle[] particles;
 
     private Rectangle cylinderDimension;
+    private boolean isCylinderFull;
 
+    private float dvel;
 
     public Cylinder(SimulationWorkspace sketch, float x, float y, float fragmentWidth, float fragmentHeight) {
         super(sketch, x, y, fragmentWidth, fragmentHeight);
@@ -33,6 +35,7 @@ public class Cylinder extends SketchFragment {
         pistonHeight = GasDataMap.MIN_PISTON_HEIGHT;
         cylinderDimension = new Rectangle();
 
+        isCylinderFull = false;
     }
 
     @Override
@@ -57,6 +60,10 @@ public class Cylinder extends SketchFragment {
         this.pistonHeight = pistonHeight;
     }
 
+    public void increaseVelocity(float dvel){
+        this.dvel = dvel;
+    }
+
     public void fillCylinder(float initialVolume, int nParticle, float v) {
 
         float initialPistonHeight = PApplet.map(initialVolume, 
@@ -71,16 +78,17 @@ public class Cylinder extends SketchFragment {
         cylinderDimension.setRect(x + 68, y + initialPistonHeight + 20, 366, fragmentHeight - 44 - initialPistonHeight);
 
         particles = new Particle[nParticle];
-        particles[0] = new Particle(getRandomPos(), new PVector(v, v));
+        particles[0] = new Particle(getRandomPos(), v);
         for (int i = 1; i < particles.length; i++) {
-            particles[i] = new Particle(getAvaliablePos(i), new PVector(v, v));
+            particles[i] = new Particle(getAvaliablePos(i), v);
         }
 
         sketch.delay(1000);
+        isCylinderFull = true;
     }
 
     private void drawParticles(){
-        if (particles != null){
+        if (isCylinderFull){
             for (Particle particle : particles) {
                 particle.draw();
             }
@@ -90,6 +98,11 @@ public class Cylinder extends SketchFragment {
     private void analizeCollisions() {
         for (int i = 0; i < particles.length; i++) {
             particles[i].checkBorderCollision();
+            if (i == 0){
+                sketch.textSize(18);
+                sketch.fill(255);
+                sketch.text("VELOCIDAD  "+ particles[i].velocity, 20, 100);
+            }
             /* for (int j = 0; j < particles.length; j++) {
                 if (i != j) {
                     particles[i].checkParticleCollision(particles[j]);
@@ -102,6 +115,7 @@ public class Cylinder extends SketchFragment {
         analizeCollisions();
         for (Particle particle : particles) {
             particle.update();
+            particle.increaseVelocity(dvel);
         }
     }
 
@@ -165,22 +179,19 @@ public class Cylinder extends SketchFragment {
 
         public PVector position;
         public PVector velocity;
-        public byte directionX;
-        public byte directionY;
 
         public static final float RADIUS = 10;
         
-        public Particle(PVector position, PVector velocity) {
+        public Particle(PVector position, float initialVelocity) {
             this.position = position;
-            this.velocity = velocity;
-            
-            //directionX = (Math.random() > 0.5) ? (byte)-1 : 1;  
-            //directionY = (Math.random() > 0.5) ? (byte)-1 : 1;
+            this.velocity = PVector.random2D();
+            this.velocity.mult(initialVelocity);
         }
 
         public void draw(){
             sketch.fill(0);
             sketch.stroke(255);
+            sketch.strokeWeight(1);
             sketch.circle(position.x, position.y, RADIUS);
         }
 
@@ -190,46 +201,19 @@ public class Cylinder extends SketchFragment {
             draw();
         }
 
+        public void increaseVelocity(float dvel){
+            PVector unitVector = extractUnitVector(this.velocity);
+            this.velocity.add(dvel, dvel);
+
+            checkMaxAndMinVelocity();
+            
+            this.velocity.x *= unitVector.x;
+            this.velocity.y *= unitVector.y;
+        }
+
         public void checkParticleCollision(Particle p){
 
-            float xVelocityDiff = this.velocity.x - p.velocity.x;
-            float yVelocityDiff = this.velocity.y - p.velocity.y;
-
-            float xDist = p.position.x - this.position.x;
-            float yDist = p.position.y - this.position.y;
-
-            ////float dist = this.position.dist(p.position);
-            //xVelocityDiff * xDist + yVelocityDiff * yDist >= 0
-
-            if (xVelocityDiff * xDist + yVelocityDiff * yDist >= 0) {
-
-
-
-                /* float angle = (float) -Math.atan2(yDist, xDist);
-
-                float m1 = 1, m2 = 1;
-
-                PVector u1 = this.velocity.rotate(angle);
-                PVector u2 = p.velocity.rotate(angle);
-
-                float v1x = u1.x * (m1 - m2) / (m1 + m2)  + 2 * m2 * u2.x / (m1 + m2);
-                float v1y = u1.y;
-
-                float v2x = u2.x * (m1 - m2) / (m1 + m2)  + 2 * m2 * u1.x / (m1 + m2);
-                float v2y = u2.y;
-
-                PVector v1final = new PVector(v1x, v1y);
-                v1final.rotate(-angle);
-                PVector v2final = new PVector(v2x, v2y);
-                v2final.rotate(-angle);
-
-                this.velocity.x = v1final.x;
-                this.velocity.y = v1final.y;
-
-                p.velocity.x = v2final.x;
-                p.velocity.y = v2final.y; */
-
-            }
+            //TO DO
         }
 
         public void checkBorderCollision(){
@@ -241,6 +225,34 @@ public class Cylinder extends SketchFragment {
             if(position.y - RADIUS <= cylinderDimension.y || position.y + RADIUS >= cylinderDimension.y + cylinderDimension.height){
                 this.velocity.y *= -1;
             }
+        }
+
+        private PVector extractUnitVector(PVector p){
+            PVector unitVector = new PVector(Math.signum(p.x), Math.signum(p.y));
+            p.x = Math.abs(p.x);
+            p.y = Math.abs(p.y);
+            return unitVector;
+        }
+
+        //Limit adiabatic and issues
+        private void checkMaxAndMinVelocity(){
+
+            if (velocity.x <= GasDataMap.MIN_PROCESS_VELOCITY){
+                velocity.x = GasDataMap.MIN_PROCESS_VELOCITY;
+            }
+
+            if (velocity.y <= GasDataMap.MIN_PROCESS_VELOCITY){
+                velocity.y = GasDataMap.MIN_PROCESS_VELOCITY;
+            }
+
+            if (velocity.x >= GasDataMap.MAX_PROCESS_VELOCITY){
+                velocity.x = GasDataMap.MAX_PROCESS_VELOCITY;
+            }
+
+            if (velocity.y >= GasDataMap.MAX_PROCESS_VELOCITY){
+                velocity.y = GasDataMap.MAX_PROCESS_VELOCITY;
+            }
+            
         }
         
     }

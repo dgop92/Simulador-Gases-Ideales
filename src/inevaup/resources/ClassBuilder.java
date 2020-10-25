@@ -59,7 +59,7 @@ public class ClassBuilder {
 
         String comment = "// This class is auto generated";
         String base = 
-            String.format("package %s;\n\n%s\n\npublic class %s {\n", packageName, comment , className);
+            String.format("package %s;\n\n%s\n\npublic class %s {\n\n", packageName, comment , className);
         
         String stringEnum = createEnum("strings ", appResources.getStringsJsonObject().keySet());
         String colorEnum = createEnum("colors ", appResources.getThemeJsonObject().keySet());
@@ -79,28 +79,28 @@ public class ClassBuilder {
 
     private String createEnum(String enumName, Set<String> keySet){
 
-        String start = String.format("public enum %s {\n", enumName);
+        String start = "\t" + String.format("public enum %s{\n", enumName);
         String enumContent = "";
 
         String nextLine = ",\n";
 
         Iterator<String> keySetIterator = keySet.iterator();
         while (keySetIterator.hasNext()) {
-            enumContent += keySetIterator.next();
+            enumContent += "\t\t" + keySetIterator.next();
 
             if (keySetIterator.hasNext()){
                 enumContent += nextLine;
             }
         }
 
-        String close = "\n}"; 
+        String close = "\n\t}\n\n"; 
         
         return start + enumContent + close;
     }
 
     private String createStaticResource(String className, File resourceFile){
 
-        String start = String.format("public static class %s {\n", className);
+        String start = "\t" + String.format("public static class %s {\n", className);
         String classContent = "";
         
         File[] resourcefiles = resourceFile.listFiles();
@@ -108,10 +108,10 @@ public class ClassBuilder {
             String fileName = fromFontNameToJavaName(resourcefile.getName());
             String filePath = "/" + resourcefile.getName();
 
-            classContent += generateRField(fileName, filePath);
+            classContent += "\t\t" + generateRField(fileName, filePath);
         }
 
-        String close = "\n}";
+        String close = "\n\t}\n\n"; 
 
         return start + classContent + close;
     }

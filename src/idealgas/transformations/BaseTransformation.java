@@ -22,14 +22,14 @@ public abstract class BaseTransformation {
 
     protected float deltaT;
     protected float deltaV;
+    protected float deltaVel;
 
     protected float velocity;
 
     protected HashMap<String, Float> finalData;
     protected HashMap<String, Float> gasData;
 
-    private final float MOLAR_MASS = 0.032f; 
-    private float initialFakeVelocity;
+    public static final float MOLAR_MASS = 0.032f; 
 
     public BaseTransformation(HashMap<String, Float> initialData, HashMap<String, Float> finalData) {
         this.pressure0 = initialData.get("pressure");
@@ -39,16 +39,19 @@ public abstract class BaseTransformation {
 
         this.finalData = finalData;
 
-        updateVelocity(initialData.get("temperature"));
-        initialFakeVelocity = PApplet.map(velocity, 
-            GasDataMap.MIN_REAL_VELOCITY, GasDataMap.MAX_REAL_VELOCITY, 
-            GasDataMap.MIN_FAKE_VELOCITY, GasDataMap.MAX_FAKE_VELOCITY);
-
         //A 60FPS
         deltaT = 0.06491f;
-        deltaV = 0.02091f;
+        deltaV = 0.02091f; 
+        deltaVel = 0.001f;
 
         initGasDataHashMap();
+    }
+
+    public static float getInitialFakeVelocity(float temperature){
+        float initialVelocity = (float) Math.sqrt( 3 * GasConstants.R * temperature / MOLAR_MASS);
+        return PApplet.map(initialVelocity, 
+                           GasDataMap.MIN_REAL_VELOCITY, GasDataMap.MAX_REAL_VELOCITY, 
+                           GasDataMap.MIN_FAKE_VELOCITY, GasDataMap.MAX_FAKE_VELOCITY);
     }
     
     private void initGasDataHashMap(){
@@ -64,7 +67,7 @@ public abstract class BaseTransformation {
 
         gasData.put("velocity", velocity);
 
-        gasData.put("fake_velocity", GasDataMap.MIN_FAKE_VELOCITY);
+        gasData.put("deltaVel", deltaVel);
         gasData.put("fake_piston_height", GasDataMap.MIN_PISTON_HEIGHT);
 
         //moles and mass
@@ -80,16 +83,12 @@ public abstract class BaseTransformation {
         gasData.replace("heat", heat);
 
         gasData.replace("velocity", velocity);
-
-        float fakeVelocity = PApplet.map(velocity, 
-            GasDataMap.MIN_REAL_VELOCITY, GasDataMap.MAX_REAL_VELOCITY, 
-            GasDataMap.MIN_FAKE_VELOCITY, GasDataMap.MAX_FAKE_VELOCITY) - initialFakeVelocity;
-        
+ 
         float fakePistonHeight = PApplet.map(volume, 
             GasDataMap.MIN_PROCESS_VOLUME, GasDataMap.MAX_PROCESS_VOLUME, 
             GasDataMap.MAX_PISTON_HEIGHT, GasDataMap.MIN_PISTON_HEIGHT);
 
-        gasData.replace("fake_velocity", fakeVelocity);
+        gasData.replace("deltaVel", deltaVel);
         gasData.replace("fake_piston_height", fakePistonHeight);
 
         //here you put fake vel and fake volume as well the real ones
@@ -98,7 +97,7 @@ public abstract class BaseTransformation {
     protected void updateVelocity(float temperature){
         velocity = (float) Math.sqrt( 3 * GasConstants.R * temperature / MOLAR_MASS);
     }
-
+    
     protected void saveData() {
         // This will save the data and create a csv file
     }
