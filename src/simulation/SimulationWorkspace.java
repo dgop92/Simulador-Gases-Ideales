@@ -139,7 +139,7 @@ public class SimulationWorkspace extends PApplet{
         pvGraph.setPVScale(transformationStrategy.getPVrange());
         cylinder.fillCylinder(initialData.get("volume"), 
                               initialData.get("n").intValue(), 
-                              4f);
+                              BaseTransformation.getInitialFakeVelocity(initialData.get("temperature")));
         isRunning = true;
         return isRunning;
     }

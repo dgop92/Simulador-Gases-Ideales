@@ -43,11 +43,12 @@ public class FinalDataForm extends DataForm {
         return isDataValid;
     }
 
-    public void getValidatedData(){
+    public HashMap<String, Float> getValidatedData(){
         HashMap<String, Float> data = new HashMap<>();
         data.put("pressure", finalPressure);
         data.put("volume", finalVolume);
         data.put("temperature", finalTemperature);
+        return data;
     }
 
     private void validateTypesOfTransformation() throws ValidationError {

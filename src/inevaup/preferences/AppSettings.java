@@ -9,20 +9,20 @@ import com.github.cliftonlabs.json_simple.JsonException;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsoner;
 
-public class Settings {
+public class AppSettings {
 
     public final static String BASE_PATH = "src/data";
     // public final static String BASE_PATH = "data";
     public final static String SETTINGS_PATH = "/settings.json";
     public boolean isSettingsLoaded;
 
-    private static Settings settings = null;
+    private static AppSettings settings = null;
     private String errorMessage;
     private JsonObject jsonSettings;
 
-    public static Settings getSettings() {
+    public static AppSettings getSettings() {
         if (settings == null) {
-            settings = new Settings();
+            settings = new AppSettings();
         }
         return settings;
     }
@@ -93,6 +93,10 @@ public class Settings {
         jsonSettings = new JsonObject();
         jsonSettings.put("fps", MySettings.DEFAULT_FPS);
         jsonSettings.put("simulation_time", MySettings.DEFAULT_SIMULATION_TIME);
+        jsonSettings.put("language", MySettings.DEFAULT_STRINGS_NAME);
+        jsonSettings.put("theme", MySettings.DEFAULT_THEME_NAME);
+        jsonSettings.put("collisions", MySettings.DEFAULT_CHECK_COLLISIONS);
+        jsonSettings.put("save_data", MySettings.DEFAULT_SAVE_DATA);
     }
 
 }

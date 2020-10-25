@@ -4,7 +4,7 @@ public class MainSettingsTest {
 
     public static void main(String[] args) {
 
-        Settings settings = Settings.getSettings();
+        AppSettings settings = AppSettings.getSettings();
         settings.loadSettings();
         System.out.println(settings.getErrorMessage());
 

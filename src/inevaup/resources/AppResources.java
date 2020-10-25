@@ -16,6 +16,7 @@ import com.github.cliftonlabs.json_simple.JsonException;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsoner;
 
+import inevaup.preferences.AppSettings;
 import inevaup.resources.R.colors;
 import inevaup.resources.R.fonts;
 import inevaup.resources.R.strings;
@@ -107,8 +108,10 @@ public class AppResources {
     
     private void loadStrings() throws ResourceNotLoadedException, ResourceNotFoundException {
 
-        String stringsPath = ResourcesPath.getFullStringFilePath();
-
+        String languageFileName = (String) AppSettings.getSettings().getSetting("language");
+        String stringsPath = ResourcesPath.getConcatPath(
+            ResourcesPath.getFullStringsPath(), languageFileName);
+        
         try {
             FileReader stringsFile = new FileReader(stringsPath);
             stringsJsonObject = (JsonObject) Jsoner.deserialize(stringsFile);
@@ -124,7 +127,9 @@ public class AppResources {
  
     private void loadTheme() throws ResourceNotLoadedException, ResourceNotFoundException {
 
-        String themesPath = ResourcesPath.getFullThemesFilePath();
+        String themeFileName = (String) AppSettings.getSettings().getSetting("theme");
+        String themesPath = ResourcesPath.getConcatPath(
+            ResourcesPath.getFullThemesPath(), themeFileName);
 
         try {
             FileReader themeFile = new FileReader(themesPath);

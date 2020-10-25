@@ -28,9 +28,6 @@ public class ResourcesPath {
         "/Montserrat-Bold.ttf"
     };
 
-    private final static String DEFAULT_STRINGS_NAME = "strings_es.json";
-    private final static String DEFAULT_THEME_NAME = "default_theme.json";
-
     // ---------- Paths ----------- //
  
     
@@ -71,16 +68,6 @@ public class ResourcesPath {
 
     public static String getFullFontNamePath(String fontNamePath){
         return getConcatPath(getFullFontsPath(), fontNamePath);
-    }
-
-
-    public static String getFullStringFilePath() {
-        return getConcatPath(getFullStringsPath(), DEFAULT_STRINGS_NAME);
-    }
-
-
-    public static String getFullThemesFilePath() {
-        return getConcatPath(getFullThemesPath(), DEFAULT_THEME_NAME);
     }
 
     /**

@@ -3,14 +3,14 @@ package main;
 import interfaces.mainmenu.MainMenuInterface;
 import inevaup.dialogs.InfoDialog;
 import inevaup.dialogs.InfoDialog.TypeInfoDialog;
-import inevaup.preferences.Settings;
+import inevaup.preferences.AppSettings;
 import inevaup.resources.AppResources;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Settings settings = Settings.getSettings();
+        AppSettings settings = AppSettings.getSettings();
         settings.loadSettings();
 
         if (!settings.isSettingsLoaded){

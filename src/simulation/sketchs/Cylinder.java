@@ -98,11 +98,11 @@ public class Cylinder extends SketchFragment {
     private void analizeCollisions() {
         for (int i = 0; i < particles.length; i++) {
             particles[i].checkBorderCollision();
-            if (i == 0){
+            /* if (i == 0){
                 sketch.textSize(18);
                 sketch.fill(255);
                 sketch.text("VELOCIDAD  "+ particles[i].velocity, 20, 100);
-            }
+            } */
             /* for (int j = 0; j < particles.length; j++) {
                 if (i != j) {
                     particles[i].checkParticleCollision(particles[j]);
