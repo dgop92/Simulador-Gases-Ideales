@@ -37,18 +37,25 @@ public class HistoryItem {
     }
 
     @Override
-    public String toString() {
-        return date + "\n" +
+    public String toString(){
+
+        String initialDataString =  
             String.format("DI: ( %.2f %.2f %.2f - %.2f)", 
-                initialData.get("pressure"), 
-                initialData.get("volume"),
-                initialData.get("temperature"),
-                initialData.get("n")) + "\n" +
+                          initialData.get("pressure"), 
+                          initialData.get("volume"),
+                          initialData.get("temperature"),
+                          initialData.get("n"));
+            
+        String finalDataString = 
             String.format("DF: ( %.2f %.2f %.2f )", 
-                finalData.get("pressure"), 
-                finalData.get("volume"),
-                finalData.get("temperature"))  + "\n" +
-            "T: " + transformationType.name();
+                          finalData.get("pressure"), 
+                          finalData.get("volume"),
+                          finalData.get("temperature"));
+        
+        String transformationTypeString = "T: " + transformationType.name();
+        
+        
+        return String.format("<html> %s <br> %s <br> %s <br> %s </html>",
+            date, initialDataString, finalDataString, transformationTypeString);
     }
-    
 }

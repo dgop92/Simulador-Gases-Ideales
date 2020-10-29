@@ -2,8 +2,7 @@ package idealgas.datarecorder;
 
 import java.util.HashMap;
 
-import idealgas.TransformationType;
-import inevaup.preferences.SaveException;
+import interfaces.control.HistoryDialog;
 
 public class TestData {
 
@@ -21,17 +20,13 @@ public class TestData {
         finalData.put("temperature", 400f);
 
         HistoryManager historyManager = new HistoryManager();
-        historyManager.getHistoryItems();
-        HistoryItem[] items = historyManager.getHistoryItems();
-        System.out.println(items[1]);
-        /* try {
-            historyManager.saveInputData(initialData, finalData, TransformationType.ISOBARIC);
-        } catch (SaveException e) {
-            System.out.println(e);
-        } */
 
-        /* HistoryItem ht = new HistoryItem(initialData, finalData, TransformationType.ISOBARIC, "mié. oct. 28 2020 09:47:20");
-        System.out.println(ht); */
+        HistoryDialog historyDialog = new HistoryDialog(null, true, historyManager.getHistoryDefaultModel());
+        historyDialog.setVisible(true);
 
+        if(historyDialog.isItemSelected){
+            System.out.println(historyDialog.getSelectedHistoryItem());
+        }
+    
     }
 }

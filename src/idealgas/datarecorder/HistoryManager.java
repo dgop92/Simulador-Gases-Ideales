@@ -1,7 +1,6 @@
 package idealgas.datarecorder;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,6 +14,8 @@ import com.github.cliftonlabs.json_simple.Jsoner;
 
 import idealgas.TransformationType;
 import inevaup.preferences.SaveException;
+
+import javax.swing.DefaultListModel;
 
 public class HistoryManager {
 
@@ -46,28 +47,29 @@ public class HistoryManager {
         }
     }
 
-    //has to be change in order to check for erros
-    public HistoryItem[] getHistoryItems(){
+    public DefaultListModel<HistoryItem> getHistoryDefaultModel(){
+
+        DefaultListModel<HistoryItem> historyModel = new DefaultListModel<>();
 
         File smdataFolder = new File(HistoryManager.HISTORY_PATH);
         File[] historyFiles = smdataFolder.listFiles();
 
-        HistoryItem[] historyItems = new HistoryItem[historyFiles.length];
-
-        int i = 0;
         for (File historyFile : historyFiles) {
             JsonObject jsonHistory = getHistoryJsonObjectFromFile(historyFile);
-            String date = (String) jsonHistory.get("date");
-            HashMap<String, Float> initialData = (HashMap<String, Float>) jsonHistory.get("initial_data");
-            HashMap<String, Float> finalData = (HashMap<String, Float>) jsonHistory.get("final_data");
-            TransformationType transformationType = 
-                TransformationType.valueOf((String)jsonHistory.get("transformation_type"));
 
-            historyItems[i] = new HistoryItem(initialData, finalData, transformationType, date);
-            i++;
+            if (jsonHistory != null){
+                String date = (String) jsonHistory.get("date");
+                HashMap<String, Float> initialData = (HashMap<String, Float>) jsonHistory.get("initial_data");
+                HashMap<String, Float> finalData = (HashMap<String, Float>) jsonHistory.get("final_data");
+                TransformationType transformationType = 
+                    TransformationType.valueOf((String)jsonHistory.get("transformation_type"));
+
+                historyModel.addElement(new HistoryItem(initialData, finalData, transformationType, date));
+            }
         }
 
-        return historyItems;
+        return historyModel;
+
     }
 
     private JsonObject getHistoryJsonObjectFromFile(File file){
