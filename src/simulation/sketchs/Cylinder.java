@@ -64,6 +64,12 @@ public class Cylinder extends SketchFragment {
         this.dvel = dvel;
     }
 
+    public void fixParticle(){
+        for (Particle particle : particles) {
+            particle.fixBorderParticleEscape();
+        }
+    }
+
     public void fillCylinder(float initialVolume, int nParticle, float v) {
 
         float initialPistonHeight = PApplet.map(initialVolume, 
@@ -98,25 +104,20 @@ public class Cylinder extends SketchFragment {
     private void analizeCollisions() {
         for (int i = 0; i < particles.length; i++) {
             particles[i].checkBorderCollision();
-            /* if (i == 0){
-                sketch.textSize(18);
-                sketch.fill(255);
-                sketch.text("VELOCIDAD  "+ particles[i].velocity, 20, 100);
-            } */
-            /* for (int j = 0; j < particles.length; j++) {
+            for (int j = 0; j < particles.length; j++) {
                 if (i != j) {
                     particles[i].checkParticleCollision(particles[j]);
                 }
-            } */
+            }
         }
     }
 
     private void updateParticles() {
-        analizeCollisions();
         for (Particle particle : particles) {
             particle.update();
             particle.increaseVelocity(dvel);
         }
+        analizeCollisions();
     }
 
     private void drawCylinder() {
@@ -181,15 +182,18 @@ public class Cylinder extends SketchFragment {
         public PVector velocity;
 
         public static final float RADIUS = 10;
+
+        private int color;
         
         public Particle(PVector position, float initialVelocity) {
             this.position = position;
             this.velocity = PVector.random2D();
             this.velocity.mult(initialVelocity);
+            color = (int) Math.random() * 255;
         }
 
         public void draw(){
-            sketch.fill(0);
+            sketch.fill(color);
             sketch.stroke(255);
             sketch.strokeWeight(1);
             sketch.circle(position.x, position.y, RADIUS);
@@ -213,7 +217,97 @@ public class Cylinder extends SketchFragment {
 
         public void checkParticleCollision(Particle p){
 
-            //TO DO
+            PVector distanceVect = PVector.sub(p.position, position);
+            // Calculate magnitude of the vector separating the balls
+            float distanceVectMag = distanceVect.mag();
+
+            // Minimum distance before they are touching
+            float minDistance = 2*RADIUS;
+
+            if (distanceVectMag < minDistance) {
+
+                /* float distanceCorrection = (minDistance-distanceVectMag) / 2f;
+                PVector d = distanceVect.copy();
+                PVector correctionVector = d.normalize().mult(distanceCorrection);
+                p.position.add(correctionVector);
+                position.sub(correctionVector); */
+
+                // get angle of distanceVect
+                float theta  = distanceVect.heading();
+                // precalculate trig values
+                float sine = PApplet.sin(theta);
+                float cosine = PApplet.cos(theta);
+
+                /* bTemp will hold rotated ball positions. You 
+                just need to worry about bTemp[1] position*/
+                PVector[] bTemp = {
+                    new PVector(), new PVector()
+                };
+
+                /* this ball's position is relative to the other
+                so you can use the vector between them (bVect) as the 
+                reference point in the rotation expressions.
+                bTemp[0].position.x and bTemp[0].position.y will initialize
+                automatically to 0.0, which is what you want
+                since b[1] will rotate around b[0] */
+                bTemp[1].x  = cosine * distanceVect.x + sine * distanceVect.y;
+                bTemp[1].y  = cosine * distanceVect.y - sine * distanceVect.x;
+
+                // rotate Temporary velocities
+                PVector[] vTemp = {
+                    new PVector(), new PVector()
+                };
+
+                vTemp[0].x  = cosine * velocity.x + sine * velocity.y;
+                vTemp[0].y  = cosine * velocity.y - sine * velocity.x;
+                vTemp[1].x  = cosine * p.velocity.x + sine * p.velocity.y;
+                vTemp[1].y  = cosine * p.velocity.y - sine * p.velocity.x;
+
+                /* Now that velocities are rotated, you can use 1D
+                conservation of momentum equations to calculate 
+                the final velocity along the x-axis. */
+                PVector[] vFinal = {  
+                    new PVector(), new PVector()
+                };
+
+                // final rotated velocity for b[0]
+                vFinal[0].x = vTemp[1].x;
+                vFinal[0].y = vTemp[0].y;
+
+                // final rotated velocity for b[0]
+                vFinal[1].x = vTemp[0].x;
+                vFinal[1].y = vTemp[1].y;
+
+                // hack to avoid clumping
+                bTemp[0].x += vFinal[0].x;
+                bTemp[1].x += vFinal[1].x;
+
+                /* Rotate ball positions and velocities back
+                Reverse signs in trig expressions to rotate 
+                in the opposite direction */
+                // rotate balls
+                PVector[] bFinal = { 
+                    new PVector(), new PVector()
+                };
+
+                bFinal[0].x = cosine * bTemp[0].x - sine * bTemp[0].y;
+                bFinal[0].y = cosine * bTemp[0].y + sine * bTemp[0].x;
+                bFinal[1].x = cosine * bTemp[1].x - sine * bTemp[1].y;
+                bFinal[1].y = cosine * bTemp[1].y + sine * bTemp[1].x;
+
+                // update balls to screen position
+                p.position.x = position.x + bFinal[1].x;
+                p.position.y = position.y + bFinal[1].y;
+
+                position.add(bFinal[0]);
+
+                // update velocities
+                velocity.x = cosine * vFinal[0].x - sine * vFinal[0].y;
+                velocity.y = cosine * vFinal[0].y + sine * vFinal[0].x;
+                p.velocity.x = cosine * vFinal[1].x - sine * vFinal[1].y;
+                p.velocity.y = cosine * vFinal[1].y + sine * vFinal[1].x;
+            }
+
         }
 
         public void checkBorderCollision(){
@@ -224,6 +318,29 @@ public class Cylinder extends SketchFragment {
     
             if(position.y - RADIUS <= cylinderDimension.y || position.y + RADIUS >= cylinderDimension.y + cylinderDimension.height){
                 this.velocity.y *= -1;
+            }
+        }
+
+        public void fixBorderParticleEscape(){
+             
+            if(position.x - RADIUS <= cylinderDimension.x){
+                position.x = cylinderDimension.x + RADIUS;
+                velocity.x = PApplet.abs(velocity.x);
+            }
+
+            if(position.x + RADIUS >= cylinderDimension.x + cylinderDimension.width){
+                position.x = cylinderDimension.x + cylinderDimension.width - RADIUS;
+                velocity.x = -1 * PApplet.abs(velocity.x);
+            }
+
+            if(position.y - RADIUS <= cylinderDimension.y){
+                position.y = cylinderDimension.y + RADIUS;
+                velocity.y = PApplet.abs(velocity.y);
+            }
+
+            if(position.y + RADIUS >= cylinderDimension.y + cylinderDimension.height){
+                position.y = cylinderDimension.y + cylinderDimension.height - RADIUS;
+                velocity.y = -1 * PApplet.abs(velocity.y);
             }
         }
 
