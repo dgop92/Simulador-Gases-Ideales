@@ -2,6 +2,8 @@ package interfaces.forms;
 
 import java.util.HashMap;
 
+import idealgas.GasConstants;
+import idealgas.GasDataMap;
 import idealgas.TransformationType;
 
 public class FinalDataForm extends DataForm {
@@ -109,15 +111,15 @@ public class FinalDataForm extends DataForm {
     //Este metodo debe ser remplazado por los rangos originales, ver clase GasDataMap.java
     private void validateRange() throws ValidationError{
         if(isPressureUsed){
-            if (finalPressure <= 0){
+            if (finalPressure < GasDataMap.MIN_USER_PRESSURE|| finalPressure > GasDataMap.MAX_USER_PRESSURE){
                 throw new ValidationError("Rango Invalido");
             }
         }else if(isVolumeUsed){
-            if (finalVolume <= 0) {
+            if (finalVolume < GasDataMap.MIN_USER_VOLUME|| finalVolume > GasDataMap.MAX_USER_VOLUME) {
                 throw new ValidationError("Rango Invalido");
             }
         }else{
-            if (finalTemperature <= 0) {
+            if (finalTemperature < GasDataMap.MIN_USER_TEMPERATURE || finalTemperature > GasDataMap.MAX_USER_TEMPERATURE) {
                 throw new ValidationError("Rango Invalido");
             }    
         }
