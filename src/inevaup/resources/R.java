@@ -10,6 +10,7 @@ public class R {
 		menu_start_title,
 		sm_error_message,
 		menu_instructions_title,
+		controlinterface_tittle,
 		menu_back_home_title
 	}
 

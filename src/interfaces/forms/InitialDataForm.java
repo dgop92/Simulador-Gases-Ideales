@@ -45,7 +45,7 @@ public class InitialDataForm extends DataForm {
         data.put("pressure", initialPressure);
         data.put("volume", initialVolume);
         data.put("temperature", initialTemperature);
-        data.put("N",initialn);
+        data.put("n",initialn);
         return data;
     }
 
