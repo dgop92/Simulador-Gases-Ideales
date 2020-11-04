@@ -7,6 +7,8 @@ import idealgas.GasDataMap;
 import idealgas.TransformationType;
 
 public class FinalDataForm extends DataForm {
+    
+    public String error_messages;
 
     private String p2, v2, t2;
     private TransformationType transformationType;
@@ -37,7 +39,7 @@ public class FinalDataForm extends DataForm {
 
             isDataValid = true;
         } catch (ValidationError e) {
-            //System.out.println(e);
+            error_messages=e.toString();
         }
     }
 

@@ -8,6 +8,8 @@ public class InitialDataForm extends DataForm {
 
     private String p1, v1, t1;
     private String n;
+    
+    public String error_messages;
 
     private boolean isDataValid;
 
@@ -35,7 +37,7 @@ public class InitialDataForm extends DataForm {
 
             isDataValid = true;
         } catch (ValidationError e) {
-            //System.out.println(e);
+            error_messages=e.toString();
         }
     }
 
