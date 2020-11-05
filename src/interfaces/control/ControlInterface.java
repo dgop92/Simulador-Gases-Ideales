@@ -552,7 +552,7 @@ public class ControlInterface extends javax.swing.JFrame {
         initialData.put("pressure", 60000f);
         initialData.put("volume", 91f);
         initialData.put("temperature", 400f);
-        initialData.put("n", 25f);
+        initialData.put("n", 20f);
 
         HashMap<String, Float> finalData = new HashMap<>();
         finalData.put("pressure", 0f);

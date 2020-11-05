@@ -149,6 +149,12 @@ public class SimulationWorkspace extends PApplet{
         PApplet.runSketch(processingArgs, this);
     }
 
+    //Test execute fixparticles each 80 or 60 ticks
+    @Override
+    public void mouseClicked() {
+        cylinder.fixParticle();
+    }
+
     private boolean isMaxParticleReached(float userParticles, float minVolume){
         
         float maxNumerOfParticles = map(minVolume, 
