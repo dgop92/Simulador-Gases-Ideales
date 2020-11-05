@@ -9,7 +9,7 @@ import inevaup.resources.R;
 
 public class FinalDataForm extends DataForm {
     
-    public String error_messages;
+    public String errorMessages;
 
     private String p2, v2, t2;
     private TransformationType transformationType;
@@ -27,6 +27,7 @@ public class FinalDataForm extends DataForm {
         this.transformationType = transformationType;
 
         isDataValid = false;
+        errorMessages = "";
     }
 
     public void validate() {
@@ -38,7 +39,7 @@ public class FinalDataForm extends DataForm {
 
             isDataValid = true;
         } catch (ValidationError e) {
-            error_messages = e.toString();
+            errorMessages = e.toString();
         }
     }
 

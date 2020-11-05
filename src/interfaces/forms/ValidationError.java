@@ -14,7 +14,7 @@ public class ValidationError extends Exception{
     }
 
     public String toString() {
-        return "Error de validacion " + "\n\n" + "Razon: " + reason;
+        return reason;
     }
 
     public String getReason() {

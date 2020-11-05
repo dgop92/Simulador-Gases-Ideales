@@ -9,8 +9,6 @@ import idealgas.GasDataMap;
 import interfaces.forms.InitialDataForm;
 import interfaces.forms.FinalDataForm;
 
-import java.util.HashMap;
-
 import simulation.SimulationWorkspace;
 
 public class ControlInterface extends javax.swing.JFrame {
@@ -21,19 +19,23 @@ public class ControlInterface extends javax.swing.JFrame {
     public ControlInterface() {
         appResources = AppResources.getAppResources();
         initComponents();
+
+        setToolTipTexts();
         initCustomResources();
-        
-        //ToolTips
+        Isobaric_RadioButton.setSelected(true);
+        Icon_Ok.setVisible(false);
+            
+        simulationWorkspace = new SimulationWorkspace();
+        simulationWorkspace.run();
+    }
+
+    private void setToolTipTexts(){
         Volume1_TextField.setToolTipText("Min:"+GasDataMap.MIN_USER_VOLUME + " - " + " Max:"+GasDataMap.MAX_USER_VOLUME);
         Temperature1_TextField.setToolTipText("Min:"+GasDataMap.MIN_USER_TEMPERATURE + " - " + " Max:"+GasDataMap.MAX_USER_TEMPERATURE);
         Pressure1_TextField.setToolTipText("Min:"+GasDataMap.MIN_USER_PRESSURE + " - " + " Max:"+GasDataMap.MAX_USER_PRESSURE);
         Volume2_TextField.setToolTipText("Min:"+GasDataMap.MIN_USER_VOLUME + " - " + " Max:"+GasDataMap.MAX_USER_VOLUME);
         Temperature2_TextField.setToolTipText("Min:"+GasDataMap.MIN_USER_TEMPERATURE + " - " + " Max:"+GasDataMap.MAX_USER_TEMPERATURE);
         Pressure2_TextField.setToolTipText("Min:"+GasDataMap.MIN_USER_PRESSURE + " - " + " Max:"+GasDataMap.MAX_USER_PRESSURE);
-        Isobaric_RadioButton.setSelected(true);
-        
-        simulationWorkspace = new SimulationWorkspace();
-        simulationWorkspace.run();
     }
     
     private void initCustomResources() {
@@ -143,11 +145,6 @@ public class ControlInterface extends javax.swing.JFrame {
         header_title.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         header_title.setForeground(new java.awt.Color(255, 255, 255));
         header_title.setText("Interfaz de Control");
-        header_title.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                onHeaderButton(evt);
-            }
-        });
         header.add(header_title);
 
         data_panel_1.setBackground(new java.awt.Color(255, 255, 255));
@@ -172,12 +169,7 @@ public class ControlInterface extends javax.swing.JFrame {
         Volume1_TextField.setBackground(new java.awt.Color(255, 255, 255));
         Volume1_TextField.setColumns(6);
         Volume1_TextField.setForeground(new java.awt.Color(0, 0, 0));
-        Volume1_TextField.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Volume1_TextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Volume1_TextFieldActionPerformed(evt);
-            }
-        });
+        Volume1_TextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         V1.add(Volume1_TextField);
 
         input_panel.add(V1);
@@ -198,7 +190,7 @@ public class ControlInterface extends javax.swing.JFrame {
         Temperature1_TextField.setBackground(new java.awt.Color(255, 255, 255));
         Temperature1_TextField.setColumns(6);
         Temperature1_TextField.setForeground(new java.awt.Color(0, 0, 0));
-        Temperature1_TextField.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Temperature1_TextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         T1.add(Temperature1_TextField);
 
         input_panel.add(T1);
@@ -219,7 +211,7 @@ public class ControlInterface extends javax.swing.JFrame {
         Pressure1_TextField.setBackground(new java.awt.Color(255, 255, 255));
         Pressure1_TextField.setColumns(6);
         Pressure1_TextField.setForeground(new java.awt.Color(0, 0, 0));
-        Pressure1_TextField.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Pressure1_TextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         P1.add(Pressure1_TextField);
 
         input_panel.add(P1);
@@ -240,7 +232,7 @@ public class ControlInterface extends javax.swing.JFrame {
         Volume2_TextField.setBackground(new java.awt.Color(255, 255, 255));
         Volume2_TextField.setColumns(6);
         Volume2_TextField.setForeground(new java.awt.Color(0, 0, 0));
-        Volume2_TextField.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Volume2_TextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         V2.add(Volume2_TextField);
 
         input_panel.add(V2);
@@ -261,7 +253,7 @@ public class ControlInterface extends javax.swing.JFrame {
         Temperature2_TextField.setBackground(new java.awt.Color(255, 255, 255));
         Temperature2_TextField.setColumns(6);
         Temperature2_TextField.setForeground(new java.awt.Color(0, 0, 0));
-        Temperature2_TextField.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Temperature2_TextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         T2.add(Temperature2_TextField);
 
         input_panel.add(T2);
@@ -282,7 +274,7 @@ public class ControlInterface extends javax.swing.JFrame {
         Pressure2_TextField.setBackground(new java.awt.Color(255, 255, 255));
         Pressure2_TextField.setColumns(6);
         Pressure2_TextField.setForeground(new java.awt.Color(0, 0, 0));
-        Pressure2_TextField.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Pressure2_TextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         P2.add(Pressure2_TextField);
 
         input_panel.add(P2);
@@ -311,7 +303,7 @@ public class ControlInterface extends javax.swing.JFrame {
         N_TextField.setBackground(new java.awt.Color(255, 255, 255));
         N_TextField.setColumns(6);
         N_TextField.setForeground(new java.awt.Color(0, 0, 0));
-        N_TextField.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        N_TextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         N.add(N_TextField);
 
         data_panel_left_side.add(N);
@@ -366,11 +358,6 @@ public class ControlInterface extends javax.swing.JFrame {
         Isothermal_RadioButton.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         Isothermal_RadioButton.setForeground(new java.awt.Color(0, 0, 0));
         Isothermal_RadioButton.setText("P.Isotermico");
-        Isothermal_RadioButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Isothermal_RadioButtonActionPerformed(evt);
-            }
-        });
         RadioButtons.add(Isothermal_RadioButton);
 
         Isovolumetric_RadioButton.setBackground(new java.awt.Color(255, 255, 255));
@@ -536,79 +523,68 @@ public class ControlInterface extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void onHeaderButton(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onHeaderButton
-        // Este metodo solo es de testeo
-        
-        
-        HashMap<String, Float> initialData = new HashMap<>();
-        initialData.put("pressure", 60000f);
-        initialData.put("volume", 91f);
-        initialData.put("temperature", 400f);
-        initialData.put("n", 20f);
-
-        HashMap<String, Float> finalData = new HashMap<>();
-        finalData.put("pressure", 0f);
-        finalData.put("volume", 128f);
-        finalData.put("temperature", 0f);
-        
-        //esto tambien inicia la trasnformacion
-        boolean isRunning = simulationWorkspace.requestStartOfSimulation(initialData, finalData, TransformationType.ISOBARIC);
-        if (!isRunning){
-            InfoDialog particleErrorDialog = new InfoDialog(null, "Numero de particles exedidas", 
-                simulationWorkspace.runErrorMessage, TypeInfoDialog.ERROR_DIALOG);
-            particleErrorDialog.setVisible(true);
-        }
-
-    }//GEN-LAST:event_onHeaderButton
-
-    private void Volume1_TextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Volume1_TextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Volume1_TextFieldActionPerformed
-
-    private void Isothermal_RadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Isothermal_RadioButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Isothermal_RadioButtonActionPerformed
-
     private void onStartButton(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onStartButton
-        InitialDataForm initialdataform = new InitialDataForm(Pressure1_TextField.getText(),Volume1_TextField.getText(),Temperature1_TextField.getText(),N_TextField.getText());
+        
+        InitialDataForm initialdataform = new InitialDataForm(
+            Pressure1_TextField.getText(),
+            Volume1_TextField.getText(),
+            Temperature1_TextField.getText(),
+            N_TextField.getText()
+        );
         initialdataform.validate();
+
         TransformationType transformationType = null;
+
         if(Isobaric_RadioButton.isSelected()){
-            transformationType= idealgas.TransformationType.ISOBARIC;
-            
+            transformationType = TransformationType.ISOBARIC;
         }else if(Isothermal_RadioButton.isSelected()){
-            transformationType= idealgas.TransformationType.ISOTHERMAL;
+            transformationType = TransformationType.ISOTHERMAL;
                  
         }else if(Isovolumetric_RadioButton.isSelected()){
-            transformationType= idealgas.TransformationType.ISOVOLUMETRIC;
+            transformationType = TransformationType.ISOVOLUMETRIC;
               
         }else if(Adiabatic_RadioButton.isSelected()){
-            transformationType= idealgas.TransformationType.ADIABATIC;
-            
+            transformationType = TransformationType.ADIABATIC;
         }
-        FinalDataForm finaldataform = new FinalDataForm(Pressure2_TextField.getText(),Volume2_TextField.getText(),Temperature2_TextField.getText(),  transformationType );
+
+        FinalDataForm finaldataform = new FinalDataForm(
+            Pressure2_TextField.getText(),
+            Volume2_TextField.getText(),
+            Temperature2_TextField.getText(),
+            transformationType
+        );
         finaldataform.validate();
+        
         if(initialdataform.isDataValid() && finaldataform.isDataValid()){
             
-            boolean isRunning = simulationWorkspace.requestStartOfSimulation(initialdataform.getValidatedData(), finaldataform.getValidatedData(), transformationType);
+            boolean isRunning = simulationWorkspace.requestStartOfSimulation(
+                initialdataform.getValidatedData(), 
+                finaldataform.getValidatedData(), 
+                transformationType
+            );
+            
             if (!isRunning){
-                InfoDialog particleErrorDialog = new InfoDialog(null, "Numero de particles exedidas", 
-                    simulationWorkspace.runErrorMessage, TypeInfoDialog.ERROR_DIALOG);
+
+                InfoDialog particleErrorDialog = new InfoDialog(
+                    this, 
+                    "Numero de particles exedidas", 
+                    simulationWorkspace.runErrorMessage, 
+                    TypeInfoDialog.ERROR_DIALOG
+                );
                 particleErrorDialog.setVisible(true);
-        }
-            
-            
-            
-            
+            }
             
         }else{
-            String all_error_messages = 
-                initialdataform.error_messages + "\n" +
-                finaldataform.error_messages;
-            InfoDialog ErrorMessage= new InfoDialog(null, all_error_messages, simulationWorkspace.runErrorMessage , TypeInfoDialog.ERROR_DIALOG);
-            ErrorMessage.setVisible(true);
-            //JOptionPane.showMessageDialog(null, all_error_messages);
-            System.out.println(all_error_messages);
+            String formErrorMessages = 
+                initialdataform.errorMessages + "." +
+                finaldataform.errorMessages;
+            System.out.println(formErrorMessages);
+            InfoDialog errorMessage= new InfoDialog(
+                    this, 
+                    "Error De Validacion", 
+                    formErrorMessages, 
+                    TypeInfoDialog.ERROR_DIALOG);
+            errorMessage.setVisible(true);
         }
         
     }//GEN-LAST:event_onStartButton
