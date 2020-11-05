@@ -1,0 +1,15 @@
+{
+	"date":"mié. oct. 28 2020 09:55:47",
+	"final_data":{
+		"volume":0.0,
+		"temperature":400.0,
+		"pressure":0.0
+	},
+	"initial_data":{
+		"volume":91.0,
+		"temperature":283.0,
+		"pressure":60000.0,
+		"n":100.0
+	},
+	"transformation_type":"ISOBARIC"
+}

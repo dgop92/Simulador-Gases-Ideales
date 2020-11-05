@@ -60,9 +60,9 @@ public class AppSettings {
             fileWriter.flush();
             fileWriter.close();
         } catch (IOException e) {
-            throw new SaveException();
+            throw new SaveException("Couldn't save the settings");
         } catch (Exception e){
-            throw new SaveException();
+            throw new SaveException("Couldn't save the settings");
         }
     }
 
