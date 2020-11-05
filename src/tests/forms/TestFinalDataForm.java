@@ -34,6 +34,7 @@ public class TestFinalDataForm extends TestCase{
 
             finalDataForm = new 
                 FinalDataForm(parameters[0], parameters[1], parameters[2], transformationTypes[0]);
+            finalDataForm.validate();
             result = finalDataForm.isDataValid();
 
             assertEquals(expected, result);
@@ -60,6 +61,7 @@ public class TestFinalDataForm extends TestCase{
 
             finalDataForm = new 
                 FinalDataForm("", parameters[i], parameters2[i], TransformationType.ISOBARIC);
+            finalDataForm.validate();
             result = finalDataForm.isDataValid();
 
             assertEquals(expected, result);
@@ -87,8 +89,8 @@ public class TestFinalDataForm extends TestCase{
 
             finalDataForm = new 
                 FinalDataForm(parameters[i], parameters2[i], "", TransformationType.ISOTHERMAL);
+            finalDataForm.validate();
             result = finalDataForm.isDataValid();
-
             assertEquals(expected, result);
 
         }
@@ -114,6 +116,7 @@ public class TestFinalDataForm extends TestCase{
 
             finalDataForm = new 
                 FinalDataForm(parameters[i], "", parameters2[i], TransformationType.ISOTHERMAL);
+            finalDataForm.validate();
             result = finalDataForm.isDataValid();
 
             assertEquals(expected, result);
@@ -155,7 +158,7 @@ public class TestFinalDataForm extends TestCase{
             System.out.println("Test: " + n + "  " + Arrays.toString(parameters));
             finalDataForm = 
                 new FinalDataForm(parameters[0], parameters[1], parameters[2], TransformationType.ADIABATIC);
-            
+            finalDataForm.validate();
             result = finalDataForm.isDataValid();
             assertEquals(expected, result);
 
@@ -174,12 +177,14 @@ public class TestFinalDataForm extends TestCase{
 
         finalDataForm = new 
             FinalDataForm("", "100", "", TransformationType.ISOBARIC);
+        finalDataForm.validate();
         result = finalDataForm.isDataValid();
 
         assertEquals(expected, result);
 
         finalDataForm = new 
             FinalDataForm("", "", "293.5", TransformationType.ISOBARIC);
+        finalDataForm.validate();
         result = finalDataForm.isDataValid();
 
         assertEquals(expected, result);
@@ -196,12 +201,14 @@ public class TestFinalDataForm extends TestCase{
 
         finalDataForm = new 
             FinalDataForm("", "95", "", TransformationType.ISOTHERMAL);
+        finalDataForm.validate();  
         result = finalDataForm.isDataValid();
 
         assertEquals(expected, result);
 
         finalDataForm = new 
             FinalDataForm("55030.523", "", "", TransformationType.ISOTHERMAL);
+        finalDataForm.validate();    
         result = finalDataForm.isDataValid();
 
         assertEquals(expected, result);
@@ -218,12 +225,14 @@ public class TestFinalDataForm extends TestCase{
 
         finalDataForm = new 
             FinalDataForm("", "", "343.5", TransformationType.ISOVOLUMETRIC);
+        finalDataForm.validate();  
         result = finalDataForm.isDataValid();
 
         assertEquals(expected, result);
 
         finalDataForm = new 
             FinalDataForm("67000", "", "", TransformationType.ISOVOLUMETRIC);
+        finalDataForm.validate();    
         result = finalDataForm.isDataValid();
 
         assertEquals(expected, result);
@@ -240,18 +249,21 @@ public class TestFinalDataForm extends TestCase{
 
         finalDataForm = new 
             FinalDataForm("", "", "343.5", TransformationType.ADIABATIC);
+        finalDataForm.validate();      
         result = finalDataForm.isDataValid();
 
         assertEquals(expected, result);
 
         finalDataForm = new 
             FinalDataForm("", "100.2", "", TransformationType.ADIABATIC);
+        finalDataForm.validate();  
         result = finalDataForm.isDataValid();
 
         assertEquals(expected, result);
 
         finalDataForm = new 
             FinalDataForm("67000", "", "", TransformationType.ADIABATIC);
+        finalDataForm.validate();    
         result = finalDataForm.isDataValid();
 
         assertEquals(expected, result);

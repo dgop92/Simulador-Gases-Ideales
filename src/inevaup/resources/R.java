@@ -5,13 +5,23 @@ package inevaup.resources;
 public class R {
 
 	public enum strings {
-		app_name,
 		menu_settings_title,
-		menu_start_title,
-		sm_error_message,
+		fv_isovolumetric_input_error,
 		menu_instructions_title,
-		controlinterface_tittle,
-		menu_back_home_title
+		iv_empty_fields,
+		fv_isothermal_input_error,
+		iv_invalid_range,
+		fv_invalid_data,
+		app_name,
+		iv_negative_particles,
+		menu_start_title,
+		iv_invalid_data,
+		fv_isobaric_input_error,
+		fv_adiabatic_input_error,
+		sm_error_message,
+		fv_invalid_range,
+		menu_back_home_title,
+		controlinterface_tittle
 	}
 
 	public enum colors {

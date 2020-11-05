@@ -52,6 +52,10 @@ public class AppResources {
         errorMessage = "";
         areAllResourcesLoaded = false;
 
+        stringsJsonObject = new JsonObject();
+        themeJsonObject = new JsonObject();
+        customFonts = new HashMap<>();
+
     }
 
     /**

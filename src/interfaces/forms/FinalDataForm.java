@@ -2,9 +2,10 @@ package interfaces.forms;
 
 import java.util.HashMap;
 
-import idealgas.GasConstants;
 import idealgas.GasDataMap;
 import idealgas.TransformationType;
+import inevaup.resources.AppResources;
+import inevaup.resources.R;
 
 public class FinalDataForm extends DataForm {
     
@@ -15,7 +16,7 @@ public class FinalDataForm extends DataForm {
 
     private boolean isDataValid;
 
-    private boolean isPressureUsed, isVolumeUsed, isTemperatureUsed;
+    private boolean isPressureUsed, isVolumeUsed;
 
     private float finalPressure, finalVolume, finalTemperature;
 
@@ -26,8 +27,6 @@ public class FinalDataForm extends DataForm {
         this.transformationType = transformationType;
 
         isDataValid = false;
- 
-        validate();
     }
 
     public void validate() {
@@ -39,7 +38,7 @@ public class FinalDataForm extends DataForm {
 
             isDataValid = true;
         } catch (ValidationError e) {
-            error_messages=e.toString();
+            error_messages = e.toString();
         }
     }
 
@@ -61,7 +60,8 @@ public class FinalDataForm extends DataForm {
             case ISOBARIC:
 
                 if (!(isJustOneEmpty(v2, t2) && p2.isEmpty())) {
-                    throw new ValidationError("Wrong inputs");
+                    throw new ValidationError(
+                        AppResources.getAppResources().getString(R.strings.fv_isobaric_input_error));
                 }
 
                 break;
@@ -69,21 +69,24 @@ public class FinalDataForm extends DataForm {
             case ISOTHERMAL:
 
                 if (!(isJustOneEmpty(v2, p2) && t2.isEmpty())) {
-                    throw new ValidationError("Wrong inputs");
+                    throw new ValidationError(
+                        AppResources.getAppResources().getString(R.strings.fv_isothermal_input_error));
                 }
                 break;
 
             case ISOVOLUMETRIC:
 
                 if (!(isJustOneEmpty(t2, p2) && v2.isEmpty())) {
-                    throw new ValidationError("Wrong inputs");
+                    throw new ValidationError(
+                        AppResources.getAppResources().getString(R.strings.fv_isovolumetric_input_error));
                 }
                 break;
 
             case ADIABATIC:
 
                 if (!isJustOneEmpty(t2, p2, v2)) {
-                    throw new ValidationError("Wrong inputs");
+                    throw new ValidationError(
+                        AppResources.getAppResources().getString(R.strings.fv_adiabatic_input_error));
                 }
                 break;
         }
@@ -102,27 +105,30 @@ public class FinalDataForm extends DataForm {
                 isVolumeUsed = true;
             } else {
                 finalTemperature = Float.parseFloat(t2);
-                isTemperatureUsed = true;
             }
 
         } catch (Exception e) {
-            throw new ValidationError("Datos Invalidos");
+            throw new ValidationError(AppResources.getAppResources().getString(R.strings.fv_invalid_data));
         }
     }
 
     //Este metodo debe ser remplazado por los rangos originales, ver clase GasDataMap.java
     private void validateRange() throws ValidationError{
+
+        ValidationError vError = 
+            new ValidationError(AppResources.getAppResources().getString(R.strings.fv_invalid_range));
+
         if(isPressureUsed){
-            if (finalPressure < GasDataMap.MIN_USER_PRESSURE|| finalPressure > GasDataMap.MAX_USER_PRESSURE){
-                throw new ValidationError("Rango Invalido");
+            if (finalPressure < GasDataMap.MIN_USER_PRESSURE || finalPressure > GasDataMap.MAX_USER_PRESSURE){
+                throw vError;
             }
         }else if(isVolumeUsed){
-            if (finalVolume < GasDataMap.MIN_USER_VOLUME|| finalVolume > GasDataMap.MAX_USER_VOLUME) {
-                throw new ValidationError("Rango Invalido");
+            if (finalVolume < GasDataMap.MIN_USER_VOLUME || finalVolume > GasDataMap.MAX_USER_VOLUME) {
+                throw vError;
             }
         }else{
             if (finalTemperature < GasDataMap.MIN_USER_TEMPERATURE || finalTemperature > GasDataMap.MAX_USER_TEMPERATURE) {
-                throw new ValidationError("Rango Invalido");
+                throw vError;
             }    
         }
     }
@@ -132,6 +138,11 @@ public class FinalDataForm extends DataForm {
     }
 
     private boolean isJustOneEmpty(String text1, String text2, String text3) {
+        
+        if (!text1.isEmpty() && !text2.isEmpty() && !text3.isEmpty()){
+            return false;
+        }
+
         return !(text1.isEmpty() ^ text2.isEmpty() ^ text3.isEmpty());
     }
 }

@@ -9,17 +9,11 @@ import idealgas.GasDataMap;
 import interfaces.forms.InitialDataForm;
 import interfaces.forms.FinalDataForm;
 
-
-
-
 import java.util.HashMap;
-import javax.swing.JOptionPane;
 
 import simulation.SimulationWorkspace;
 
 public class ControlInterface extends javax.swing.JFrame {
-    
-    
     
     private SimulationWorkspace simulationWorkspace;
     private AppResources appResources;
@@ -38,8 +32,6 @@ public class ControlInterface extends javax.swing.JFrame {
         Pressure2_TextField.setToolTipText("Min:"+GasDataMap.MIN_USER_PRESSURE + " - " + " Max:"+GasDataMap.MAX_USER_PRESSURE);
         Isobaric_RadioButton.setSelected(true);
         
-        
-
         simulationWorkspace = new SimulationWorkspace();
         simulationWorkspace.run();
     }
@@ -579,6 +571,7 @@ public class ControlInterface extends javax.swing.JFrame {
 
     private void onStartButton(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onStartButton
         InitialDataForm initialdataform = new InitialDataForm(Pressure1_TextField.getText(),Volume1_TextField.getText(),Temperature1_TextField.getText(),N_TextField.getText());
+        initialdataform.validate();
         TransformationType transformationType = null;
         if(Isobaric_RadioButton.isSelected()){
             transformationType= idealgas.TransformationType.ISOBARIC;
@@ -594,6 +587,7 @@ public class ControlInterface extends javax.swing.JFrame {
             
         }
         FinalDataForm finaldataform = new FinalDataForm(Pressure2_TextField.getText(),Volume2_TextField.getText(),Temperature2_TextField.getText(),  transformationType );
+        finaldataform.validate();
         if(initialdataform.isDataValid() && finaldataform.isDataValid()){
             
             boolean isRunning = simulationWorkspace.requestStartOfSimulation(initialdataform.getValidatedData(), finaldataform.getValidatedData(), transformationType);

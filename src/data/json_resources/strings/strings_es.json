@@ -4,9 +4,22 @@
 	"menu_start_title": "Empezar",
 	"menu_settings_title": "Configuraciones",
 	"menu_instructions_title": "Instrucciones",
-        "controlinterface_tittle": "Interfaz De Control"
-
     "menu_back_home_title": "Regresar",
 	
+	"controlinterface_tittle": "Interfaz De Control",
+
+	"iv_empty_fields": "Por Favor, ingrese los datos",
+	"iv_invalid_data": "Los datos ingresados son invalidos",
+	"iv_invalid_range": "Los datos no estan dentro del rango aceptado",
+	"iv_negative_particles": "El número de particulas no puede ser negativo",
+
+	"fv_isobaric_input_error": "", 
+	"fv_isovolumetric_input_error": "", 
+	"fv_isothermal_input_error": "", 
+	"fv_adiabatic_input_error": "",
+
+	"fv_invalid_data": "Los datos ingresados son invalidos",
+	"fv_invalid_range": "Los datos no estan dentro del rango aceptado",
+
 	"sm_error_message": "El maximo numero de particulas para esta simulacion es de "
 }
