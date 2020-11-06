@@ -1,10 +1,17 @@
 package interfaces.control;
 
 import idealgas.TransformationType;
+import idealgas.datarecorder.HistoryItem;
+import idealgas.datarecorder.HistoryManager;
 import inevaup.dialogs.InfoDialog;
 import inevaup.dialogs.InfoDialog.TypeInfoDialog;
 import inevaup.resources.AppResources;
 import inevaup.resources.R;
+
+import java.util.HashMap;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import idealgas.GasDataMap;
 import interfaces.forms.InitialDataForm;
 import interfaces.forms.FinalDataForm;
@@ -15,18 +22,36 @@ public class ControlInterface extends javax.swing.JFrame {
     
     private SimulationWorkspace simulationWorkspace;
     private AppResources appResources;
+    private HistoryManager historyManager;
     
     public ControlInterface() {
         appResources = AppResources.getAppResources();
         initComponents();
 
-        setToolTipTexts();
-        initCustomResources();
-        Isobaric_RadioButton.setSelected(true);
-        Icon_Ok.setVisible(false);
-            
         simulationWorkspace = new SimulationWorkspace();
         simulationWorkspace.run();
+
+        setToolTipTexts();
+        initCustomResources();
+        centreWindows();
+
+        Isobaric_RadioButton.setSelected(true);
+        historyManager = new HistoryManager();
+    }
+
+    private void centreWindows() {
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+
+        int windownsGap = 30;
+        int horizontalGap =  (int) ((dimension.getWidth() - 
+            SimulationWorkspace.SKETCH_WIDTH - this.getWidth() - windownsGap) / 2);
+        
+        this.setLocation(horizontalGap, (int) 
+            ((dimension.getHeight() - this.getHeight()) / 2));
+        
+        simulationWorkspace.getSurface().setLocation(
+            horizontalGap + this.getWidth() + windownsGap, 
+            (int) ((dimension.getHeight() - SimulationWorkspace.SKETCH_HEIGHT) / 2));
     }
 
     private void setToolTipTexts(){
@@ -43,7 +68,9 @@ public class ControlInterface extends javax.swing.JFrame {
         header_title.setForeground(appResources.getColor(R.colors.white_text));
         header_title.setFont(appResources.getFont(R.fonts.montserrat_bold, 20));
         header_title.setText(appResources.getString(R.strings.controlinterface_tittle));
-        Icon_Ok.setIcon(appResources.getIcon(R.icons.control_okay));
+        
+        history_icon_button.setIcon(appResources.getIcon(R.icons.history_icon));
+        
         Volume1.setForeground(appResources.getColor(R.colors.white_text));
         Volume1.setFont(appResources.getFont(R.fonts.roboto_regular, 16));
         Temperature1.setForeground(appResources.getColor(R.colors.white_text));
@@ -58,15 +85,22 @@ public class ControlInterface extends javax.swing.JFrame {
         Pressure2.setFont(appResources.getFont(R.fonts.roboto_regular, 16));
         N_mol.setForeground(appResources.getColor(R.colors.white_text));
         N_mol.setFont(appResources.getFont(R.fonts.roboto_regular, 16));
+        
         ButtonPauseTitle.setForeground(appResources.getColor(R.colors.dark));
         ButtonPauseTitle.setFont(appResources.getFont(R.fonts.montserrat_regular, 16));
+        ButtonPauseTitle.setText(appResources.getString(R.strings.controlinterface_pause_resume));
         ButtonStartTitle.setForeground(appResources.getColor(R.colors.dark));
         ButtonStartTitle.setFont(appResources.getFont(R.fonts.montserrat_regular, 16));
-        Isobaric_RadioButton.setFont(appResources.getFont(R.fonts.roboto_regular, 16));
-        Isothermal_RadioButton.setFont(appResources.getFont(R.fonts.roboto_regular, 16));
-        Isovolumetric_RadioButton.setFont(appResources.getFont(R.fonts.roboto_regular, 16));
-        Adiabatic_RadioButton.setFont(appResources.getFont(R.fonts.roboto_regular, 16));
+        ButtonStartTitle.setText(appResources.getString(R.strings.controlinterface_reset_play));
         
+        Isobaric_RadioButton.setFont(appResources.getFont(R.fonts.roboto_regular, 16));
+        Isobaric_RadioButton.setText(appResources.getString(R.strings.controlinterface_isobaric_rb));
+        Isothermal_RadioButton.setFont(appResources.getFont(R.fonts.roboto_regular, 16));
+        Isothermal_RadioButton.setText(appResources.getString(R.strings.controlinterface_isothermal_rb));
+        Isovolumetric_RadioButton.setFont(appResources.getFont(R.fonts.roboto_regular, 16));
+        Isovolumetric_RadioButton.setText(appResources.getString(R.strings.controlinterface_isovolumetric_rb));
+        Adiabatic_RadioButton.setFont(appResources.getFont(R.fonts.roboto_regular, 16));
+        Adiabatic_RadioButton.setText(appResources.getString(R.strings.controlinterface_adiabatic_rb));
         
         
     }
@@ -113,7 +147,7 @@ public class ControlInterface extends javax.swing.JFrame {
         N_TextField = new javax.swing.JTextField();
         data_panel_right_side = new javax.swing.JPanel();
         jPanel35 = new javax.swing.JPanel();
-        Icon_Ok = new javax.swing.JLabel();
+        history_icon_button = new javax.swing.JLabel();
         separator_layout = new javax.swing.JPanel();
         transformation_layout = new javax.swing.JPanel();
         RadioButtons = new javax.swing.JPanel();
@@ -316,12 +350,16 @@ public class ControlInterface extends javax.swing.JFrame {
         jPanel35.setBackground(new java.awt.Color(255, 255, 255));
         jPanel35.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        Icon_Ok.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        Icon_Ok.setForeground(new java.awt.Color(255, 255, 255));
-        Icon_Ok.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/icons/control-okay.png"))); // NOI18N
-        Icon_Ok.setText("H");
-        Icon_Ok.setToolTipText("Ok");
-        jPanel35.add(Icon_Ok);
+        history_icon_button.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        history_icon_button.setForeground(new java.awt.Color(255, 255, 255));
+        history_icon_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/icons/history_icon.png"))); // NOI18N
+        history_icon_button.setToolTipText("");
+        history_icon_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                onHistoryButtonClicked(evt);
+            }
+        });
+        jPanel35.add(history_icon_button);
 
         data_panel_right_side.add(jPanel35);
 
@@ -411,6 +449,11 @@ public class ControlInterface extends javax.swing.JFrame {
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/icons/control-play-pause.png"))); // NOI18N
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                onPauseResumeButton(evt);
+            }
+        });
         jPanel12.add(jLabel3);
 
         jPanel9.add(jPanel12);
@@ -428,7 +471,7 @@ public class ControlInterface extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/icons/control-reset.png"))); // NOI18N
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                onStartButton(evt);
+                onResetStartButton(evt);
             }
         });
         jPanel31.add(jLabel5);
@@ -523,7 +566,7 @@ public class ControlInterface extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void onStartButton(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onStartButton
+    private void onResetStartButton(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onResetStartButton
         
         InitialDataForm initialdataform = new InitialDataForm(
             Pressure1_TextField.getText(),
@@ -539,10 +582,8 @@ public class ControlInterface extends javax.swing.JFrame {
             transformationType = TransformationType.ISOBARIC;
         }else if(Isothermal_RadioButton.isSelected()){
             transformationType = TransformationType.ISOTHERMAL;
-                 
         }else if(Isovolumetric_RadioButton.isSelected()){
-            transformationType = TransformationType.ISOVOLUMETRIC;
-              
+            transformationType = TransformationType.ISOVOLUMETRIC; 
         }else if(Adiabatic_RadioButton.isSelected()){
             transformationType = TransformationType.ADIABATIC;
         }
@@ -572,13 +613,28 @@ public class ControlInterface extends javax.swing.JFrame {
                     TypeInfoDialog.ERROR_DIALOG
                 );
                 particleErrorDialog.setVisible(true);
+            }else{
+                boolean isSaved = historyManager.saveInputData(
+                    initialdataform.getValidatedData(), 
+                    finaldataform.getValidatedData(), 
+                    transformationType
+                );
+
+                if(!isSaved){
+                    InfoDialog saveHistoryDialog = new InfoDialog(
+                        this, 
+                        "Error", 
+                        "no se puedo guardar los datos en el historial", 
+                        TypeInfoDialog.ERROR_DIALOG
+                    );
+                    saveHistoryDialog.setVisible(true);
+                }
             }
             
         }else{
             String formErrorMessages = 
-                initialdataform.errorMessages + "." +
+                initialdataform.errorMessages +
                 finaldataform.errorMessages;
-            System.out.println(formErrorMessages);
             InfoDialog errorMessage= new InfoDialog(
                     this, 
                     "Error De Validacion", 
@@ -587,8 +643,53 @@ public class ControlInterface extends javax.swing.JFrame {
             errorMessage.setVisible(true);
         }
         
-    }//GEN-LAST:event_onStartButton
+    }//GEN-LAST:event_onResetStartButton
 
+    private void onHistoryButtonClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onHistoryButtonClicked
+        
+        HistoryDialog historyDialog = new HistoryDialog(null, 
+            true, historyManager.getHistoryDefaultModel());
+        historyDialog.setVisible(true);
+
+        if(historyDialog.isItemSelected){
+            HistoryItem historyItem = historyDialog.getSelectedHistoryItem();
+            setInputDataFromHistory(historyItem.getInitialData(),
+                historyItem.getFinalData(), historyItem.getTransformationType());
+        }
+    }//GEN-LAST:event_onHistoryButtonClicked
+
+    private void onPauseResumeButton(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onPauseResumeButton
+        // TODO add your handling code here:
+    }//GEN-LAST:event_onPauseResumeButton
+
+    private void setInputDataFromHistory(HashMap<String, Float> initialData, 
+                                HashMap<String, Float> finalData,
+                                TransformationType transformationType){
+        
+        Pressure1_TextField.setText(String.valueOf(initialData.get("pressure")));   
+        Volume1_TextField.setText(String.valueOf(initialData.get("volume")));   
+        Temperature1_TextField.setText(String.valueOf(initialData.get("temperature")));   
+        N_TextField.setText(String.valueOf(initialData.get("n"))); 
+        
+        Pressure2_TextField.setText(String.valueOf(finalData.get("pressure")));   
+        Volume2_TextField.setText(String.valueOf(finalData.get("volume")));   
+        Temperature2_TextField.setText(String.valueOf(finalData.get("temperature"))); 
+        
+        switch (transformationType) {
+            case ISOBARIC:
+                Isobaric_RadioButton.setSelected(true);
+                break;
+            case ISOVOLUMETRIC:
+                Isovolumetric_RadioButton.setSelected(true);
+                break;
+            case ISOTHERMAL:
+                Isothermal_RadioButton.setSelected(true);
+                break;
+            case ADIABATIC:
+                Adiabatic_RadioButton.setSelected(true);
+                break;
+        }
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -626,7 +727,6 @@ public class ControlInterface extends javax.swing.JFrame {
     private javax.swing.JRadioButton Adiabatic_RadioButton;
     private javax.swing.JLabel ButtonPauseTitle;
     private javax.swing.JLabel ButtonStartTitle;
-    private javax.swing.JLabel Icon_Ok;
     private javax.swing.JRadioButton Isobaric_RadioButton;
     private javax.swing.JRadioButton Isothermal_RadioButton;
     private javax.swing.JRadioButton Isovolumetric_RadioButton;
@@ -661,6 +761,7 @@ public class ControlInterface extends javax.swing.JFrame {
     private javax.swing.JPanel footbar;
     private javax.swing.JPanel header;
     private javax.swing.JLabel header_title;
+    private javax.swing.JLabel history_icon_button;
     private javax.swing.JPanel input_panel;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;

@@ -39,7 +39,7 @@ public class FinalDataForm extends DataForm {
 
             isDataValid = true;
         } catch (ValidationError e) {
-            errorMessages = e.toString();
+            errorMessages = e.toString() + ".";
         }
     }
 

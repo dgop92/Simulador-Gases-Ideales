@@ -6,6 +6,7 @@ public class R {
 
 	public enum strings {
 		menu_settings_title,
+		controlinterface_pause_resume,
 		fv_isovolumetric_input_error,
 		menu_instructions_title,
 		iv_empty_fields,
@@ -13,12 +14,17 @@ public class R {
 		iv_invalid_range,
 		fv_invalid_data,
 		app_name,
+		controlinterface_reset_play,
+		controlinterface_isobaric_rb,
+		controlinterface_isovolumetric_rb,
 		iv_negative_particles,
+		controlinterface_isothermal_rb,
 		menu_start_title,
 		iv_invalid_data,
 		fv_isobaric_input_error,
 		fv_adiabatic_input_error,
 		sm_error_message,
+		controlinterface_adiabatic_rb,
 		fv_invalid_range,
 		menu_back_home_title,
 		controlinterface_tittle
@@ -62,6 +68,7 @@ public class R {
 		public final static String control_play_pause = "/control-play-pause.png";
 		public final static String control_play = "/control-play.png";
 		public final static String control_reset = "/control-reset.png";
+		public final static String history_icon = "/history_icon.png";
 		public final static String menu_back_arrow = "/menu_back_arrow.png";
 		public final static String menu_header_home = "/menu_header_home.png";
 		public final static String menu_header_instructions = "/menu_header_instructions.png";

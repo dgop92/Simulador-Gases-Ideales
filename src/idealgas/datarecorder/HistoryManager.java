@@ -13,7 +13,6 @@ import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsoner;
 
 import idealgas.TransformationType;
-import inevaup.preferences.SaveException;
 
 import javax.swing.DefaultListModel;
 
@@ -25,8 +24,8 @@ public class HistoryManager {
 
     }
 
-    public void saveInputData(HashMap<String, Float> initialData, HashMap<String, Float> finalData,
-            TransformationType transformationType) throws SaveException {
+    public boolean saveInputData(HashMap<String, Float> initialData, HashMap<String, Float> finalData,
+            TransformationType transformationType){
 
         createSMDataFolder();
 
@@ -40,11 +39,11 @@ public class HistoryManager {
             fileWriter.write(Jsoner.prettyPrint(jsonHistoryData.toJson()));
             fileWriter.flush();
             fileWriter.close();
-        } catch (IOException e) {
-            throw new SaveException("No se puedo guardar los datos en el historial");
-        } catch (Exception e){
-            throw new SaveException("No se puedo guardar en el historial");
+        } catch (Exception e) {
+            return false;
         }
+
+        return true;
     }
 
     public DefaultListModel<HistoryItem> getHistoryDefaultModel(){
@@ -91,7 +90,7 @@ public class HistoryManager {
 
         File smdataFolder = new File(HistoryManager.HISTORY_PATH);
         if (!smdataFolder.exists()){
-            System.out.println(smdataFolder.mkdirs());
+            smdataFolder.mkdirs();
         }
     }
 

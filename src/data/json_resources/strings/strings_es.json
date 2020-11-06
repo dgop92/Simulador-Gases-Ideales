@@ -7,13 +7,20 @@
     "menu_back_home_title": "Regresar",
 	
 	"controlinterface_tittle": "Interfaz De Control",
+	"controlinterface_isobaric_rb": "T. Isobarica",
+	"controlinterface_isovolumetric_rb": "T. Isovolumetrica",
+	"controlinterface_isothermal_rb": "T. Isotermica",
+	"controlinterface_adiabatic_rb": "T. Adiabatica",
 
-	"iv_empty_fields": "Por Favor, ingrese los datos",
-	"iv_invalid_data": "Los datos ingresados son invalidos",
-	"iv_invalid_range": "Los datos no estan dentro del rango aceptado",
+	"controlinterface_pause_resume": "Pausar/Resumir",
+	"controlinterface_reset_play": "Reiniciar/Empezar",
+
+	"iv_empty_fields": "Por favor, ingrese los datos iniciales",
+	"iv_invalid_data": "Los datos iniciales ingresados son invalidos",
+	"iv_invalid_range": "Los datos iniciales no estan dentro del rango aceptado",
 	"iv_negative_particles": "El número de particulas no puede ser negativo",
 
-	"fv_isobaric_input_error": "", 
+	"fv_isobaric_input_error": "Para la transformacion isobarica, solo debe ingresar temperatura o presion", 
 	"fv_isovolumetric_input_error": "", 
 	"fv_isothermal_input_error": "", 
 	"fv_adiabatic_input_error": "",

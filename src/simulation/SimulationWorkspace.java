@@ -26,8 +26,8 @@ import idealgas.TransformationType;
 
 public class SimulationWorkspace extends PApplet{
 
-    private final int SKETCH_WIDTH = 800;
-    private final int SKETCH_HEIGHT = 650;
+    public static final int SKETCH_WIDTH = 800;
+    public static final int SKETCH_HEIGHT = 650;
 
     private StatusBar statusBar;
     private Thermometer thermometer;
@@ -153,6 +153,10 @@ public class SimulationWorkspace extends PApplet{
     @Override
     public void mouseClicked() {
         cylinder.fixParticle();
+    }
+
+    public void pauseSimulation(){
+        isPaused = true;
     }
 
     private boolean isMaxParticleReached(float userParticles, float minVolume){

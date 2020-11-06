@@ -555,7 +555,7 @@
                     <Property name="alignment" type="int" value="0"/>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="Icon_Ok">
+                    <Component class="javax.swing.JLabel" name="history_icon_button">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="16" style="1"/>
@@ -564,11 +564,13 @@
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/data/icons/control-okay.png"/>
+                          <Image iconType="3" name="/data/icons/history_icon.png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="H"/>
-                        <Property name="toolTipText" type="java.lang.String" value="Ok"/>
+                        <Property name="toolTipText" type="java.lang.String" value=""/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="onHistoryButtonClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -807,6 +809,9 @@
                               <Image iconType="3" name="/data/icons/control-play-pause.png"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="onPauseResumeButton"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -852,7 +857,7 @@
                             </Property>
                           </Properties>
                           <Events>
-                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="onStartButton"/>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="onResetStartButton"/>
                           </Events>
                         </Component>
                       </SubComponents>
