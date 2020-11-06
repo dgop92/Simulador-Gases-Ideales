@@ -2,9 +2,10 @@ package inevaup.preferences;
 
 public class MySettings {
     
-    public final static int DEFAULT_FPS = 45;
+    public final static int DEFAULT_FPS = 0;
 
     public final static int[] OPTIONS_FPS = {
+        0,
         30,
         45,
         60
@@ -18,11 +19,15 @@ public class MySettings {
         60
     };
 
+    public final static boolean DEFAULT_CHECK_COLLISIONS = false;
+    
+
     public final static String DEFAULT_STRINGS_NAME = "strings_es.json";
 
     public final static String DEFAULT_THEME_NAME = "default_theme.json";
     
-    public final static boolean DEFAULT_CHECK_COLLISIONS = false;
 
     public final static boolean DEFAULT_SAVE_DATA = false;
+
+    public final static boolean DEFAULT_SAVE_HISTORY = true;
 }

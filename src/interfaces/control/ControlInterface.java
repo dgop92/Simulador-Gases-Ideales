@@ -659,7 +659,14 @@ public class ControlInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_onHistoryButtonClicked
 
     private void onPauseResumeButton(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onPauseResumeButton
-        // TODO add your handling code here:
+        if(!simulationWorkspace.requestPauseResumeOfSimulation()){
+            InfoDialog errDialog = new InfoDialog(
+                this, 
+                "Error", 
+                "No puedes pausar la simulacion si esta no ha comenzado",
+                TypeInfoDialog.ERROR_DIALOG);
+            errDialog.setVisible(true);
+        }
     }//GEN-LAST:event_onPauseResumeButton
 
     private void setInputDataFromHistory(HashMap<String, Float> initialData, 

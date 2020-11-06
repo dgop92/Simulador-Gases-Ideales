@@ -23,7 +23,7 @@ public class StatusBar extends SketchFragment {
     public void draw(){
         DecimalFormat roundFormat = new DecimalFormat("#.##");
         
-        if (sketch.isRunning){      
+        if (currentGasData != null){      
             sketch.fill(255);   
             sketch.textFont(sketch.robotoFont);
             sketch.textSize(14); 
@@ -62,12 +62,30 @@ public class StatusBar extends SketchFragment {
                         x + 300, 
                         y + 20);
 
+            
         }
+
+        sketch.fill(255);   
+        sketch.textFont(sketch.robotoFont);
+        sketch.textSize(14);
+        drawSimulationStatus();
          
     }
     
     public void setData(HashMap<String, Float> currentGasData){
         this.currentGasData = currentGasData;
+    }
+
+    private void drawSimulationStatus(){
+        
+        sketch.text("Running: " + sketch.isRunning, 
+                    x + 450, 
+                    y + 20);
+        
+        sketch.text("Paused: " + sketch.isPaused, 
+                    x + 450, 
+                    y + 40);
+        
     }
     
 }

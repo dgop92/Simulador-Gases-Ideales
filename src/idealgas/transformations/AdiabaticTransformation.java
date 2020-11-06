@@ -112,6 +112,9 @@ public class AdiabaticTransformation extends BaseTransformation implements Trans
             deltaVel *= -1;
         }
 
+        if (finalVolume != 0 || finalPressure != 0){
+            deltaT *= 5;
+        }
     }
 
     @Override

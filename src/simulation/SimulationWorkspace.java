@@ -3,6 +3,8 @@ package simulation;
 import processing.core.PApplet;
 import processing.core.PFont;
 
+import static org.junit.Assert.fail;
+
 import java.util.HashMap;
 
 import simulation.sketchs.Barometer;
@@ -57,6 +59,11 @@ public class SimulationWorkspace extends PApplet{
         robotoFont = new PFont(
             AppResources.getAppResources().getFont(R.fonts.roboto_regular, 16), true);
 
+        initSketch();
+    }
+
+    private void initSketch(){
+
         isRunning = false;
         isPaused = false;
         runErrorMessage = "";
@@ -67,7 +74,6 @@ public class SimulationWorkspace extends PApplet{
         pvGraph = new PVGraph(this, 500, 400, 300, 250);
         cylinder = new Cylinder(this, 0, 60, 500, 480);
         heatSource = new HeatSource(this, 0, 540, 500, 650);
-
     }
 
     @Override
@@ -107,15 +113,18 @@ public class SimulationWorkspace extends PApplet{
             pvGraph.draw();
             cylinder.draw();
             heatSource.draw();
-            line(10, 10, 100, 10);
         }
 
         drawSketchFragmentsDivisions();
-        // delay(10);
     }
 
     public boolean requestStartOfSimulation(HashMap<String, Float> initialData,
         HashMap<String, Float> finalData, TransformationType transformationType){
+        
+        //Si no es la primera vez reseteamos los componentes
+        if (transformationStrategy != null){
+            resetSimulation();
+        }
 
         switch (transformationType) {
             case ISOBARIC:
@@ -155,8 +164,40 @@ public class SimulationWorkspace extends PApplet{
         cylinder.fixParticle();
     }
 
-    public void pauseSimulation(){
-        isPaused = true;
+    /* public boolean requestPauseOfSimulation(){
+        
+        if (isRunning){
+            isPaused = true;
+            return isPaused;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean requestResumeOfSimulation(){
+        
+        if(isPaused){
+            isPaused = false;
+            return true;
+        }else{
+            return false;
+        }
+    } */
+
+    public boolean requestPauseResumeOfSimulation(){
+        if (isRunning){
+            isPaused = !isPaused;
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    private void resetSimulation(){
+        noLoop();
+        //reset csvWritter
+        initSketch();
+        loop();
     }
 
     private boolean isMaxParticleReached(float userParticles, float minVolume){
