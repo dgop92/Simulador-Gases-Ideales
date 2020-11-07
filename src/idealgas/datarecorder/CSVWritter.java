@@ -43,15 +43,12 @@ public class CSVWritter {
 
         createSMDataFolder();
 
-        System.out.println(csvData);
-
         try {
             FileWriter writer = new FileWriter(CSV_DATA_PATH + "/" + fileName, true);
             writer.append(csvData);
             writer.close();
         } catch (IOException e) {
             return false;
-           //throw new SaveException("No se pudo guardar el archivo csv de los datos de esta simulacion");
         }
         return true;
     }
@@ -60,7 +57,7 @@ public class CSVWritter {
 
         File smdataFolder = new File(CSV_DATA_PATH);
         if (!smdataFolder.exists()){
-            System.out.println(smdataFolder.mkdirs());
+            smdataFolder.mkdirs();
         }
     }
 

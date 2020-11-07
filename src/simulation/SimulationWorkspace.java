@@ -1,16 +1,10 @@
 package simulation;
 
-import processing.core.PApplet;
-import processing.core.PFont;
 import java.util.HashMap;
 
-import simulation.sketchs.Barometer;
-import simulation.sketchs.Cylinder;
-import simulation.sketchs.HeatSource;
-import simulation.sketchs.PVGraph;
-import simulation.sketchs.StatusBar;
-import simulation.sketchs.Thermometer;
-
+import idealgas.GasDataMap;
+import idealgas.TransformationType;
+import idealgas.datarecorder.CSVWritter;
 import idealgas.transformations.AdiabaticTransformation;
 import idealgas.transformations.BaseTransformation;
 import idealgas.transformations.IsobaricTransformation;
@@ -20,8 +14,14 @@ import idealgas.transformations.TransformationStrategy;
 import inevaup.preferences.AppSettings;
 import inevaup.resources.AppResources;
 import inevaup.resources.R;
-import idealgas.GasDataMap;
-import idealgas.TransformationType;
+import processing.core.PApplet;
+import processing.core.PFont;
+import simulation.sketchs.Barometer;
+import simulation.sketchs.Cylinder;
+import simulation.sketchs.HeatSource;
+import simulation.sketchs.PVGraph;
+import simulation.sketchs.StatusBar;
+import simulation.sketchs.Thermometer;
 
 public class SimulationWorkspace extends PApplet{
 
@@ -34,6 +34,9 @@ public class SimulationWorkspace extends PApplet{
     private PVGraph pvGraph;
     private HeatSource heatSource;
     private Cylinder cylinder;
+
+    private CSVWritter csvWritter;
+    private boolean saveCsvData;
 
     private TransformationStrategy transformationStrategy;
 
@@ -58,6 +61,7 @@ public class SimulationWorkspace extends PApplet{
         if (currentFps != 0){
             frameRate(currentFps);
         }
+        saveCsvData = (boolean)AppSettings.getSettings().getSetting("save_data");
 
         robotoFont = new PFont(
             AppResources.getAppResources().getFont(R.fonts.roboto_regular, 16), true);
@@ -77,6 +81,8 @@ public class SimulationWorkspace extends PApplet{
         pvGraph = new PVGraph(this, 500, 400, 300, 250);
         cylinder = new Cylinder(this, 0, 60, 500, 480);
         heatSource = new HeatSource(this, 0, 540, 500, 650);
+
+        csvWritter = new CSVWritter();
     }
 
     @Override
@@ -109,6 +115,17 @@ public class SimulationWorkspace extends PApplet{
                              transformationStrategy.getData().get("volume"));
 
             isRunning = !transformationStrategy.IsTheTransformationFinished();
+
+            if (saveCsvData){
+                if (frameCount % 30 == 0) {
+                    csvWritter.putRow(transformationStrategy.getData());
+                }
+    
+                if(transformationStrategy.IsTheTransformationFinished()){
+                    csvWritter.saveData();
+                }
+            }
+
         }else{
             statusBar.draw();
             thermometer.draw();
@@ -126,6 +143,7 @@ public class SimulationWorkspace extends PApplet{
         
         //Si no es la primera vez reseteamos los componentes
         if (transformationStrategy != null){
+            delay(600);
             resetSimulation();
         }
 
@@ -152,6 +170,7 @@ public class SimulationWorkspace extends PApplet{
         cylinder.fillCylinder(initialData.get("volume"), 
                               initialData.get("n").intValue(), 
                               BaseTransformation.getInitialFakeVelocity(initialData.get("temperature")));
+        
         isRunning = true;
         return isRunning;
     }
@@ -160,12 +179,6 @@ public class SimulationWorkspace extends PApplet{
         String[] processingArgs = { SimulationWorkspace.class.getName() };
         PApplet.runSketch(processingArgs, this);
     }
-
-    //Test execute fixparticles each 80 or 60 ticks
-    /* @Override
-    public void mouseClicked() {
-        cylinder.fixParticle();
-    } */
 
     public boolean requestPauseResumeOfSimulation(){
         if (isRunning){
@@ -177,7 +190,6 @@ public class SimulationWorkspace extends PApplet{
     }
 
     private void resetSimulation(){
-        isPaused = true;
         noLoop();
         //reset csvWritter
         initSketch();

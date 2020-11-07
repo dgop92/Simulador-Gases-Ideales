@@ -1,6 +1,6 @@
 {
-	"collisions":false,
-	"fps":"60",
+	"collisions":true,
+	"fps":"0",
 	"language":"strings_es.json",
 	"theme":"default_theme.json",
 	"save_history_data":false,

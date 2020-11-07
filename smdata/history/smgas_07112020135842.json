@@ -1,0 +1,15 @@
+{
+	"date":"sáb. nov. 07 2020 13:58:42",
+	"final_data":{
+		"volume":0.0,
+		"temperature":400.0,
+		"pressure":0.0
+	},
+	"initial_data":{
+		"volume":92.0,
+		"temperature":284.0,
+		"pressure":61000.0,
+		"n":25.0
+	},
+	"transformation_type":"ADIABATIC"
+}

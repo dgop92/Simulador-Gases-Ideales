@@ -83,11 +83,13 @@ public class Settings extends javax.swing.JPanel {
         String[] fpsOptions = MySettings.OPTIONS_FPS;
         for (int i = 0; i < fpsOptions.length; i++) {
             String item = fpsOptions[i];
-            fps_combobox.addItem(item);
+            if (item.equals("0")){
+                fps_combobox.addItem("Automatico");
+            }else{
+                fps_combobox.addItem(item);
+            }
 
-            if (item.equals(
-                (String)AppSettings.getSettings().getSetting("fps"))){
-                
+            if (item.equals((String)AppSettings.getSettings().getSetting("fps"))){
                 fps_combobox.setSelectedIndex(i);
             }
         }
@@ -136,10 +138,11 @@ public class Settings extends javax.swing.JPanel {
                 (boolean)collisions_checkbutton.isSelected()
             );
 
+        String fpsValue = (String) fps_combobox.getSelectedItem();
         AppSettings.getSettings().
             updateSetting(
                 "fps", 
-                (String)fps_combobox.getSelectedItem()
+                fpsValue.equals("Automatico") ? "0" : fpsValue
             );
 
         AppSettings.getSettings().
