@@ -2,6 +2,7 @@ package simulation.sketchs;
 
 import simulation.SimulationWorkspace;
 import idealgas.GasDataMap;
+import inevaup.preferences.AppSettings;
 import inevaup.resources.AppResources;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -24,6 +25,7 @@ public class Cylinder extends SketchFragment {
     private boolean isCylinderFull;
 
     private float dvel;
+    private boolean userNeedCollisions;
 
     public Cylinder(SimulationWorkspace sketch, float x, float y, float fragmentWidth, float fragmentHeight) {
         super(sketch, x, y, fragmentWidth, fragmentHeight);
@@ -36,6 +38,7 @@ public class Cylinder extends SketchFragment {
         cylinderDimension = new Rectangle();
 
         isCylinderFull = false;
+        userNeedCollisions = (boolean) AppSettings.getSettings().getSetting("collisions");
     }
 
     @Override
@@ -103,10 +106,12 @@ public class Cylinder extends SketchFragment {
 
     private void analizeCollisions() {
         for (int i = 0; i < particles.length; i++) {
-            particles[i].checkBorderCollision();
-            for (int j = 0; j < particles.length; j++) {
-                if (i != j) {
-                    particles[i].checkParticleCollision(particles[j]);
+            particles[i].fixBorderParticleEscape();
+            if (userNeedCollisions){
+                for (int j = 0; j < particles.length; j++) {
+                    if (i != j) {
+                        particles[i].checkParticleCollision(particles[j]);
+                    }
                 }
             }
         }

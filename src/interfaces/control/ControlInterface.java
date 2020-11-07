@@ -1,21 +1,25 @@
 package interfaces.control;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.util.HashMap;
+
+import javax.swing.JFrame;
+
+import idealgas.GasDataMap;
 import idealgas.TransformationType;
 import idealgas.datarecorder.HistoryItem;
 import idealgas.datarecorder.HistoryManager;
 import inevaup.dialogs.InfoDialog;
 import inevaup.dialogs.InfoDialog.TypeInfoDialog;
+import inevaup.preferences.AppSettings;
 import inevaup.resources.AppResources;
 import inevaup.resources.R;
-
-import java.util.HashMap;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-
-import idealgas.GasDataMap;
-import interfaces.forms.InitialDataForm;
 import interfaces.forms.FinalDataForm;
-
+import interfaces.forms.InitialDataForm;
+import interfaces.mainmenu.MainMenuInterface;
+import processing.awt.PSurfaceAWT.SmoothCanvas;
+import processing.core.PSurface;
 import simulation.SimulationWorkspace;
 
 public class ControlInterface extends javax.swing.JFrame {
@@ -102,7 +106,7 @@ public class ControlInterface extends javax.swing.JFrame {
         Adiabatic_RadioButton.setFont(appResources.getFont(R.fonts.roboto_regular, 16));
         Adiabatic_RadioButton.setText(appResources.getString(R.strings.controlinterface_adiabatic_rb));
         
-        
+        back_arrow_button.setIcon(appResources.getIcon(R.icons.control_back_arrow));
     }
     
     @SuppressWarnings("unchecked")
@@ -112,6 +116,7 @@ public class ControlInterface extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         parent_layout = new javax.swing.JPanel();
         header = new javax.swing.JPanel();
+        back_arrow_button = new javax.swing.JLabel();
         header_title = new javax.swing.JLabel();
         data_panel_1 = new javax.swing.JPanel();
         input_panel = new javax.swing.JPanel();
@@ -174,7 +179,16 @@ public class ControlInterface extends javax.swing.JFrame {
 
         header.setBackground(new java.awt.Color(0, 47, 108));
         header.setPreferredSize(new java.awt.Dimension(189, 60));
-        header.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 15));
+        header.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 20, 12));
+
+        back_arrow_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/icons/control_back_arrow.png"))); // NOI18N
+        back_arrow_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        back_arrow_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                OnBackMenuButton(evt);
+            }
+        });
+        header.add(back_arrow_button);
 
         header_title.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         header_title.setForeground(new java.awt.Color(255, 255, 255));
@@ -354,6 +368,7 @@ public class ControlInterface extends javax.swing.JFrame {
         history_icon_button.setForeground(new java.awt.Color(255, 255, 255));
         history_icon_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/icons/history_icon.png"))); // NOI18N
         history_icon_button.setToolTipText("");
+        history_icon_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         history_icon_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 onHistoryButtonClicked(evt);
@@ -389,6 +404,7 @@ public class ControlInterface extends javax.swing.JFrame {
         Isobaric_RadioButton.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         Isobaric_RadioButton.setForeground(new java.awt.Color(0, 0, 0));
         Isobaric_RadioButton.setText("P.Isobarico");
+        Isobaric_RadioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         RadioButtons.add(Isobaric_RadioButton);
 
         Isothermal_RadioButton.setBackground(new java.awt.Color(255, 255, 255));
@@ -396,6 +412,7 @@ public class ControlInterface extends javax.swing.JFrame {
         Isothermal_RadioButton.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         Isothermal_RadioButton.setForeground(new java.awt.Color(0, 0, 0));
         Isothermal_RadioButton.setText("P.Isotermico");
+        Isothermal_RadioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         RadioButtons.add(Isothermal_RadioButton);
 
         Isovolumetric_RadioButton.setBackground(new java.awt.Color(255, 255, 255));
@@ -403,6 +420,7 @@ public class ControlInterface extends javax.swing.JFrame {
         Isovolumetric_RadioButton.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         Isovolumetric_RadioButton.setForeground(new java.awt.Color(0, 0, 0));
         Isovolumetric_RadioButton.setText("P.Isovolumetrico");
+        Isovolumetric_RadioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         RadioButtons.add(Isovolumetric_RadioButton);
 
         Adiabatic_RadioButton.setBackground(new java.awt.Color(255, 255, 255));
@@ -410,6 +428,7 @@ public class ControlInterface extends javax.swing.JFrame {
         Adiabatic_RadioButton.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         Adiabatic_RadioButton.setForeground(new java.awt.Color(0, 0, 0));
         Adiabatic_RadioButton.setText("P.Adiabatico");
+        Adiabatic_RadioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         RadioButtons.add(Adiabatic_RadioButton);
 
         transformation_layout.add(RadioButtons);
@@ -449,6 +468,7 @@ public class ControlInterface extends javax.swing.JFrame {
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/icons/control-play-pause.png"))); // NOI18N
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 onPauseResumeButton(evt);
@@ -469,6 +489,7 @@ public class ControlInterface extends javax.swing.JFrame {
         jPanel31.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/icons/control-reset.png"))); // NOI18N
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 onResetStartButton(evt);
@@ -614,21 +635,10 @@ public class ControlInterface extends javax.swing.JFrame {
                 );
                 particleErrorDialog.setVisible(true);
             }else{
-                boolean isSaved = historyManager.saveInputData(
-                    initialdataform.getValidatedData(), 
-                    finaldataform.getValidatedData(), 
-                    transformationType
-                );
 
-                if(!isSaved){
-                    InfoDialog saveHistoryDialog = new InfoDialog(
-                        this, 
-                        "Error", 
-                        "no se puedo guardar los datos en el historial", 
-                        TypeInfoDialog.ERROR_DIALOG
-                    );
-                    saveHistoryDialog.setVisible(true);
-                }
+                saveInHistory(initialdataform.getValidatedData(),
+                    finaldataform.getValidatedData(),
+                transformationType);
             }
             
         }else{
@@ -644,6 +654,29 @@ public class ControlInterface extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_onResetStartButton
+
+    private void saveInHistory(HashMap<String, Float> initialData,
+        HashMap<String, Float> finalData, TransformationType transformationType){
+        
+        if((boolean)AppSettings.getSettings().getSetting("save_history_data")){
+
+            boolean isSaved = historyManager.saveInputData(
+                initialData, 
+                finalData, 
+                transformationType
+            );
+
+            if(!isSaved){
+                InfoDialog saveHistoryDialog = new InfoDialog(
+                    this, 
+                    "Error", 
+                    "no se puedo guardar los datos en el historial", 
+                    TypeInfoDialog.ERROR_DIALOG
+                );
+                saveHistoryDialog.setVisible(true);
+            }
+        }
+    }
 
     private void onHistoryButtonClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onHistoryButtonClicked
         
@@ -668,6 +701,16 @@ public class ControlInterface extends javax.swing.JFrame {
             errDialog.setVisible(true);
         }
     }//GEN-LAST:event_onPauseResumeButton
+
+    private void OnBackMenuButton(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OnBackMenuButton
+        PSurface surface = simulationWorkspace.getSurface();
+        SmoothCanvas smoothCanvas = (SmoothCanvas)surface.getNative();
+        JFrame frame = (JFrame) smoothCanvas.getFrame();
+        frame.dispose();
+        MainMenuInterface mainInterface = new MainMenuInterface();
+        mainInterface.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_OnBackMenuButton
 
     private void setInputDataFromHistory(HashMap<String, Float> initialData, 
                                 HashMap<String, Float> finalData,
@@ -759,6 +802,7 @@ public class ControlInterface extends javax.swing.JFrame {
     private javax.swing.JTextField Volume1_TextField;
     private javax.swing.JLabel Volume2;
     private javax.swing.JTextField Volume2_TextField;
+    private javax.swing.JLabel back_arrow_button;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel button_section;
     private javax.swing.JPanel data_panel_1;

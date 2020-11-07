@@ -1,10 +1,14 @@
 package interfaces.mainmenu;
 
+import inevaup.dialogs.InfoDialog;
+import inevaup.dialogs.InfoDialog.TypeInfoDialog;
+import inevaup.dialogs.WarningDialog;
+import inevaup.preferences.AppSettings;
+import inevaup.preferences.MySettings;
 import inevaup.resources.AppResources;
 import inevaup.resources.R;
 import inevaup.resources.ResourcesPath;
 import java.io.File;
-import javax.swing.ComboBoxModel;
 
 public class Settings extends javax.swing.JPanel {
     
@@ -17,25 +21,141 @@ public class Settings extends javax.swing.JPanel {
         
         initComponents();
         initCustomResources();
-        initLanguageThemesComboBox();
+        initGeneralSectionSettings();
+        initDataSectionSettings();
+        initSimulationSectionSettings();
     }
 
     private void initCustomResources(){
-
+        
         home_back_button.setBackground(appResources.getColor(R.colors.primary));
         home_back_title.setForeground(appResources.getColor(R.colors.white_text));
         home_back_title.setFont(appResources.getFont(R.fonts.roboto_regular, 16));
         home_back_title.setIcon(appResources.getIcon(R.icons.menu_back_arrow));
         home_back_title.setText(appResources.getString(R.strings.menu_back_home_title));
+
+        save_button.setBackground(appResources.getColor(R.colors.primary));
+        save_button_title.setForeground(appResources.getColor(R.colors.white_text));
+        save_button_title.setFont(appResources.getFont(R.fonts.roboto_regular, 16));
+        save_button_title.setIcon(appResources.getIcon(R.icons.menu_save_settings));
+        save_button_title.setText(appResources.getString(R.strings.menu_settings_save));
     }
     
-    private void initLanguageThemesComboBox(){
+    private void initGeneralSectionSettings(){
         
         File[] languagesFiles = new File(ResourcesPath.getFullStringsPath()).listFiles();
-        for (File languageFile : languagesFiles) {
-            language_combobox.addItem(languageFile.getName());
+        for (int i = 0; i < languagesFiles.length; i++) {
+            File currentLanguageFile = languagesFiles[i];
+            language_combobox.addItem(currentLanguageFile.getName());
+            if (currentLanguageFile.getName().
+                equals((String)AppSettings.getSettings().getSetting("language"))){
+                
+                language_combobox.setSelectedIndex(i);
+            }
         }
-        //language_combobox.getModel().
+        
+        File[] themeFiles = new File(ResourcesPath.getFullThemesPath()).listFiles();
+        for (int i = 0; i < themeFiles.length; i++) {
+            File currentThemeFile = themeFiles[i];
+            theme_combobox.addItem(currentThemeFile.getName());
+            if (currentThemeFile.getName().
+                equals((String)AppSettings.getSettings().getSetting("theme"))){
+                
+                theme_combobox.setSelectedIndex(i);
+            }
+        }
+    }
+
+    private void initDataSectionSettings(){
+        save_data_checkbutton.setSelected(
+            (boolean)AppSettings.getSettings().getSetting("save_data")
+        );
+        save_history_checkbutton.setSelected(
+            (boolean)AppSettings.getSettings().getSetting("save_history_data")
+        );
+    }
+
+    private void initSimulationSectionSettings(){
+        collisions_checkbutton.setSelected(
+            (boolean) AppSettings.getSettings().getSetting("collisions")
+        );
+
+        String[] fpsOptions = MySettings.OPTIONS_FPS;
+        for (int i = 0; i < fpsOptions.length; i++) {
+            String item = fpsOptions[i];
+            fps_combobox.addItem(item);
+
+            if (item.equals(
+                (String)AppSettings.getSettings().getSetting("fps"))){
+                
+                fps_combobox.setSelectedIndex(i);
+            }
+        }
+
+        String[] simulationTimeOptions = MySettings.OPTIONS_SIMULATION_TIME;
+        for (int i = 0; i < simulationTimeOptions.length; i++) {
+            String item = simulationTimeOptions[i];
+            simulation_time_combobox.addItem(item);
+
+            if (item.equals(
+                (String)AppSettings.getSettings().getSetting("simulation_time"))){
+                
+                simulation_time_combobox.setSelectedIndex(i);
+            }
+        }
+    }
+
+    private void saveSettings(){
+        AppSettings.getSettings().
+            updateSetting(
+                "language", 
+                (String)language_combobox.getSelectedItem()
+            );
+
+        AppSettings.getSettings().
+            updateSetting(
+                "theme", 
+                (String)theme_combobox.getSelectedItem()
+            );
+        
+        AppSettings.getSettings().
+            updateSetting(
+                "save_data", 
+                (boolean)save_data_checkbutton.isSelected()
+            );
+
+        AppSettings.getSettings().
+            updateSetting(
+                "save_history_data", 
+                (boolean)save_history_checkbutton.isSelected()
+            );
+
+        AppSettings.getSettings().
+            updateSetting(
+                "collisions", 
+                (boolean)collisions_checkbutton.isSelected()
+            );
+
+        AppSettings.getSettings().
+            updateSetting(
+                "fps", 
+                (String)fps_combobox.getSelectedItem()
+            );
+
+        AppSettings.getSettings().
+            updateSetting(
+                "simulation_time", 
+                (String)simulation_time_combobox.getSelectedItem()
+            );
+        
+        if(!AppSettings.getSettings().saveSettings()){
+            InfoDialog errDialog = new InfoDialog(
+                null, 
+                "Error de guardado", 
+                "No se pudieron guardar las configuraciones", 
+                TypeInfoDialog.ERROR_DIALOG);
+            errDialog.setVisible(true);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -43,8 +163,8 @@ public class Settings extends javax.swing.JPanel {
     private void initComponents() {
 
         settings_content_layout = new javax.swing.JPanel();
-        home_back_button = new javax.swing.JPanel();
-        home_back_title = new javax.swing.JLabel();
+        save_button = new javax.swing.JPanel();
+        save_button_title = new javax.swing.JLabel();
         general_label = new javax.swing.JLabel();
         general_settings_layout = new javax.swing.JPanel();
         language_layout = new javax.swing.JPanel();
@@ -72,23 +192,25 @@ public class Settings extends javax.swing.JPanel {
         collisions_layout = new javax.swing.JPanel();
         collisions_label = new javax.swing.JLabel();
         collisions_checkbutton = new javax.swing.JCheckBox();
+        home_back_button = new javax.swing.JPanel();
+        home_back_title = new javax.swing.JLabel();
 
         settings_content_layout.setBackground(new java.awt.Color(248, 249, 250));
 
-        home_back_button.setBackground(new java.awt.Color(1, 87, 155));
-        home_back_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        home_back_button.addMouseListener(new java.awt.event.MouseAdapter() {
+        save_button.setBackground(new java.awt.Color(1, 87, 155));
+        save_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        save_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                OnBackHomeButton(evt);
+                OnSaveButton(evt);
             }
         });
-        home_back_button.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 15, 10));
+        save_button.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 15, 10));
 
-        home_back_title.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        home_back_title.setForeground(new java.awt.Color(255, 255, 255));
-        home_back_title.setText("Regresar");
-        home_back_title.setIconTextGap(10);
-        home_back_button.add(home_back_title);
+        save_button_title.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        save_button_title.setForeground(new java.awt.Color(255, 255, 255));
+        save_button_title.setText("Guardar");
+        save_button_title.setIconTextGap(10);
+        save_button.add(save_button_title);
 
         general_label.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         general_label.setForeground(new java.awt.Color(49, 49, 49));
@@ -217,30 +339,44 @@ public class Settings extends javax.swing.JPanel {
 
         simulation_settings_layout.add(collisions_layout);
 
+        home_back_button.setBackground(new java.awt.Color(1, 87, 155));
+        home_back_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        home_back_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                OnBackHomeButton(evt);
+            }
+        });
+        home_back_button.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 15, 10));
+
+        home_back_title.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        home_back_title.setForeground(new java.awt.Color(255, 255, 255));
+        home_back_title.setText("Regresar");
+        home_back_title.setIconTextGap(10);
+        home_back_button.add(home_back_title);
+
         javax.swing.GroupLayout settings_content_layoutLayout = new javax.swing.GroupLayout(settings_content_layout);
         settings_content_layout.setLayout(settings_content_layoutLayout);
         settings_content_layoutLayout.setHorizontalGroup(
             settings_content_layoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(settings_content_layoutLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
                 .addGroup(settings_content_layoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(settings_content_layoutLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(home_back_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(settings_content_layoutLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
                         .addGroup(settings_content_layoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(data_label)
                             .addComponent(data_settings_layout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(settings_content_layoutLayout.createSequentialGroup()
-                                .addGroup(settings_content_layoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(general_settings_layout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(general_label))
-                                .addGap(80, 80, 80)))
+                            .addComponent(general_settings_layout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(general_label))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                         .addGroup(settings_content_layoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(simulation_settings_layout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(simulation_label))))
-                .addGap(61, 61, 61))
+                            .addComponent(simulation_label))
+                        .addGap(61, 61, 61))
+                    .addGroup(settings_content_layoutLayout.createSequentialGroup()
+                        .addComponent(home_back_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(save_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29))))
         );
         settings_content_layoutLayout.setVerticalGroup(
             settings_content_layoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -259,9 +395,11 @@ public class Settings extends javax.swing.JPanel {
                         .addComponent(data_label)
                         .addGap(18, 18, 18)
                         .addComponent(data_settings_layout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
-                .addComponent(home_back_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                .addGroup(settings_content_layoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(home_back_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(save_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -275,6 +413,19 @@ public class Settings extends javax.swing.JPanel {
             .addComponent(settings_content_layout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void OnSaveButton(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OnSaveButton
+        WarningDialog warnDialog = new WarningDialog(
+                null, 
+                "Advertencia", 
+                "Estas seguro de guardar las configuraciones?"
+            );
+        warnDialog.setVisible(true);
+        
+        if(warnDialog.IsWarningAccepted()){
+            saveSettings();
+        }
+    }//GEN-LAST:event_OnSaveButton
 
     private void OnBackHomeButton(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OnBackHomeButton
         menuActions.setHomeView();
@@ -297,6 +448,8 @@ public class Settings extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> language_combobox;
     private javax.swing.JLabel language_label;
     private javax.swing.JPanel language_layout;
+    private javax.swing.JPanel save_button;
+    private javax.swing.JLabel save_button_title;
     private javax.swing.JCheckBox save_data_checkbutton;
     private javax.swing.JLabel save_data_label;
     private javax.swing.JPanel save_data_layout;

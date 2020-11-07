@@ -12,11 +12,7 @@ public class MainSettingsTest {
             System.out.println(settings.getSetting("fps"));
             settings.updateSetting("fps", 60);
             System.out.println(settings.getSetting("fps"));
-            try {
-                settings.saveSettings();
-            } catch (SaveException e) {
-                e.printStackTrace();
-            }
+            
         }
 
     }

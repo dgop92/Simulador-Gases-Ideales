@@ -37,9 +37,7 @@ public class AppSettings {
             setDefaultSettings();
         }
 
-        try {
-            saveSettings();
-        } catch (SaveException e) {
+        if(!saveSettings()){
             isSettingsLoaded = false;
         }
 
@@ -53,17 +51,17 @@ public class AppSettings {
         jsonSettings.replace(key, value);
     }
 
-    public void saveSettings() throws SaveException{
+    public boolean saveSettings(){
         try {
             FileWriter fileWriter = new FileWriter(BASE_PATH +  SETTINGS_PATH);
             fileWriter.write(Jsoner.prettyPrint(jsonSettings.toJson()));
             fileWriter.flush();
             fileWriter.close();
-        } catch (IOException e) {
-            throw new SaveException("Couldn't save the settings");
-        } catch (Exception e){
-            throw new SaveException("Couldn't save the settings");
+        } catch (Exception e) {
+            return false;
         }
+
+        return true;
     }
 
     public String getErrorMessage() {
@@ -91,12 +89,14 @@ public class AppSettings {
 
     private void setDefaultSettings(){
         jsonSettings = new JsonObject();
-        jsonSettings.put("fps", MySettings.DEFAULT_FPS);
-        jsonSettings.put("simulation_time", MySettings.DEFAULT_SIMULATION_TIME);
         jsonSettings.put("language", MySettings.DEFAULT_STRINGS_NAME);
         jsonSettings.put("theme", MySettings.DEFAULT_THEME_NAME);
+        jsonSettings.put("fps", MySettings.DEFAULT_FPS);
+        jsonSettings.put("simulation_time", MySettings.DEFAULT_SIMULATION_TIME);
         jsonSettings.put("collisions", MySettings.DEFAULT_CHECK_COLLISIONS);
+
         jsonSettings.put("save_data", MySettings.DEFAULT_SAVE_DATA);
+        jsonSettings.put("save_history_data", MySettings.DEFAULT_SAVE_HISTORY);
     }
 
 }

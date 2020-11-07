@@ -1,6 +1,7 @@
 package idealgas.transformations;
 
 import idealgas.GasDataMap;
+import inevaup.preferences.AppSettings;
 import idealgas.GasConstants;
 import java.util.HashMap;
 
@@ -40,8 +41,7 @@ public abstract class BaseTransformation {
         this.finalData = finalData;
 
         //A 60FPS
-        deltaT = 0.06491f;
-        deltaV = 0.02091f; 
+        computeDeltas();
         deltaVel = 0.001f;
 
         initGasDataHashMap();
@@ -54,6 +54,32 @@ public abstract class BaseTransformation {
                            GasDataMap.MIN_FAKE_VELOCITY, GasDataMap.MAX_FAKE_VELOCITY);
     }
     
+    private void computeDeltas(){
+        int currentFps = Integer.valueOf(
+            (String)AppSettings.getSettings().getSetting("fps")
+        );
+        int simulationTime = Integer.valueOf(
+            (String)AppSettings.getSettings().getSetting("simulation_time")
+        );
+
+        float temperatureDiff = 
+            GasDataMap.MAX_USER_TEMPERATURE - 
+            GasDataMap.MIN_USER_TEMPERATURE;
+        
+        float volumeDiff = 
+            GasDataMap.MAX_USER_VOLUME - 
+            GasDataMap.MIN_USER_VOLUME;
+
+        if (currentFps == 0){
+            //automatico, usar un promedio
+            deltaT = temperatureDiff / (simulationTime * 45);
+            deltaV = volumeDiff / (simulationTime * 45);
+        }else{
+            deltaT = temperatureDiff / (simulationTime * currentFps);
+            deltaV = volumeDiff / (simulationTime * currentFps);
+        }
+    }
+
     private void initGasDataHashMap(){
         gasData = new HashMap<>();
         

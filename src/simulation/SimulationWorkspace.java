@@ -2,9 +2,6 @@ package simulation;
 
 import processing.core.PApplet;
 import processing.core.PFont;
-
-import static org.junit.Assert.fail;
-
 import java.util.HashMap;
 
 import simulation.sketchs.Barometer;
@@ -20,7 +17,7 @@ import idealgas.transformations.IsobaricTransformation;
 import idealgas.transformations.IsothermalTransformation;
 import idealgas.transformations.IsovolumetricTransformation;
 import idealgas.transformations.TransformationStrategy;
-
+import inevaup.preferences.AppSettings;
 import inevaup.resources.AppResources;
 import inevaup.resources.R;
 import idealgas.GasDataMap;
@@ -54,7 +51,13 @@ public class SimulationWorkspace extends PApplet{
 
     @Override
     public void setup() {
-        //frameRate(60);
+        
+        int currentFps = Integer.valueOf(
+            (String)AppSettings.getSettings().getSetting("fps")
+        );
+        if (currentFps != 0){
+            frameRate(currentFps);
+        }
 
         robotoFont = new PFont(
             AppResources.getAppResources().getFont(R.fonts.roboto_regular, 16), true);
@@ -159,29 +162,9 @@ public class SimulationWorkspace extends PApplet{
     }
 
     //Test execute fixparticles each 80 or 60 ticks
-    @Override
+    /* @Override
     public void mouseClicked() {
         cylinder.fixParticle();
-    }
-
-    /* public boolean requestPauseOfSimulation(){
-        
-        if (isRunning){
-            isPaused = true;
-            return isPaused;
-        }else{
-            return false;
-        }
-    }
-
-    public boolean requestResumeOfSimulation(){
-        
-        if(isPaused){
-            isPaused = false;
-            return true;
-        }else{
-            return false;
-        }
     } */
 
     public boolean requestPauseResumeOfSimulation(){
@@ -194,6 +177,7 @@ public class SimulationWorkspace extends PApplet{
     }
 
     private void resetSimulation(){
+        isPaused = true;
         noLoop();
         //reset csvWritter
         initSketch();

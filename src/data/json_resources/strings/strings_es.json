@@ -6,6 +6,8 @@
 	"menu_instructions_title": "Instrucciones",
     "menu_back_home_title": "Regresar",
 	
+	"menu_settings_save": "Guardar",
+
 	"controlinterface_tittle": "Interfaz De Control",
 	"controlinterface_isobaric_rb": "T. Isobarica",
 	"controlinterface_isovolumetric_rb": "T. Isovolumetrica",

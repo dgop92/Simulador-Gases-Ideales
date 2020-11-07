@@ -18,6 +18,7 @@ public class R {
 		controlinterface_isobaric_rb,
 		controlinterface_isovolumetric_rb,
 		iv_negative_particles,
+		menu_settings_save,
 		controlinterface_isothermal_rb,
 		menu_start_title,
 		iv_invalid_data,
@@ -68,6 +69,7 @@ public class R {
 		public final static String control_play_pause = "/control-play-pause.png";
 		public final static String control_play = "/control-play.png";
 		public final static String control_reset = "/control-reset.png";
+		public final static String control_back_arrow = "/control_back_arrow.png";
 		public final static String history_icon = "/history_icon.png";
 		public final static String menu_back_arrow = "/menu_back_arrow.png";
 		public final static String menu_header_home = "/menu_header_home.png";
@@ -75,6 +77,7 @@ public class R {
 		public final static String menu_header_settings = "/menu_header_settings.png";
 		public final static String menu_instructions = "/menu_instructions.png";
 		public final static String menu_play = "/menu_play.png";
+		public final static String menu_save_settings = "/menu_save_settings.png";
 		public final static String menu_settings = "/menu_settings.png";
 
 	}

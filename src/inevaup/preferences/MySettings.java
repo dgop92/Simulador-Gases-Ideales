@@ -2,21 +2,21 @@ package inevaup.preferences;
 
 public class MySettings {
     
-    public final static int DEFAULT_FPS = 0;
+    public final static String DEFAULT_FPS = "0";
 
-    public final static int[] OPTIONS_FPS = {
-        0,
-        30,
-        45,
-        60
+    public final static String[] OPTIONS_FPS = {
+        "0",
+        "30",
+        "45",
+        "60"
     };
     
-    public final static int DEFAULT_SIMULATION_TIME = 30;
+    public final static String DEFAULT_SIMULATION_TIME = "30";
 
-    public final static int[] OPTIONS_SIMULATION_TIME = {
-        15,
-        30,
-        60
+    public final static String[] OPTIONS_SIMULATION_TIME = {
+        "15",
+        "30",
+        "60"
     };
 
     public final static boolean DEFAULT_CHECK_COLLISIONS = false;

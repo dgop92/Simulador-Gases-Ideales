@@ -85,6 +85,10 @@ public class StatusBar extends SketchFragment {
         sketch.text("Paused: " + sketch.isPaused, 
                     x + 450, 
                     y + 40);
+
+        sketch.text("FPS: " + sketch.frameRate, 
+                    x + 450, 
+                    y + 60);
         
     }
     

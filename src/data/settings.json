@@ -1,8 +1,9 @@
 {
 	"collisions":false,
-	"fps":0,
+	"fps":"60",
 	"language":"strings_es.json",
 	"theme":"default_theme.json",
-	"simulation_time":30,
+	"save_history_data":false,
+	"simulation_time":"30",
 	"save_data":false
 }
