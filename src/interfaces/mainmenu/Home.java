@@ -42,7 +42,10 @@ public class Home extends javax.swing.JPanel {
         settings_button_title.setIcon(appResources.getIcon(R.icons.menu_settings));
         settings_button_title.setText(appResources.getString(R.strings.menu_settings_title));
 
-
+        about_us_button.setBackground(appResources.getColor(R.colors.primary));
+        about_us_button.setForeground(appResources.getColor(R.colors.white_text));
+        about_us_button.setFont(appResources.getFont(R.fonts.roboto_regular, 16));
+        //about_us_button.setText(appResources.getString(R.strings.menu_settings_title));
     }
 
     @SuppressWarnings("unchecked")
@@ -57,6 +60,8 @@ public class Home extends javax.swing.JPanel {
         instructions_button_title = new javax.swing.JLabel();
         settings_button = new javax.swing.JPanel();
         settings_button_title = new javax.swing.JLabel();
+        about_us_button = new javax.swing.JPanel();
+        about_us_title = new javax.swing.JLabel();
 
         home_content_layout.setBackground(new java.awt.Color(248, 249, 250));
 
@@ -114,6 +119,21 @@ public class Home extends javax.swing.JPanel {
 
         button_menu.add(settings_button);
 
+        about_us_button.setBackground(new java.awt.Color(1, 87, 155));
+        about_us_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        about_us_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                onAboutUsButton(evt);
+            }
+        });
+        about_us_button.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 15, 10));
+
+        about_us_title.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        about_us_title.setForeground(new java.awt.Color(255, 255, 255));
+        about_us_title.setText("Acerca de");
+        about_us_title.setIconTextGap(10);
+        about_us_button.add(about_us_title);
+
         javax.swing.GroupLayout home_content_layoutLayout = new javax.swing.GroupLayout(home_content_layout);
         home_content_layout.setLayout(home_content_layoutLayout);
         home_content_layoutLayout.setHorizontalGroup(
@@ -122,13 +142,19 @@ public class Home extends javax.swing.JPanel {
                 .addContainerGap(520, Short.MAX_VALUE)
                 .addComponent(button_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(69, 69, 69))
+            .addGroup(home_content_layoutLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(about_us_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         home_content_layoutLayout.setVerticalGroup(
             home_content_layoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(home_content_layoutLayout.createSequentialGroup()
                 .addGap(115, 115, 115)
                 .addComponent(button_menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addComponent(about_us_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -157,8 +183,14 @@ public class Home extends javax.swing.JPanel {
         menuActions.setSettingView();
     }//GEN-LAST:event_OnSettingsButton
 
+    private void onAboutUsButton(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onAboutUsButton
+        menuActions.setAboutView();
+    }//GEN-LAST:event_onAboutUsButton
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel about_us_button;
+    private javax.swing.JLabel about_us_title;
     private javax.swing.JPanel button_menu;
     private javax.swing.JPanel home_content_layout;
     private javax.swing.JPanel instructions_button;
