@@ -86,7 +86,7 @@ public class MainMenuInterface extends javax.swing.JFrame implements MenuActions
     public void setAboutView() {
         contentCardLayout.show(card_content_layout, "aboutUsView");
         header_title.setIcon(appResources.getIcon(R.icons.menu_header_instructions));
-        header_title.setText(appResources.getString(R.strings.menu_instructions_title));
+        header_title.setText("Acerca de");
     }
 
     @Override
