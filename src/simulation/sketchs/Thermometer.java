@@ -30,17 +30,24 @@ public class Thermometer extends SketchFragment {
     }
 
     public void draw(){
+        
         float transformation,tp=5;
         transformation= (150* temperature)/(600);
         tp=-transformation;
+        if(temperature > 548){
+            transformation= (150* 548)/(600);
+            tp=-transformation;
+
+        }
         
         sketch.image(thermotherImage,630,30);
         sketch.fill(139,0,0);
         sketch.noStroke();
-        sketch.rect(685,165,12,tp);
+        sketch.rect(685,179,12,tp);
         sketch.textSize(10);
         sketch.textFont(sketch.robotoFont);
         sketch.fill(255,255,255);
+        
         sketch.text(temperature + " K ",645,195);
         
     }

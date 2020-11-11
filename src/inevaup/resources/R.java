@@ -5,30 +5,55 @@ package inevaup.resources;
 public class R {
 
 	public enum strings {
-		menu_settings_title,
-		controlinterface_pause_resume,
+		third_advisor,
 		fv_isovolumetric_input_error,
-		menu_instructions_title,
-		iv_empty_fields,
-		fv_isothermal_input_error,
-		iv_invalid_range,
-		fv_invalid_data,
-		app_name,
-		controlinterface_reset_play,
+		general_settings_title,
 		controlinterface_isobaric_rb,
 		controlinterface_isovolumetric_rb,
 		iv_negative_particles,
-		menu_settings_save,
-		controlinterface_isothermal_rb,
-		menu_start_title,
-		iv_invalid_data,
-		fv_isobaric_input_error,
 		fv_adiabatic_input_error,
 		sm_error_message,
+		form_error_title,
+		warn_message,
+		controlinterface_tittle,
+		error_title,
+		error_message,
+		Four_advisor,
+		warn_title,
+		firt_advisor,
+		menu_instructions_title,
+		iv_invalid_range,
+		error_title_interface,
+		fv_invalid_data,
+		controlinterface_reset_play,
+		second_adivisor,
+		simulacion_settings_title,
+		controlinterface_isothermal_rb,
+		menu_back_home_title,
+		menu_settings_title,
+		controlinterface_pause_resume,
+		datos_settings_subtitle2,
+		datos_settings_subtitle1,
+		fv_isothermal_input_error,
+		menu_settings_save,
+		menu_start_title,
 		controlinterface_adiabatic_rb,
 		fv_invalid_range,
-		menu_back_home_title,
-		controlinterface_tittle
+		history_error,
+		fifth_advisor,
+		particles_error,
+		fps_title,
+		datos_settings_title,
+		iv_empty_fields,
+		general_settings_subtitle2,
+		app_name,
+		general_settings_subtitle1,
+		simulacion_settings_subtitle2,
+		simulacion_settings_subtitle3,
+		pause_error,
+		Welcome,
+		iv_invalid_data,
+		fv_isobaric_input_error
 	}
 
 	public enum colors {
@@ -56,6 +81,8 @@ public class R {
 		public final static String fire_icon_right = "/fire-icon-right.png";
 		public final static String hotsource = "/hotSource.png";
 		public final static String images = "/images.txt";
+		public final static String part2 = "/part2.png";
+		public final static String parte1 = "/parte1.png";
 		public final static String piston1 = "/Piston1.png";
 		public final static String pistonengine = "/PistonEngine.png";
 		public final static String statusbar = "/StatusBar.png";
@@ -65,6 +92,8 @@ public class R {
 	}
 
 	public static class icons {
+		public final static String advice = "/advice.png";
+		public final static String advice2 = "/advice2.png";
 		public final static String control_okay = "/control-okay.png";
 		public final static String control_play_pause = "/control-play-pause.png";
 		public final static String control_play = "/control-play.png";

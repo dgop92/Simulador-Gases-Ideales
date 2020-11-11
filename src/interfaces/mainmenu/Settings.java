@@ -39,6 +39,32 @@ public class Settings extends javax.swing.JPanel {
         save_button_title.setFont(appResources.getFont(R.fonts.roboto_regular, 16));
         save_button_title.setIcon(appResources.getIcon(R.icons.menu_save_settings));
         save_button_title.setText(appResources.getString(R.strings.menu_settings_save));
+        
+        general_label.setFont(appResources.getFont(R.fonts.montserrat_bold, 16));
+        general_label.setText(appResources.getString(R.strings.general_settings_title));
+        language_label.setFont(appResources.getFont(R.fonts.roboto_regular, 14));
+        language_label.setText(appResources.getString(R.strings.general_settings_subtitle1));
+        theme_label.setFont(appResources.getFont(R.fonts.roboto_regular, 14));
+        theme_label.setText(appResources.getString(R.strings.general_settings_subtitle2));
+        
+        data_label.setFont(appResources.getFont(R.fonts.montserrat_bold, 16));
+        data_label.setText(appResources.getString(R.strings.datos_settings_title));
+        save_history_label.setFont(appResources.getFont(R.fonts.roboto_regular, 14));
+        save_history_label.setText(appResources.getString(R.strings.datos_settings_subtitle1));
+        save_data_label.setFont(appResources.getFont(R.fonts.roboto_regular, 14));
+        save_data_label.setText(appResources.getString(R.strings.datos_settings_subtitle2));
+        
+        simulation_label.setFont(appResources.getFont(R.fonts.montserrat_bold, 16));
+        simulation_label.setText(appResources.getString(R.strings.simulacion_settings_title));
+        fps_label.setFont(appResources.getFont(R.fonts.roboto_regular, 14));
+        fps_label.setText(appResources.getString(R.strings.fps_title));
+        simulation_time_label.setFont(appResources.getFont(R.fonts.roboto_regular, 14));
+        simulation_time_label.setText(appResources.getString(R.strings.simulacion_settings_subtitle2));
+        collisions_label.setFont(appResources.getFont(R.fonts.roboto_regular, 14));
+        collisions_label.setText(appResources.getString(R.strings.simulacion_settings_subtitle3));
+        
+        
+        
     }
     
     private void initGeneralSectionSettings(){
@@ -154,8 +180,8 @@ public class Settings extends javax.swing.JPanel {
         if(!AppSettings.getSettings().saveSettings()){
             InfoDialog errDialog = new InfoDialog(
                 null, 
-                "Error de guardado", 
-                "No se pudieron guardar las configuraciones", 
+                appResources.getString(R.strings.error_title), 
+                appResources.getString(R.strings.error_message), 
                 TypeInfoDialog.ERROR_DIALOG);
             errDialog.setVisible(true);
         }
@@ -420,9 +446,11 @@ public class Settings extends javax.swing.JPanel {
     private void OnSaveButton(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OnSaveButton
         WarningDialog warnDialog = new WarningDialog(
                 null, 
-                "Advertencia", 
-                "Estas seguro de guardar las configuraciones?"
+                appResources.getString(R.strings.warn_title), 
+                appResources.getString(R.strings.warn_message)
+
             );
+        warnDialog.setFont(appResources.getFont(R.fonts.roboto_regular, 16));
         warnDialog.setVisible(true);
         
         if(warnDialog.IsWarningAccepted()){

@@ -13,6 +13,41 @@
 	"controlinterface_isovolumetric_rb": "T. Isovolumetrica",
 	"controlinterface_isothermal_rb": "T. Isotermica",
 	"controlinterface_adiabatic_rb": "T. Adiabatica",
+        
+	"general_settings_title" : "Generales",
+	"general_settings_subtitle1" : "Lenguaje:",
+	"general_settings_subtitle2" : "Tema:",
+	"datos_settings_title" : "Datos",
+	"datos_settings_subtitle1" : "Guardar Historial:",
+	"datos_settings_subtitle2" : "Guardar datos csv:",
+	"simulacion_settings_title" : "Simulación",
+	"fps_title" : "FPS:",
+	"simulacion_settings_subtitle2" : "Tiempo de simulación: ",
+	"simulacion_settings_subtitle3" : "Colisiones:",
+
+
+	"warn_title" : "Advertencia",
+	"warn_message" : "¿Estas seguro de guardar las configuraciones?",
+	"error_title" : "Error de guardado",
+	"error_message" : "No se pudieron guardar las configuraciones", 
+
+	"form_error_title" : "Error De Validacion",
+	"error_title_interface" : "Error",
+	"pause_error" : "No puedes pausar la simulacion si esta no ha comenzado",
+	"history_error" : "No se puede guardar los datos en el historial",
+	"particles_error" : "Numero de particulas excedidas",
+
+
+	"Welcome" : "title",
+	"firt_advisor" : "Este programa presenta una simulación hecha por computadora usando algoritmos los cuales resuelven las distintas transformaciones con gases ideales ",
+	"second_adivisor" : "Como podras ver mas adelante, la interfaz de control esta dividida en dos partes",
+	"third_advisor" : "En la primera parte podras ingresar los datos iniciales y finales dependiendo de la transformacion ",
+	"Four_advisor" : "En la segunda podras elegir el tipo de transformacion y comenzar o pausar la simualcion",
+	"fifth_advisor" : "Disfrute la simulacion",
+
+	
+	
+
 
 	"controlinterface_pause_resume": "Pausar/Resumir",
 	"controlinterface_reset_play": "Reiniciar/Empezar",
@@ -22,10 +57,10 @@
 	"iv_invalid_range": "Los datos iniciales no estan dentro del rango aceptado",
 	"iv_negative_particles": "El número de particulas no puede ser negativo",
 
-	"fv_isobaric_input_error": "Para la transformacion isobarica, solo debe ingresar temperatura o presion", 
-	"fv_isovolumetric_input_error": "", 
-	"fv_isothermal_input_error": "", 
-	"fv_adiabatic_input_error": "",
+	"fv_isobaric_input_error": "Para la transformacion isobarica, solo debe ingresar la temperatura final o el volumen final", 
+	"fv_isovolumetric_input_error": "Para la transformacion isovolumetrica , solo debe ingresar la temperatura final o la presion final ", 
+	"fv_isothermal_input_error": "Para la transformacion isotermica, solo debe ingresar el volumen final o la presion final", 
+	"fv_adiabatic_input_error": "Para la transformacion adiabatica, solo debe ingresar el volumen o la presion o el volumen",
 
 	"fv_invalid_data": "Los datos ingresados son invalidos",
 	"fv_invalid_range": "Los datos no estan dentro del rango aceptado",
