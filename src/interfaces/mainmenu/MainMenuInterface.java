@@ -12,6 +12,7 @@ public class MainMenuInterface extends javax.swing.JFrame implements MenuActions
     private Home homeView;
     private Instructions instructionsView;
     private Settings settingsView;
+    private About aboutUsView;
     
     private AppResources appResources;
   
@@ -47,12 +48,14 @@ public class MainMenuInterface extends javax.swing.JFrame implements MenuActions
         homeView = new Home(this);
         instructionsView = new Instructions(this);
         settingsView = new Settings(this);
+        aboutUsView = new About(this);
         
         contentCardLayout = (CardLayout) (card_content_layout.getLayout());
         
         card_content_layout.add(homeView, "homeview");
         card_content_layout.add(instructionsView, "instructionsView");
         card_content_layout.add(settingsView, "settingsView");
+        card_content_layout.add(aboutUsView, "aboutUsView");
         
         //The home view is the first view to be render
         contentCardLayout.show(card_content_layout, "homeview");
@@ -81,7 +84,9 @@ public class MainMenuInterface extends javax.swing.JFrame implements MenuActions
 
     @Override
     public void setAboutView() {
-        
+        contentCardLayout.show(card_content_layout, "aboutUsView");
+        header_title.setIcon(appResources.getIcon(R.icons.menu_header_about));
+        header_title.setText(appResources.getString(R.strings.menu_about_title));
     }
 
     @Override

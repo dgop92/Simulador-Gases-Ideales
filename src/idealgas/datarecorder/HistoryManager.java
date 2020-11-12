@@ -21,13 +21,12 @@ public class HistoryManager {
     public static final String HISTORY_PATH = "smdata/history";
 
     public HistoryManager() {
-
+        
+        createSMDataFolder();
     }
 
     public boolean saveInputData(HashMap<String, Float> initialData, HashMap<String, Float> finalData,
             TransformationType transformationType){
-
-        createSMDataFolder();
 
         DateTimeFormatter dateFileNameFormatter = DateTimeFormatter.ofPattern("ddMMyyyyHHmmss");
         String fileName = "smgas_" + LocalDateTime.now().format(dateFileNameFormatter) + ".json";

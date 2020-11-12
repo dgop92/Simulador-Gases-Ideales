@@ -4,16 +4,11 @@
 	"menu_start_title": "Empezar",
 	"menu_settings_title": "Configuraciones",
 	"menu_instructions_title": "Instrucciones",
+	"menu_about_title": "Acerca De",
     "menu_back_home_title": "Regresar",
 	
 	"menu_settings_save": "Guardar",
 
-	"controlinterface_tittle": "Interfaz De Control",
-	"controlinterface_isobaric_rb": "T. Isobarica",
-	"controlinterface_isovolumetric_rb": "T. Isovolumetrica",
-	"controlinterface_isothermal_rb": "T. Isotermica",
-	"controlinterface_adiabatic_rb": "T. Adiabatica",
-        
 	"general_settings_title" : "Generales",
 	"general_settings_subtitle1" : "Lenguaje:",
 	"general_settings_subtitle2" : "Tema:",
@@ -25,29 +20,16 @@
 	"simulacion_settings_subtitle2" : "Tiempo de simulación: ",
 	"simulacion_settings_subtitle3" : "Colisiones:",
 
+	"menu_about_devs_title": "Desarolladores",
+	"menu_about_dev_1": "Diego Puche",
+	"menu_about_dev_3": "Juan Anzola",
+	"menu_about_dev_2": "Mateo Anaya",
 
-	"warn_title" : "Advertencia",
-	"warn_message" : "¿Estas seguro de guardar las configuraciones?",
-	"error_title" : "Error de guardado",
-	"error_message" : "No se pudieron guardar las configuraciones", 
-
-	"form_error_title" : "Error De Validacion",
-	"error_title_interface" : "Error",
-	"pause_error" : "No puedes pausar la simulacion si esta no ha comenzado",
-	"history_error" : "No se puede guardar los datos en el historial",
-	"particles_error" : "Numero de particulas excedidas",
-
-
-	"Welcome" : "title",
-	"firt_advisor" : "Este programa presenta una simulación hecha por computadora usando algoritmos los cuales resuelven las distintas transformaciones con gases ideales ",
-	"second_adivisor" : "Como podras ver mas adelante, la interfaz de control esta dividida en dos partes",
-	"third_advisor" : "En la primera parte podras ingresar los datos iniciales y finales dependiendo de la transformacion ",
-	"Four_advisor" : "En la segunda podras elegir el tipo de transformacion y comenzar o pausar la simualcion",
-	"fifth_advisor" : "Disfrute la simulacion",
-
-	
-	
-
+	"controlinterface_tittle": "Interfaz De Control",
+	"controlinterface_isobaric_rb": "T. Isobarica",
+	"controlinterface_isovolumetric_rb": "T. Isovolumetrica",
+	"controlinterface_isothermal_rb": "T. Isotermica",
+	"controlinterface_adiabatic_rb": "T. Adiabatica",
 
 	"controlinterface_pause_resume": "Pausar/Resumir",
 	"controlinterface_reset_play": "Reiniciar/Empezar",
@@ -65,5 +47,25 @@
 	"fv_invalid_data": "Los datos ingresados son invalidos",
 	"fv_invalid_range": "Los datos no estan dentro del rango aceptado",
 
-	"sm_error_message": "El maximo numero de particulas para esta simulacion es de "
+	"sm_error_message": "El maximo numero de particulas para esta simulacion es de ",
+
+	"Welcome" : "title",
+	"firt_advisor" : "Este programa presenta una simulación hecha por computadora usando algoritmos los cuales resuelven las distintas transformaciones con gases ideales ",
+	"second_adivisor" : "Como podras ver mas adelante, la interfaz de control esta dividida en dos partes",
+	"third_advisor" : "En la primera parte podras ingresar los datos iniciales y finales dependiendo de la transformacion ",
+	"Four_advisor" : "En la segunda podras elegir el tipo de transformacion y comenzar o pausar la simualcion",
+	"fifth_advisor" : "Disfrute la simulacion",
+        
+	"warn_title_interface" : "Advertencia",
+	"warn_settings_save_message" : "¿Estas seguro de guardar las configuraciones?",
+	"error_settings_title" : "Error de guardado",
+	"error_settings_message" : "No se pudieron guardar las configuraciones", 
+
+	"form_error_title" : "Error De Validacion",
+	"error_title_interface" : "Error",
+	"pause_error" : "No puedes pausar la simulacion si esta no ha comenzado",
+	"history_error" : "No se puede guardar los datos en el historial",
+	"history_error2": "Debes seleccionar un item",
+	"particles_error" : "Numero de particulas excedidas"
+
 }

@@ -6,29 +6,31 @@ public class R {
 
 	public enum strings {
 		third_advisor,
+		menu_about_devs_title,
 		fv_isovolumetric_input_error,
 		general_settings_title,
 		controlinterface_isobaric_rb,
 		controlinterface_isovolumetric_rb,
 		iv_negative_particles,
+		warn_settings_save_message,
 		fv_adiabatic_input_error,
 		sm_error_message,
 		form_error_title,
-		warn_message,
 		controlinterface_tittle,
-		error_title,
-		error_message,
 		Four_advisor,
-		warn_title,
 		firt_advisor,
 		menu_instructions_title,
 		iv_invalid_range,
-		error_title_interface,
 		fv_invalid_data,
+		error_title_interface,
 		controlinterface_reset_play,
 		second_adivisor,
 		simulacion_settings_title,
+		menu_about_dev_2,
+		menu_about_dev_3,
+		menu_about_dev_1,
 		controlinterface_isothermal_rb,
+		error_settings_title,
 		menu_back_home_title,
 		menu_settings_title,
 		controlinterface_pause_resume,
@@ -39,21 +41,25 @@ public class R {
 		menu_start_title,
 		controlinterface_adiabatic_rb,
 		fv_invalid_range,
+		warn_title_interface,
 		history_error,
 		fifth_advisor,
 		particles_error,
+		menu_about_title,
 		fps_title,
 		datos_settings_title,
 		iv_empty_fields,
+		error_settings_message,
 		general_settings_subtitle2,
 		app_name,
 		general_settings_subtitle1,
 		simulacion_settings_subtitle2,
 		simulacion_settings_subtitle3,
 		pause_error,
-		Welcome,
 		iv_invalid_data,
-		fv_isobaric_input_error
+		fv_isobaric_input_error,
+		Welcome,
+		history_error2
 	}
 
 	public enum colors {
@@ -100,7 +106,9 @@ public class R {
 		public final static String control_reset = "/control-reset.png";
 		public final static String control_back_arrow = "/control_back_arrow.png";
 		public final static String history_icon = "/history_icon.png";
+		public final static String menu_about = "/menu_about.png";
 		public final static String menu_back_arrow = "/menu_back_arrow.png";
+		public final static String menu_header_about = "/menu_header_about.png";
 		public final static String menu_header_home = "/menu_header_home.png";
 		public final static String menu_header_instructions = "/menu_header_instructions.png";
 		public final static String menu_header_settings = "/menu_header_settings.png";

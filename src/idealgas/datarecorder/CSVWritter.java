@@ -15,8 +15,8 @@ public class CSVWritter {
     private StringBuilder csvData;
 
     public CSVWritter() {
+        createSMDataFolder();
         csvData = new StringBuilder();
-        
     }
 
     public void putRow(HashMap<String, Float> gasData) {
@@ -40,8 +40,6 @@ public class CSVWritter {
     public boolean saveData(){
         DateTimeFormatter dateFileNameFormatter = DateTimeFormatter.ofPattern("ddMMyyyyHHmmss");
         String fileName = "data" + LocalDateTime.now().format(dateFileNameFormatter) + ".txt";
-
-        createSMDataFolder();
 
         try {
             FileWriter writer = new FileWriter(CSV_DATA_PATH + "/" + fileName, true);

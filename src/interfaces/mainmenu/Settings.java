@@ -180,8 +180,8 @@ public class Settings extends javax.swing.JPanel {
         if(!AppSettings.getSettings().saveSettings()){
             InfoDialog errDialog = new InfoDialog(
                 null, 
-                appResources.getString(R.strings.error_title), 
-                appResources.getString(R.strings.error_message), 
+                appResources.getString(R.strings.error_settings_title), 
+                appResources.getString(R.strings.error_settings_message), 
                 TypeInfoDialog.ERROR_DIALOG);
             errDialog.setVisible(true);
         }
@@ -446,8 +446,8 @@ public class Settings extends javax.swing.JPanel {
     private void OnSaveButton(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OnSaveButton
         WarningDialog warnDialog = new WarningDialog(
                 null, 
-                appResources.getString(R.strings.warn_title), 
-                appResources.getString(R.strings.warn_message)
+                appResources.getString(R.strings.warn_title_interface), 
+                appResources.getString(R.strings.warn_settings_save_message)
 
             );
         warnDialog.setFont(appResources.getFont(R.fonts.roboto_regular, 16));

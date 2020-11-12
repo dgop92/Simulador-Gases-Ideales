@@ -6,6 +6,9 @@ import java.util.HashMap;
 
 import javax.swing.JFrame;
 
+import processing.awt.PSurfaceAWT.SmoothCanvas;
+import processing.core.PSurface;
+
 import idealgas.GasDataMap;
 import idealgas.TransformationType;
 import idealgas.datarecorder.HistoryItem;
@@ -18,8 +21,6 @@ import inevaup.resources.R;
 import interfaces.forms.FinalDataForm;
 import interfaces.forms.InitialDataForm;
 import interfaces.mainmenu.MainMenuInterface;
-import processing.awt.PSurfaceAWT.SmoothCanvas;
-import processing.core.PSurface;
 import simulation.SimulationWorkspace;
 
 public class ControlInterface extends javax.swing.JFrame {
@@ -186,7 +187,7 @@ public class ControlInterface extends javax.swing.JFrame {
         header.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 20, 12));
 
         back_arrow_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/icons/control_back_arrow.png"))); // NOI18N
-        back_arrow_button.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        back_arrow_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         back_arrow_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 OnBackMenuButton(evt);
@@ -221,7 +222,7 @@ public class ControlInterface extends javax.swing.JFrame {
         volume1_textField.setBackground(new java.awt.Color(255, 255, 255));
         volume1_textField.setColumns(6);
         volume1_textField.setForeground(new java.awt.Color(0, 0, 0));
-        volume1_textField.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        volume1_textField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         V1.add(volume1_textField);
 
         input_panel.add(V1);
@@ -242,7 +243,7 @@ public class ControlInterface extends javax.swing.JFrame {
         temperature1_textField.setBackground(new java.awt.Color(255, 255, 255));
         temperature1_textField.setColumns(6);
         temperature1_textField.setForeground(new java.awt.Color(0, 0, 0));
-        temperature1_textField.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        temperature1_textField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         T1.add(temperature1_textField);
 
         input_panel.add(T1);
@@ -263,7 +264,7 @@ public class ControlInterface extends javax.swing.JFrame {
         pressure1_textField.setBackground(new java.awt.Color(255, 255, 255));
         pressure1_textField.setColumns(6);
         pressure1_textField.setForeground(new java.awt.Color(0, 0, 0));
-        pressure1_textField.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pressure1_textField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         P1.add(pressure1_textField);
 
         input_panel.add(P1);
@@ -284,7 +285,7 @@ public class ControlInterface extends javax.swing.JFrame {
         volume2_textField.setBackground(new java.awt.Color(255, 255, 255));
         volume2_textField.setColumns(6);
         volume2_textField.setForeground(new java.awt.Color(0, 0, 0));
-        volume2_textField.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        volume2_textField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         V2.add(volume2_textField);
 
         input_panel.add(V2);
@@ -305,7 +306,7 @@ public class ControlInterface extends javax.swing.JFrame {
         temperature2_textField.setBackground(new java.awt.Color(255, 255, 255));
         temperature2_textField.setColumns(6);
         temperature2_textField.setForeground(new java.awt.Color(0, 0, 0));
-        temperature2_textField.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        temperature2_textField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         T2.add(temperature2_textField);
 
         input_panel.add(T2);
@@ -326,7 +327,7 @@ public class ControlInterface extends javax.swing.JFrame {
         pressure2_textField.setBackground(new java.awt.Color(255, 255, 255));
         pressure2_textField.setColumns(6);
         pressure2_textField.setForeground(new java.awt.Color(0, 0, 0));
-        pressure2_textField.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pressure2_textField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         P2.add(pressure2_textField);
 
         input_panel.add(P2);
@@ -355,7 +356,7 @@ public class ControlInterface extends javax.swing.JFrame {
         n_textField.setBackground(new java.awt.Color(255, 255, 255));
         n_textField.setColumns(6);
         n_textField.setForeground(new java.awt.Color(0, 0, 0));
-        n_textField.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        n_textField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         N.add(n_textField);
 
         data_panel_left_side.add(N);
@@ -372,7 +373,7 @@ public class ControlInterface extends javax.swing.JFrame {
         history_icon_button.setForeground(new java.awt.Color(255, 255, 255));
         history_icon_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/icons/history_icon.png"))); // NOI18N
         history_icon_button.setToolTipText("");
-        history_icon_button.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        history_icon_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         history_icon_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 onHistoryButtonClicked(evt);
@@ -408,7 +409,7 @@ public class ControlInterface extends javax.swing.JFrame {
         isobaric_radioButton.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         isobaric_radioButton.setForeground(new java.awt.Color(0, 0, 0));
         isobaric_radioButton.setText("P.Isobarico");
-        isobaric_radioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        isobaric_radioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         RadioButtons.add(isobaric_radioButton);
 
         isothermal_radioButton.setBackground(new java.awt.Color(255, 255, 255));
@@ -416,7 +417,7 @@ public class ControlInterface extends javax.swing.JFrame {
         isothermal_radioButton.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         isothermal_radioButton.setForeground(new java.awt.Color(0, 0, 0));
         isothermal_radioButton.setText("P.Isotermico");
-        isothermal_radioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        isothermal_radioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         RadioButtons.add(isothermal_radioButton);
 
         isovolumetric_radioButton.setBackground(new java.awt.Color(255, 255, 255));
@@ -424,7 +425,7 @@ public class ControlInterface extends javax.swing.JFrame {
         isovolumetric_radioButton.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         isovolumetric_radioButton.setForeground(new java.awt.Color(0, 0, 0));
         isovolumetric_radioButton.setText("P.Isovolumetrico");
-        isovolumetric_radioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        isovolumetric_radioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         RadioButtons.add(isovolumetric_radioButton);
 
         adiabatic_radioButton.setBackground(new java.awt.Color(255, 255, 255));
@@ -432,7 +433,7 @@ public class ControlInterface extends javax.swing.JFrame {
         adiabatic_radioButton.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         adiabatic_radioButton.setForeground(new java.awt.Color(0, 0, 0));
         adiabatic_radioButton.setText("P.Adiabatico");
-        adiabatic_radioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        adiabatic_radioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         RadioButtons.add(adiabatic_radioButton);
 
         transformation_layout.add(RadioButtons);
@@ -472,7 +473,7 @@ public class ControlInterface extends javax.swing.JFrame {
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
 
         pause_resume_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/icons/control-play-pause.png"))); // NOI18N
-        pause_resume_button.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pause_resume_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pause_resume_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 onPauseResumeButton(evt);
@@ -493,7 +494,7 @@ public class ControlInterface extends javax.swing.JFrame {
         jPanel31.setBackground(new java.awt.Color(255, 255, 255));
 
         play_restart_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/icons/control-reset.png"))); // NOI18N
-        play_restart_button.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        play_restart_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         play_restart_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 onResetStartButton(evt);
@@ -720,8 +721,6 @@ public class ControlInterface extends javax.swing.JFrame {
                                 HashMap<String, Float> finalData,
                                 TransformationType transformationType){
 
-        
-
         pressure1_textField.setText(String.valueOf(initialData.get("pressure")));   
         volume1_textField.setText(String.valueOf(initialData.get("volume")));   
         temperature1_textField.setText(String.valueOf(initialData.get("temperature")));   
@@ -729,30 +728,27 @@ public class ControlInterface extends javax.swing.JFrame {
 
         String p2,v2,t2; 
     
-        
-        pressure2_textField.setText(String.valueOf(finalData.get("pressure")));
-        
-        p2= String.valueOf(finalData.get("pressure"));
+        p2 = String.valueOf(finalData.get("pressure"));
         if(p2.equals("0.0")){
             pressure2_textField.setText(""); 
-
-        } 
+        }else{
+            pressure2_textField.setText(String.valueOf(finalData.get("pressure")));
+        }
           
-        volume2_textField.setText(String.valueOf(finalData.get("volume"))); 
-        v2=String.valueOf(finalData.get("volume"));
+        v2 = String.valueOf(finalData.get("volume"));
         if(v2.equals("0.0")){
             volume2_textField.setText(""); 
+        }else{
+            volume2_textField.setText(String.valueOf(finalData.get("volume"))); 
+        }
 
-        }   
-        temperature2_textField.setText(String.valueOf(finalData.get("temperature")));
-        t2= String.valueOf(finalData.get("temperature")); 
+        t2 = String.valueOf(finalData.get("temperature")); 
         if(t2.equals("0.0")){
             temperature2_textField.setText(""); 
-
+        }else{
+            temperature2_textField.setText(String.valueOf(finalData.get("temperature")));
         } 
 
-
-        
         switch (transformationType) {
             case ISOBARIC:
                 isobaric_radioButton.setSelected(true);

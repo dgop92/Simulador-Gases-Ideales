@@ -1,11 +1,14 @@
 package interfaces.control;
 
-import idealgas.datarecorder.HistoryItem;
-import inevaup.dialogs.InfoDialog;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+
 import javax.swing.DefaultListModel;
 
+import idealgas.datarecorder.HistoryItem;
+import inevaup.dialogs.InfoDialog;
+import inevaup.resources.AppResources;
+import inevaup.resources.R;
 
 public class HistoryDialog extends javax.swing.JDialog {
 
@@ -135,7 +138,9 @@ public class HistoryDialog extends javax.swing.JDialog {
         int selectedIndex = history_list.getSelectedIndex(); 
         if (selectedIndex == -1){
             InfoDialog noSelectedItemErrorDialog = new
-                InfoDialog(null, "Error", "Debes seleccionar un item", 
+                InfoDialog(null, 
+                AppResources.getAppResources().getString(R.strings.error_title_interface), 
+                AppResources.getAppResources().getString(R.strings.history_error2), 
                 InfoDialog.TypeInfoDialog.ERROR_DIALOG);
             noSelectedItemErrorDialog.setVisible(true);
             isItemSelected = false;

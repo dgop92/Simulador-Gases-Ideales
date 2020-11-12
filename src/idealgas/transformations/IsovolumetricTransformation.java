@@ -23,8 +23,8 @@ public class IsovolumetricTransformation extends BaseTransformation implements T
 
         pressure = pressure0 * temperature / temperature0;
 
-        internalEnergy = nMoles * GasConstants.CVM * (temperature0 - temperature);
-        heat = internalEnergy;
+        heat = nMoles * GasConstants.CVM * (temperature0 - temperature);
+        internalEnergy = Math.abs(heat);
 
         temperature += deltaT;
 
