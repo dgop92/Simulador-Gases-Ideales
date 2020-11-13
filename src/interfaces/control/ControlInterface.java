@@ -25,12 +25,12 @@ import simulation.SimulationWorkspace;
 
 public class ControlInterface extends javax.swing.JFrame {
     
-    private SimulationWorkspace simulationWorkspace;
-    private AppResources appResources;
-    private HistoryManager historyManager;
+    private final SimulationWorkspace simulationWorkspace;
+    private final AppResources appResources;
+    private final HistoryManager historyManager;
     
     public ControlInterface() {
-        appResources = AppResources.getAppResources();
+        appResources = AppResources.getResources();
         initComponents();
 
         simulationWorkspace = new SimulationWorkspace();
@@ -69,6 +69,10 @@ public class ControlInterface extends javax.swing.JFrame {
     }
     
     private void initCustomResources() {
+        
+        header.setBackground(appResources.getColor(R.colors.dark));
+        separator_layout.setBackground(appResources.getColor(R.colors.dark));
+        footbar.setBackground(appResources.getColor(R.colors.dark));
         
         header_title.setForeground(appResources.getColor(R.colors.white_text));
         header_title.setFont(appResources.getFont(R.fonts.montserrat_bold, 20));
@@ -111,7 +115,14 @@ public class ControlInterface extends javax.swing.JFrame {
         
         back_arrow_button.setIcon(appResources.getIcon(R.icons.control_back_arrow));
 
-    
+        volume1_tittle_layout.setBackground(appResources.getColor(R.colors.primary));
+        volume2_tittle_layout.setBackground(appResources.getColor(R.colors.primary));
+        temperature1_tittle_layout.setBackground(appResources.getColor(R.colors.primary));
+        temperature2_tittle_layout.setBackground(appResources.getColor(R.colors.primary));
+        pressure1_tittle_layout.setBackground(appResources.getColor(R.colors.primary));
+        pressure2_tittle_layout.setBackground(appResources.getColor(R.colors.primary));
+        
+        n_layout_title.setBackground(appResources.getColor(R.colors.primary));
     }
     
     @SuppressWarnings("unchecked")
@@ -126,33 +137,33 @@ public class ControlInterface extends javax.swing.JFrame {
         data_panel_1 = new javax.swing.JPanel();
         input_panel = new javax.swing.JPanel();
         V1 = new javax.swing.JPanel();
-        jPanel26 = new javax.swing.JPanel();
+        volume1_tittle_layout = new javax.swing.JPanel();
         volume1_label = new javax.swing.JLabel();
         volume1_textField = new javax.swing.JTextField();
         T1 = new javax.swing.JPanel();
-        jPanel27 = new javax.swing.JPanel();
+        temperature1_tittle_layout = new javax.swing.JPanel();
         temperature1_label = new javax.swing.JLabel();
         temperature1_textField = new javax.swing.JTextField();
         P1 = new javax.swing.JPanel();
-        jPanel29 = new javax.swing.JPanel();
+        pressure1_tittle_layout = new javax.swing.JPanel();
         pressure1_label = new javax.swing.JLabel();
         pressure1_textField = new javax.swing.JTextField();
         V2 = new javax.swing.JPanel();
-        jPanel32 = new javax.swing.JPanel();
+        volume2_tittle_layout = new javax.swing.JPanel();
         volume2_label = new javax.swing.JLabel();
         volume2_textField = new javax.swing.JTextField();
         T2 = new javax.swing.JPanel();
-        jPanel33 = new javax.swing.JPanel();
+        temperature2_tittle_layout = new javax.swing.JPanel();
         temperature2_label = new javax.swing.JLabel();
         temperature2_textField = new javax.swing.JTextField();
         P2 = new javax.swing.JPanel();
-        jPanel34 = new javax.swing.JPanel();
+        pressure2_tittle_layout = new javax.swing.JPanel();
         pressure2_label = new javax.swing.JLabel();
         pressure2_textField = new javax.swing.JTextField();
         data_panel_2 = new javax.swing.JPanel();
         data_panel_left_side = new javax.swing.JPanel();
         N = new javax.swing.JPanel();
-        jPanel28 = new javax.swing.JPanel();
+        n_layout_title = new javax.swing.JPanel();
         n_mol_label = new javax.swing.JLabel();
         n_textField = new javax.swing.JTextField();
         data_panel_right_side = new javax.swing.JPanel();
@@ -209,15 +220,15 @@ public class ControlInterface extends javax.swing.JFrame {
         V1.setBackground(new java.awt.Color(255, 255, 255));
         V1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
-        jPanel26.setBackground(new java.awt.Color(0, 47, 108));
-        jPanel26.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        volume1_tittle_layout.setBackground(new java.awt.Color(0, 47, 108));
+        volume1_tittle_layout.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         volume1_label.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         volume1_label.setForeground(new java.awt.Color(255, 255, 255));
         volume1_label.setText("V1");
-        jPanel26.add(volume1_label);
+        volume1_tittle_layout.add(volume1_label);
 
-        V1.add(jPanel26);
+        V1.add(volume1_tittle_layout);
 
         volume1_textField.setBackground(new java.awt.Color(255, 255, 255));
         volume1_textField.setColumns(6);
@@ -230,15 +241,15 @@ public class ControlInterface extends javax.swing.JFrame {
         T1.setBackground(new java.awt.Color(255, 255, 255));
         T1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
-        jPanel27.setBackground(new java.awt.Color(0, 47, 108));
-        jPanel27.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        temperature1_tittle_layout.setBackground(new java.awt.Color(0, 47, 108));
+        temperature1_tittle_layout.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         temperature1_label.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         temperature1_label.setForeground(new java.awt.Color(255, 255, 255));
         temperature1_label.setText("T1");
-        jPanel27.add(temperature1_label);
+        temperature1_tittle_layout.add(temperature1_label);
 
-        T1.add(jPanel27);
+        T1.add(temperature1_tittle_layout);
 
         temperature1_textField.setBackground(new java.awt.Color(255, 255, 255));
         temperature1_textField.setColumns(6);
@@ -251,15 +262,15 @@ public class ControlInterface extends javax.swing.JFrame {
         P1.setBackground(new java.awt.Color(255, 255, 255));
         P1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
-        jPanel29.setBackground(new java.awt.Color(0, 47, 108));
-        jPanel29.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        pressure1_tittle_layout.setBackground(new java.awt.Color(0, 47, 108));
+        pressure1_tittle_layout.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         pressure1_label.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         pressure1_label.setForeground(new java.awt.Color(255, 255, 255));
         pressure1_label.setText("P1");
-        jPanel29.add(pressure1_label);
+        pressure1_tittle_layout.add(pressure1_label);
 
-        P1.add(jPanel29);
+        P1.add(pressure1_tittle_layout);
 
         pressure1_textField.setBackground(new java.awt.Color(255, 255, 255));
         pressure1_textField.setColumns(6);
@@ -272,15 +283,15 @@ public class ControlInterface extends javax.swing.JFrame {
         V2.setBackground(new java.awt.Color(255, 255, 255));
         V2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
-        jPanel32.setBackground(new java.awt.Color(0, 47, 108));
-        jPanel32.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        volume2_tittle_layout.setBackground(new java.awt.Color(0, 47, 108));
+        volume2_tittle_layout.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         volume2_label.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         volume2_label.setForeground(new java.awt.Color(255, 255, 255));
         volume2_label.setText("V2");
-        jPanel32.add(volume2_label);
+        volume2_tittle_layout.add(volume2_label);
 
-        V2.add(jPanel32);
+        V2.add(volume2_tittle_layout);
 
         volume2_textField.setBackground(new java.awt.Color(255, 255, 255));
         volume2_textField.setColumns(6);
@@ -293,15 +304,15 @@ public class ControlInterface extends javax.swing.JFrame {
         T2.setBackground(new java.awt.Color(255, 255, 255));
         T2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
-        jPanel33.setBackground(new java.awt.Color(0, 47, 108));
-        jPanel33.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        temperature2_tittle_layout.setBackground(new java.awt.Color(0, 47, 108));
+        temperature2_tittle_layout.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         temperature2_label.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         temperature2_label.setForeground(new java.awt.Color(255, 255, 255));
         temperature2_label.setText("T2");
-        jPanel33.add(temperature2_label);
+        temperature2_tittle_layout.add(temperature2_label);
 
-        T2.add(jPanel33);
+        T2.add(temperature2_tittle_layout);
 
         temperature2_textField.setBackground(new java.awt.Color(255, 255, 255));
         temperature2_textField.setColumns(6);
@@ -314,15 +325,15 @@ public class ControlInterface extends javax.swing.JFrame {
         P2.setBackground(new java.awt.Color(255, 255, 255));
         P2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
-        jPanel34.setBackground(new java.awt.Color(0, 47, 108));
-        jPanel34.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        pressure2_tittle_layout.setBackground(new java.awt.Color(0, 47, 108));
+        pressure2_tittle_layout.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         pressure2_label.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         pressure2_label.setForeground(new java.awt.Color(255, 255, 255));
         pressure2_label.setText("P2");
-        jPanel34.add(pressure2_label);
+        pressure2_tittle_layout.add(pressure2_label);
 
-        P2.add(jPanel34);
+        P2.add(pressure2_tittle_layout);
 
         pressure2_textField.setBackground(new java.awt.Color(255, 255, 255));
         pressure2_textField.setColumns(6);
@@ -343,15 +354,15 @@ public class ControlInterface extends javax.swing.JFrame {
         N.setBackground(new java.awt.Color(255, 255, 255));
         N.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
-        jPanel28.setBackground(new java.awt.Color(0, 47, 108));
-        jPanel28.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        n_layout_title.setBackground(new java.awt.Color(0, 47, 108));
+        n_layout_title.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         n_mol_label.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         n_mol_label.setForeground(new java.awt.Color(255, 255, 255));
         n_mol_label.setText("N");
-        jPanel28.add(n_mol_label);
+        n_layout_title.add(n_mol_label);
 
-        N.add(jPanel28);
+        N.add(n_layout_title);
 
         n_textField.setBackground(new java.awt.Color(255, 255, 255));
         n_textField.setColumns(6);
@@ -825,17 +836,11 @@ public class ControlInterface extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel26;
-    private javax.swing.JPanel jPanel27;
-    private javax.swing.JPanel jPanel28;
-    private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel31;
-    private javax.swing.JPanel jPanel32;
-    private javax.swing.JPanel jPanel33;
-    private javax.swing.JPanel jPanel34;
     private javax.swing.JPanel jPanel35;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JPanel n_layout_title;
     private javax.swing.JLabel n_mol_label;
     private javax.swing.JTextField n_textField;
     private javax.swing.JPanel parent_layout;
@@ -844,19 +849,25 @@ public class ControlInterface extends javax.swing.JFrame {
     private javax.swing.JLabel play_restart_button;
     private javax.swing.JLabel pressure1_label;
     private javax.swing.JTextField pressure1_textField;
+    private javax.swing.JPanel pressure1_tittle_layout;
     private javax.swing.JLabel pressure2_label;
     private javax.swing.JTextField pressure2_textField;
+    private javax.swing.JPanel pressure2_tittle_layout;
     private javax.swing.JPanel separator_layout;
     private javax.swing.JLabel start_button_title;
     private javax.swing.JLabel temperature1_label;
     private javax.swing.JTextField temperature1_textField;
+    private javax.swing.JPanel temperature1_tittle_layout;
     private javax.swing.JLabel temperature2_label;
     private javax.swing.JTextField temperature2_textField;
+    private javax.swing.JPanel temperature2_tittle_layout;
     private javax.swing.JPanel transformation_layout;
     private javax.swing.JLabel volume1_label;
     private javax.swing.JTextField volume1_textField;
+    private javax.swing.JPanel volume1_tittle_layout;
     private javax.swing.JLabel volume2_label;
     private javax.swing.JTextField volume2_textField;
+    private javax.swing.JPanel volume2_tittle_layout;
     // End of variables declaration//GEN-END:variables
 
     

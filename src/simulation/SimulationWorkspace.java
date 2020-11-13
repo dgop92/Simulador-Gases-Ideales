@@ -64,7 +64,7 @@ public class SimulationWorkspace extends PApplet{
         saveCsvData = (boolean)AppSettings.getSettings().getSetting("save_data");
 
         robotoFont = new PFont(
-            AppResources.getAppResources().getFont(R.fonts.roboto_regular, 16), true);
+            AppResources.getResources().getFont(R.fonts.roboto_regular, 16), true);
 
         initSketch();
     }
@@ -93,6 +93,10 @@ public class SimulationWorkspace extends PApplet{
             transformationStrategy.updateData();
 
             statusBar.setData(transformationStrategy.getData());
+            statusBar.setGasExpandedCompressed(
+                transformationStrategy.isGasBeingExpanded(), 
+                transformationStrategy.isGasBeingCompressed());
+            
             cylinder.setPistonHeight(transformationStrategy.getData().get("fake_piston_height"));
             cylinder.increaseVelocity(transformationStrategy.getData().get("deltaVel"));
 
@@ -205,7 +209,7 @@ public class SimulationWorkspace extends PApplet{
                                         GasDataMap.MAX_NUMBER_OF_PARTICLES);
 
         if (userParticles > maxNumerOfParticles){
-            runErrorMessage = AppResources.getAppResources().getString(R.strings.sm_error_message) 
+            runErrorMessage = AppResources.getResources().getString(R.strings.sm_error_message) 
                 +  (int)maxNumerOfParticles;
             return true;
         }
@@ -214,12 +218,9 @@ public class SimulationWorkspace extends PApplet{
     }
 
     private void drawSketchFragmentsDivisions(){
-        statusBar.drawDivison();
         thermometer.drawDivison();
         barometer.drawDivison();
         pvGraph.drawDivison();
-        cylinder.drawDivison();
-        heatSource.drawDivison();
     }
 
 }

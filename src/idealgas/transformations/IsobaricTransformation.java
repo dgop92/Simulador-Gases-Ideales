@@ -23,7 +23,7 @@ public class IsobaricTransformation extends BaseTransformation implements Transf
         volume = volume0 * temperature / temperature0;
 
         work = pressure0 * (volume - volume0);
-        heat = nMoles * GasConstants.CPM * (temperature0 - temperature);
+        heat = nMoles * GasConstants.CPM * (temperature - temperature0);
 
         internalEnergy = Math.abs(heat);
 

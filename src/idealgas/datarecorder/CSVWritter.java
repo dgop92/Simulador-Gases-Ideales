@@ -12,7 +12,7 @@ public class CSVWritter {
 
     public static final String CSV_DATA_PATH = "smdata/data_csv";
 
-    private StringBuilder csvData;
+    private final StringBuilder csvData;
 
     public CSVWritter() {
         createSMDataFolder();

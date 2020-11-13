@@ -6,7 +6,7 @@ public class ResourceNotFoundException extends Exception {
 
     
     private static final long serialVersionUID = -734139226522061245L;
-    private String resourcePath;
+    private final String resourcePath;
 
     /**
      * Construye la excepcion con la respectiva ruta del recurso
@@ -22,6 +22,7 @@ public class ResourceNotFoundException extends Exception {
      * 
      * @return Un {@code string} con el mensaje de error de la excepcion
      */
+    @Override
     public String toString() {
         return "The following resource path couldn't be found " + 
         "\n\n" + "Path:  " + "[" + resourcePath + "]";

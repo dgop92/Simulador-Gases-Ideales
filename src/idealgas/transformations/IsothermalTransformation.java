@@ -24,15 +24,10 @@ public class IsothermalTransformation extends BaseTransformation implements Tran
 
         pressure = pressure0 * volume0 / volume;
 
-        if (deltaV < 0) {
-            work = nMoles * GasConstants.R * temperature0 * (float) Math.log(volume / volume0);
-        } else {
-            work = nMoles * GasConstants.R * temperature0 * (float) Math.log(volume0 / volume);
-        }
+        work = nMoles * GasConstants.R * temperature0 * (float) Math.log(volume / volume0);
         heat = work;
 
         volume += deltaV;
-
         this.updateVelocity(temperature);
         this.updateGasData();
     }
@@ -106,7 +101,6 @@ public class IsothermalTransformation extends BaseTransformation implements Tran
         }
         
         deltaVel = 0f;
-
     }
 
     @Override

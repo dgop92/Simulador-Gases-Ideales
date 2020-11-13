@@ -62,7 +62,7 @@ public class FinalDataForm extends DataForm {
 
                 if (!(isJustOneEmpty(v2, t2) && p2.isEmpty())) {
                     throw new ValidationError(
-                        AppResources.getAppResources().getString(R.strings.fv_isobaric_input_error));
+                        AppResources.getResources().getString(R.strings.fv_isobaric_input_error));
                 }
 
                 break;
@@ -71,7 +71,7 @@ public class FinalDataForm extends DataForm {
 
                 if (!(isJustOneEmpty(v2, p2) && t2.isEmpty())) {
                     throw new ValidationError(
-                        AppResources.getAppResources().getString(R.strings.fv_isothermal_input_error));
+                        AppResources.getResources().getString(R.strings.fv_isothermal_input_error));
                 }
                 break;
 
@@ -79,7 +79,7 @@ public class FinalDataForm extends DataForm {
 
                 if (!(isJustOneEmpty(t2, p2) && v2.isEmpty())) {
                     throw new ValidationError(
-                        AppResources.getAppResources().getString(R.strings.fv_isovolumetric_input_error));
+                        AppResources.getResources().getString(R.strings.fv_isovolumetric_input_error));
                 }
                 break;
 
@@ -87,7 +87,7 @@ public class FinalDataForm extends DataForm {
 
                 if (!isJustOneEmpty(t2, p2, v2)) {
                     throw new ValidationError(
-                        AppResources.getAppResources().getString(R.strings.fv_adiabatic_input_error));
+                        AppResources.getResources().getString(R.strings.fv_adiabatic_input_error));
                 }
                 break;
         }
@@ -109,7 +109,7 @@ public class FinalDataForm extends DataForm {
             }
 
         } catch (Exception e) {
-            throw new ValidationError(AppResources.getAppResources().getString(R.strings.fv_invalid_data));
+            throw new ValidationError(AppResources.getResources().getString(R.strings.fv_invalid_data));
         }
     }
 
@@ -117,7 +117,7 @@ public class FinalDataForm extends DataForm {
     private void validateRange() throws ValidationError{
 
         ValidationError vError = 
-            new ValidationError(AppResources.getAppResources().getString(R.strings.fv_invalid_range));
+            new ValidationError(AppResources.getResources().getString(R.strings.fv_invalid_range));
 
         if(isPressureUsed){
             if (finalPressure < GasDataMap.MIN_USER_PRESSURE || finalPressure > GasDataMap.MAX_USER_PRESSURE){

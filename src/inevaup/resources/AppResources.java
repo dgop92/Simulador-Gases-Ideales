@@ -40,7 +40,7 @@ public class AppResources {
      * 
      * @return intancia de appResources 
      */
-    public static AppResources getAppResources() {
+    public static AppResources getResources() {
         if (appResources == null) {
             appResources = new AppResources();
         }
@@ -207,7 +207,7 @@ public class AppResources {
      * Metodo para acceder a los iconos de la app 
      * 
      * @param iconName La llave del icono a obtener 
-     * @return: El icono relacionado a la llave 
+     * @return El icono relacionado a la llave 
      */
     public ImageIcon getIcon(String iconName) {
         String iconPath = ResourcesPath.getConcatPath(ResourcesPath.getFullIconsPath(), iconName);
@@ -218,7 +218,7 @@ public class AppResources {
      * Metodo para acceder a las imagenes de la app en java swing
      *  
      * @param imageName: La llave de la imagen a obtener.
-     * @return: la imagen relacionado a la llave 
+     * @return la imagen relacionado a la llave 
      */
     public ImageIcon getImage(String imageName) {
         String imagePath = ResourcesPath.getConcatPath(ResourcesPath.getFullImagesPath(), imageName);
@@ -229,7 +229,7 @@ public class AppResources {
      * Metodo para acceder a las imagenes de la app en processing
      *  
      * @param imageName: La llave de la imagen a obtener.
-     * @return: la ruta de la imagen relacionda a la llave 
+     * @return la ruta de la imagen relacionda a la llave 
      */
     public String getImageP(String imageName) {
         String imagesPath = ResourcesPath.getFullImagesPath();
@@ -244,7 +244,7 @@ public class AppResources {
      * Metodo para acceder a los sonidos de la app en processing
      *  
      * @param soundName: La llave del sonido a obtener
-     * @return: la ruta del sonido relacionda a la llave 
+     * @return la ruta del sonido relacionda a la llave 
      */
     public String getSoundP(String soundName) {
         String soundsPath = ResourcesPath.getFullSoundsPath();

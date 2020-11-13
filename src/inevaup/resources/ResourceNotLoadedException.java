@@ -7,8 +7,8 @@ public class ResourceNotLoadedException extends Exception{
    
     private static final long serialVersionUID = -7444763484093796584L;
     
-    private String reason;
-    private String resourcePath;
+    private final String reason;
+    private final String resourcePath;
 
     /**
      * Construye la excepcion con sus respectivos parametros
@@ -36,6 +36,7 @@ public class ResourceNotLoadedException extends Exception{
      * 
      * @return Un {@code string} con el mensaje de error de la excepcion
      */
+    @Override
     public String toString() {
         return "The following resource path couldn't be loaded " + "[" + resourcePath + "]" +
             "\n\n" + "Reason: " + reason;

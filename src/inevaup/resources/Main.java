@@ -11,7 +11,7 @@ public class Main {
         AppSettings settings = AppSettings.getSettings();
         settings.loadSettings();
         
-        AppResources appResources = AppResources.getAppResources();
+        AppResources appResources = AppResources.getResources();
         appResources.loadResources();
 
         if(appResources.AreAllResourcesLoaded()){

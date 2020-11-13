@@ -4,7 +4,7 @@ public class GasDataMap {
     
     public static final int MIN_NUMBER_OF_PARTICLES = 25;
     public static final int MAX_NUMBER_OF_PARTICLES = 80;
-    public static final int MOLES_PER_PARTICLE = 1 / 30;
+    public static final float MOLES_PER_PARTICLE = 0.1f;
 
     public static final float MIN_USER_VOLUME = 91.248f;
     public static final float MAX_USER_VOLUME = 128.90f;

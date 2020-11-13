@@ -6,11 +6,11 @@ import idealgas.TransformationType;
 
 public class HistoryItem {
     
-    private HashMap<String, Float> initialData;
-    private HashMap<String, Float> finalData;
-    private TransformationType transformationType;
+    private final HashMap<String, Float> initialData;
+    private final HashMap<String, Float> finalData;
+    private final TransformationType transformationType;
 
-    private String date;
+    private final String date;
 
     public HistoryItem(HashMap<String, Float> initialData, HashMap<String, Float> finalData,
             TransformationType transformationType, String date) {
@@ -40,17 +40,17 @@ public class HistoryItem {
     public String toString(){
 
         String initialDataString =  
-            String.format("DI: ( %.2f %.2f %.2f - %.2f)", 
-                          initialData.get("pressure"), 
-                          initialData.get("volume"),
+            String.format("DI: ( %.2f - %.2f - %.2f - %.2f)", 
+                          initialData.get("volume"), 
                           initialData.get("temperature"),
+                          initialData.get("pressure"),
                           initialData.get("n"));
             
         String finalDataString = 
-            String.format("DF: ( %.2f %.2f %.2f )", 
-                          finalData.get("pressure"), 
-                          finalData.get("volume"),
-                          finalData.get("temperature"));
+            String.format("DF: ( %.2f - %.2f - %.2f )", 
+                          finalData.get("volume"), 
+                          finalData.get("temperature"),
+                          finalData.get("pressure"));
         
         String transformationTypeString = "T: " + transformationType.name();
         

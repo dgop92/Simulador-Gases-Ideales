@@ -19,7 +19,7 @@ public class Main {
             errInfoDialog.setVisible(true);
         }
 
-        AppResources appResources = AppResources.getAppResources();
+        AppResources appResources = AppResources.getResources();
         appResources.loadResources();
 
         if (appResources.AreAllResourcesLoaded()) {

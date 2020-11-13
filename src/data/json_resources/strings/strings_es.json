@@ -66,6 +66,12 @@
 	"pause_error" : "No puedes pausar la simulacion si esta no ha comenzado",
 	"history_error" : "No se puede guardar los datos en el historial",
 	"history_error2": "Debes seleccionar un item",
-	"particles_error" : "Numero de particulas excedidas"
+	"particles_error" : "Numero de particulas excedidas",
+
+	"status_gas_expanded": "Gas Expandiendose",
+	"status_gas_compressed": "Gas Comprimiendose",
+
+	"history_dialog_title": "Historial",
+	"history_dialog_accept": "Aceptar"
 
 }

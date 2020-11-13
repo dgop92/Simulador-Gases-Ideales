@@ -15,7 +15,7 @@ public class Barometer extends SketchFragment {
         float fragmentWidth, float fragmentHeight) {
         super(sketch, x, y, fragmentWidth, fragmentHeight);
 
-        barometerImage= sketch.loadImage(AppResources.getAppResources().getImageP(R.images.barometro));
+        barometerImage= sketch.loadImage(AppResources.getResources().getImageP(R.images.barometro));
 
     }
 

@@ -10,7 +10,7 @@ public class About extends javax.swing.JPanel {
 
     public About(MenuActions menuActions){
         this.menuActions = menuActions;
-        appResources = AppResources.getAppResources();
+        appResources = AppResources.getResources();
 
         initComponents();
         initCustomResources();
@@ -24,19 +24,19 @@ public class About extends javax.swing.JPanel {
         home_back_title.setIcon(appResources.getIcon(R.icons.menu_back_arrow));
         home_back_title.setText(appResources.getString(R.strings.menu_back_home_title));
 
-        dev_title.setFont(AppResources.getAppResources().getFont(R.fonts.montserrat_bold, 16));
+        dev_title.setFont(AppResources.getResources().getFont(R.fonts.montserrat_bold, 16));
         dev_title.setForeground(appResources.getColor(R.colors.primary_text));
         dev_title.setText(appResources.getString(R.strings.menu_about_devs_title));
 
-        dev_1_label.setFont(AppResources.getAppResources().getFont(R.fonts.roboto_regular, 16));
+        dev_1_label.setFont(AppResources.getResources().getFont(R.fonts.roboto_regular, 16));
         dev_1_label.setForeground(appResources.getColor(R.colors.primary_text));
         dev_1_label.setText(appResources.getString(R.strings.menu_about_dev_1));
 
-        dev_2_label.setFont(AppResources.getAppResources().getFont(R.fonts.roboto_regular, 16));
+        dev_2_label.setFont(AppResources.getResources().getFont(R.fonts.roboto_regular, 16));
         dev_2_label.setForeground(appResources.getColor(R.colors.primary_text));
         dev_2_label.setText(appResources.getString(R.strings.menu_about_dev_2));
 
-        dev_3_label.setFont(AppResources.getAppResources().getFont(R.fonts.roboto_regular, 16));
+        dev_3_label.setFont(AppResources.getResources().getFont(R.fonts.roboto_regular, 16));
         dev_3_label.setForeground(appResources.getColor(R.colors.primary_text));
         dev_3_label.setText(appResources.getString(R.strings.menu_about_dev_3));
     }

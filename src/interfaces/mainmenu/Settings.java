@@ -17,7 +17,7 @@ public class Settings extends javax.swing.JPanel {
     
     public Settings(MenuActions menuActions){
         this.menuActions = menuActions;
-        appResources = AppResources.getAppResources();  
+        appResources = AppResources.getResources();  
         
         initComponents();
         initCustomResources();

@@ -1,5 +1,6 @@
 package inevaup.preferences;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -25,6 +26,10 @@ public class AppSettings {
             settings = new AppSettings();
         }
         return settings;
+    }
+
+    private AppSettings() {
+        createDataFolder();
     }
 
     public void loadSettings() {
@@ -57,7 +62,7 @@ public class AppSettings {
             fileWriter.write(Jsoner.prettyPrint(jsonSettings.toJson()));
             fileWriter.flush();
             fileWriter.close();
-        } catch (Exception e) {
+        } catch (IOException e) {
             return false;
         }
 
@@ -85,6 +90,14 @@ public class AppSettings {
             errorMessage = "A parse error occurred, please make sure the json file is written properly";
         }
 
+    }
+
+    private void createDataFolder(){
+
+        File dataFolder = new File(BASE_PATH);
+        if (!dataFolder.exists()){
+            dataFolder.mkdirs();
+        }
     }
 
     private void setDefaultSettings(){

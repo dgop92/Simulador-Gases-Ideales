@@ -20,10 +20,10 @@ public class HeatSource extends SketchFragment {
         float fragmentWidth, float fragmentHeight) {
         super(sketch, x, y, fragmentWidth, fragmentHeight);
 
-        fireIconLeft = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.fire_icon_left));
-        fireIconRight = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.fire_icon_right));
-        flameImage = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.hotsource)); 
-        stones = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.stones)); 
+        fireIconLeft = sketch.loadImage(AppResources.getResources().getImageP(R.images.fire_icon_left));
+        fireIconRight = sketch.loadImage(AppResources.getResources().getImageP(R.images.fire_icon_right));
+        flameImage = sketch.loadImage(AppResources.getResources().getImageP(R.images.hotsource)); 
+        stones = sketch.loadImage(AppResources.getResources().getImageP(R.images.stones)); 
     }
     
     @Override

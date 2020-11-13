@@ -7,6 +7,7 @@ public class R {
 	public enum strings {
 		third_advisor,
 		menu_about_devs_title,
+		history_dialog_title,
 		fv_isovolumetric_input_error,
 		general_settings_title,
 		controlinterface_isobaric_rb,
@@ -17,7 +18,9 @@ public class R {
 		sm_error_message,
 		form_error_title,
 		controlinterface_tittle,
+		status_gas_expanded,
 		Four_advisor,
+		history_dialog_accept,
 		firt_advisor,
 		menu_instructions_title,
 		iv_invalid_range,
@@ -35,6 +38,7 @@ public class R {
 		menu_settings_title,
 		controlinterface_pause_resume,
 		datos_settings_subtitle2,
+		status_gas_compressed,
 		datos_settings_subtitle1,
 		fv_isothermal_input_error,
 		menu_settings_save,
@@ -86,12 +90,10 @@ public class R {
 		public final static String fire_icon_left = "/fire-icon-left.png";
 		public final static String fire_icon_right = "/fire-icon-right.png";
 		public final static String hotsource = "/hotSource.png";
-		public final static String images = "/images.txt";
 		public final static String part2 = "/part2.png";
 		public final static String parte1 = "/parte1.png";
 		public final static String piston1 = "/Piston1.png";
 		public final static String pistonengine = "/PistonEngine.png";
-		public final static String statusbar = "/StatusBar.png";
 		public final static String stones = "/stones.png";
 		public final static String temperatura2 = "/temperatura2.png";
 

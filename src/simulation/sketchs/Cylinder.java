@@ -30,9 +30,9 @@ public class Cylinder extends SketchFragment {
     public Cylinder(SimulationWorkspace sketch, float x, float y, float fragmentWidth, float fragmentHeight) {
         super(sketch, x, y, fragmentWidth, fragmentHeight);
 
-        cylinderImage = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.cylinder)); 
-        pistonImage = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.piston1));
-        pistonEngineImage = sketch.loadImage(AppResources.getAppResources().getImageP(R.images.pistonengine));
+        cylinderImage = sketch.loadImage(AppResources.getResources().getImageP(R.images.cylinder)); 
+        pistonImage = sketch.loadImage(AppResources.getResources().getImageP(R.images.piston1));
+        pistonEngineImage = sketch.loadImage(AppResources.getResources().getImageP(R.images.pistonengine));
 
         pistonHeight = GasDataMap.MIN_PISTON_HEIGHT;
         cylinderDimension = new Rectangle();
@@ -65,12 +65,6 @@ public class Cylinder extends SketchFragment {
 
     public void increaseVelocity(float dvel){
         this.dvel = dvel;
-    }
-
-    public void fixParticle(){
-        for (Particle particle : particles) {
-            particle.fixBorderParticleEscape();
-        }
     }
 
     public void fillCylinder(float initialVolume, int nParticle, float v) {
@@ -106,7 +100,7 @@ public class Cylinder extends SketchFragment {
 
     private void analizeCollisions() {
         for (int i = 0; i < particles.length; i++) {
-            particles[i].fixBorderParticleEscape();
+            particles[i].checkBorderCollision();
             if (userNeedCollisions){
                 for (int j = 0; j < particles.length; j++) {
                     if (i != j) {
@@ -316,17 +310,6 @@ public class Cylinder extends SketchFragment {
         }
 
         public void checkBorderCollision(){
-
-            if(position.x - RADIUS <= cylinderDimension.x || position.x + RADIUS >= cylinderDimension.x + cylinderDimension.width){
-                this.velocity.x *= -1;
-            }
-    
-            if(position.y - RADIUS <= cylinderDimension.y || position.y + RADIUS >= cylinderDimension.y + cylinderDimension.height){
-                this.velocity.y *= -1;
-            }
-        }
-
-        public void fixBorderParticleEscape(){
              
             if(position.x - RADIUS <= cylinderDimension.x){
                 position.x = cylinderDimension.x + RADIUS;

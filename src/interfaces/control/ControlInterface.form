@@ -170,7 +170,7 @@
                     <Property name="alignment" type="int" value="2"/>
                   </Layout>
                   <SubComponents>
-                    <Container class="javax.swing.JPanel" name="jPanel26">
+                    <Container class="javax.swing.JPanel" name="volume1_tittle_layout">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="6c" green="2f" red="0" type="rgb"/>
@@ -221,7 +221,7 @@
                     <Property name="alignment" type="int" value="2"/>
                   </Layout>
                   <SubComponents>
-                    <Container class="javax.swing.JPanel" name="jPanel27">
+                    <Container class="javax.swing.JPanel" name="temperature1_tittle_layout">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="6c" green="2f" red="0" type="rgb"/>
@@ -272,7 +272,7 @@
                     <Property name="alignment" type="int" value="2"/>
                   </Layout>
                   <SubComponents>
-                    <Container class="javax.swing.JPanel" name="jPanel29">
+                    <Container class="javax.swing.JPanel" name="pressure1_tittle_layout">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="6c" green="2f" red="0" type="rgb"/>
@@ -323,7 +323,7 @@
                     <Property name="alignment" type="int" value="2"/>
                   </Layout>
                   <SubComponents>
-                    <Container class="javax.swing.JPanel" name="jPanel32">
+                    <Container class="javax.swing.JPanel" name="volume2_tittle_layout">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="6c" green="2f" red="0" type="rgb"/>
@@ -374,7 +374,7 @@
                     <Property name="alignment" type="int" value="2"/>
                   </Layout>
                   <SubComponents>
-                    <Container class="javax.swing.JPanel" name="jPanel33">
+                    <Container class="javax.swing.JPanel" name="temperature2_tittle_layout">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="6c" green="2f" red="0" type="rgb"/>
@@ -425,7 +425,7 @@
                     <Property name="alignment" type="int" value="2"/>
                   </Layout>
                   <SubComponents>
-                    <Container class="javax.swing.JPanel" name="jPanel34">
+                    <Container class="javax.swing.JPanel" name="pressure2_tittle_layout">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="6c" green="2f" red="0" type="rgb"/>
@@ -504,7 +504,7 @@
                     <Property name="alignment" type="int" value="2"/>
                   </Layout>
                   <SubComponents>
-                    <Container class="javax.swing.JPanel" name="jPanel28">
+                    <Container class="javax.swing.JPanel" name="n_layout_title">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="6c" green="2f" red="0" type="rgb"/>

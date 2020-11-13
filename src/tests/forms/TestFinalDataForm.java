@@ -11,7 +11,7 @@ import junit.framework.TestCase;
 
 public class TestFinalDataForm extends TestCase{
     
-    private int NUMBER_OF_TEST = 50;
+    private final int NUMBER_OF_TEST = 50;
 
     @Test
     public void testInvalidEmptyData(){

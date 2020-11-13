@@ -12,17 +12,20 @@ import inevaup.resources.R;
 
 public class HistoryDialog extends javax.swing.JDialog {
 
-    private DefaultListModel<HistoryItem> historyModel;
+    private final DefaultListModel<HistoryItem> historyModel;
     public boolean isItemSelected;
-    
+    private final AppResources appResources;
+
     public HistoryDialog(java.awt.Frame parent, boolean modal, 
             DefaultListModel<HistoryItem> historyModel) {
         super(parent, modal);
         
+        appResources = AppResources.getResources();
         this.historyModel = historyModel;
         isItemSelected = false;
         
         initComponents();
+        initCustomResources();
         centreWindow();
     }
     
@@ -31,6 +34,23 @@ public class HistoryDialog extends javax.swing.JDialog {
         int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
         int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
         this.setLocation(x, y - 25);
+    }
+
+    private void initCustomResources(){
+         
+        header_layout.setBackground(appResources.getColor(R.colors.dark));
+        
+        header_title.setForeground(appResources.getColor(R.colors.white_text));
+        header_title.setFont(appResources.getFont(R.fonts.montserrat_bold, 18));
+        header_title.setText(appResources.getString(R.strings.history_dialog_title));
+
+        accept_button.setBackground(appResources.getColor(R.colors.primary));
+        accept_button_title.setForeground(appResources.getColor(R.colors.white_text));
+        accept_button_title.setFont(appResources.getFont(R.fonts.roboto_regular, 16));
+        accept_button_title.setText(appResources.getString(R.strings.history_dialog_accept));
+
+        history_list.setFont(appResources.getFont(R.fonts.roboto_regular, 14));
+        history_list.setForeground(appResources.getColor(R.colors.secondary_text));
     }
 
     
@@ -139,8 +159,8 @@ public class HistoryDialog extends javax.swing.JDialog {
         if (selectedIndex == -1){
             InfoDialog noSelectedItemErrorDialog = new
                 InfoDialog(null, 
-                AppResources.getAppResources().getString(R.strings.error_title_interface), 
-                AppResources.getAppResources().getString(R.strings.history_error2), 
+                AppResources.getResources().getString(R.strings.error_title_interface), 
+                AppResources.getResources().getString(R.strings.history_error2), 
                 InfoDialog.TypeInfoDialog.ERROR_DIALOG);
             noSelectedItemErrorDialog.setVisible(true);
             isItemSelected = false;

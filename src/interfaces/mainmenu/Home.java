@@ -11,7 +11,7 @@ public class Home extends javax.swing.JPanel {
     private AppResources appResources;
 
     public Home(MenuActions menuActions){
-        appResources = AppResources.getAppResources();
+        appResources = AppResources.getResources();
         this.menuActions = menuActions;
         
         initComponents();

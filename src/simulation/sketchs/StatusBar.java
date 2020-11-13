@@ -2,13 +2,18 @@ package simulation.sketchs;
 
 import java.util.HashMap;
 
+import inevaup.resources.AppResources;
+import inevaup.resources.R;
+
 import java.text.DecimalFormat;
 
 import simulation.SimulationWorkspace;
 
 public class StatusBar extends SketchFragment {
 
-    HashMap<String, Float> currentGasData;
+    private HashMap<String, Float> currentGasData;
+    boolean isGasBeingExpanded;
+    boolean isGasBeingCompressed;
 
     public StatusBar(SimulationWorkspace sketch, float x, float y, float 
         fragmentWidth, float fragmentHeight) {
@@ -62,6 +67,18 @@ public class StatusBar extends SketchFragment {
                         x + 300, 
                         y + 20);
 
+            if (isGasBeingCompressed){
+                sketch.text(AppResources.getResources().getString(R.strings.status_gas_compressed), 
+                        x + 300, 
+                        y + 40);
+            }
+
+            if (isGasBeingExpanded){
+                sketch.text(AppResources.getResources().getString(R.strings.status_gas_expanded), 
+                        x + 300, 
+                        y + 40);
+            }
+
             
         }
 
@@ -70,6 +87,11 @@ public class StatusBar extends SketchFragment {
         sketch.textSize(14);
         drawSimulationStatus();
          
+    }
+
+    public void setGasExpandedCompressed(boolean isBeingExpanded, boolean isBeingCompressed){
+        this.isGasBeingExpanded = isBeingExpanded;
+        this.isGasBeingCompressed = isBeingCompressed;
     }
     
     public void setData(HashMap<String, Float> currentGasData){

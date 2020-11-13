@@ -10,7 +10,7 @@ public class Instructions extends javax.swing.JPanel {
 
     public Instructions(MenuActions menuActions){
         this.menuActions = menuActions;
-        appResources = AppResources.getAppResources();
+        appResources = AppResources.getResources();
 
         initComponents();
         initCustomResources();

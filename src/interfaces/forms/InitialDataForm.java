@@ -57,15 +57,16 @@ public class InitialDataForm extends DataForm {
             Float.parseFloat(v1);
             Float.parseFloat(t1);
             Float.parseFloat(p1);
+            Float.parseFloat(n);
 
         } catch (Exception e) {
-            throw new ValidationError(AppResources.getAppResources().getString(R.strings.iv_invalid_data));
+            throw new ValidationError(AppResources.getResources().getString(R.strings.iv_invalid_data));
         }
     }
 
     private void validateEmtytextfield() throws ValidationError {
         if (p1.isEmpty() || t1.isEmpty() || v1.isEmpty() || n.isEmpty()) {
-            throw new ValidationError(AppResources.getAppResources().getString(R.strings.iv_empty_fields));
+            throw new ValidationError(AppResources.getResources().getString(R.strings.iv_empty_fields));
 
         }
 
@@ -78,7 +79,7 @@ public class InitialDataForm extends DataForm {
         initialVolume= Float.parseFloat(v1);
         initialn=Float.parseFloat(n);
 
-        ValidationError vError = new ValidationError(AppResources.getAppResources().getString(R.strings.iv_invalid_range));
+        ValidationError vError = new ValidationError(AppResources.getResources().getString(R.strings.iv_invalid_range));
 
         if (initialVolume< GasDataMap.MIN_USER_VOLUME || initialVolume > GasDataMap.MAX_USER_VOLUME ) {
             throw vError;
@@ -90,7 +91,7 @@ public class InitialDataForm extends DataForm {
             throw vError;
         }
         if(initialn <= 0){
-            throw new ValidationError(AppResources.getAppResources().getString(R.strings.iv_negative_particles));
+            throw new ValidationError(AppResources.getResources().getString(R.strings.iv_negative_particles));
         }
 
     }

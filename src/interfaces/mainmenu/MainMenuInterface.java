@@ -17,7 +17,7 @@ public class MainMenuInterface extends javax.swing.JFrame implements MenuActions
     private AppResources appResources;
   
     public MainMenuInterface() {
-        appResources = AppResources.getAppResources();
+        appResources = AppResources.getResources();
         
         initComponents();
         initCustomResources();

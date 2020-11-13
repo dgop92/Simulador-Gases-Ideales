@@ -11,12 +11,12 @@ import java.util.Set;
  */
 public class ClassBuilder {
 
-    private String className;
-    private String packageName;
-    private String classPath;
+    private final String className;
+    private final String packageName;
+    private final String classPath;
 
     private String generatedClassText;
-    private AppResources appResources;
+    private final AppResources appResources;
 
     /**
      * Construye la clase con la ruta, nombre del paquetes y el nombre de la clase
@@ -30,7 +30,7 @@ public class ClassBuilder {
         this.classPath = classPath;
         this.packageName = packageName;
 
-        appResources = AppResources.getAppResources();
+        appResources = AppResources.getResources();
         generatedClassText = "";
     }
 

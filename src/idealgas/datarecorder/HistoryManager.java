@@ -38,7 +38,7 @@ public class HistoryManager {
             fileWriter.write(Jsoner.prettyPrint(jsonHistoryData.toJson()));
             fileWriter.flush();
             fileWriter.close();
-        } catch (Exception e) {
+        } catch (IOException e) {
             return false;
         }
 

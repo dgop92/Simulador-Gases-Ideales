@@ -14,7 +14,7 @@ public class Thermometer extends SketchFragment {
         float fragmentWidth, float fragmentHeight) {
         super(sketch, x, y, fragmentWidth, fragmentHeight);
         
-        thermotherImage=sketch.loadImage(AppResources.getAppResources().getImageP(R.images.temperatura2));
+        thermotherImage=sketch.loadImage(AppResources.getResources().getImageP(R.images.temperatura2));
         sketch.noStroke();
 
     }

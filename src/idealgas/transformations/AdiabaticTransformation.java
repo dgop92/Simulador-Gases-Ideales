@@ -24,8 +24,8 @@ public class AdiabaticTransformation extends BaseTransformation implements Trans
         volume = volume0 * (float) Math.pow(temperature0 / temperature, 1 / (GasConstants.Y_ADIABATIC - 1));
         pressure = pressure0 * (float) Math.pow(volume0 / volume, GasConstants.Y_ADIABATIC);
 
-        work = (1 / (GasConstants.Y_ADIABATIC - 1)) * (pressure0 * volume0 - pressure0 * volume);
-        internalEnergy = Math.abs(nMoles * GasConstants.CVM * (temperature0 - temperature));
+        work = - (1 / (GasConstants.Y_ADIABATIC - 1)) * (pressure0 * volume0 - pressure0 * volume);
+        internalEnergy = Math.abs(nMoles * GasConstants.CVM * (temperature - temperature0));
 
         temperature += deltaT;
 
