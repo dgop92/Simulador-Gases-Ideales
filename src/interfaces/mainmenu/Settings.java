@@ -227,7 +227,7 @@ public class Settings extends javax.swing.JPanel {
         settings_content_layout.setBackground(new java.awt.Color(248, 249, 250));
 
         save_button.setBackground(new java.awt.Color(1, 87, 155));
-        save_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        save_button.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         save_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 OnSaveButton(evt);
@@ -369,7 +369,7 @@ public class Settings extends javax.swing.JPanel {
         simulation_settings_layout.add(collisions_layout);
 
         home_back_button.setBackground(new java.awt.Color(1, 87, 155));
-        home_back_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        home_back_button.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         home_back_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 OnBackHomeButton(evt);
@@ -399,13 +399,12 @@ public class Settings extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                         .addGroup(settings_content_layoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(simulation_settings_layout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(simulation_label))
-                        .addGap(61, 61, 61))
+                            .addComponent(simulation_label)))
                     .addGroup(settings_content_layoutLayout.createSequentialGroup()
                         .addComponent(home_back_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(save_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29))))
+                        .addComponent(save_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(61, 61, 61))
         );
         settings_content_layoutLayout.setVerticalGroup(
             settings_content_layoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

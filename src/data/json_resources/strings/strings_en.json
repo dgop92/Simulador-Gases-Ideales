@@ -1,0 +1,78 @@
+{
+	"app_name": "Ideal gas simulator",
+
+	"menu_start_title": "Start",
+	"menu_settings_title": "Settings",
+	"menu_instructions_title": "Instructions",
+	"menu_about_title": "About us",
+    "menu_back_home_title": "Back",
+	
+	"menu_settings_save": "Save",
+
+	"general_settings_title" : "General Settings",
+	"general_settings_subtitle1" : "Language:",
+	"general_settings_subtitle2" : "Theme:",
+	"datos_settings_title" : "Data",
+	"datos_settings_subtitle1" : "Save history:",
+	"datos_settings_subtitle2" : "Save data csv:",
+	"simulacion_settings_title" : "Simulation ",
+	"fps_title" : "FPS:",
+	"simulacion_settings_subtitle2" : "Simulation time: ",
+	"simulacion_settings_subtitle3" : "Collisions:",
+
+	"menu_about_devs_title": "Developers",
+	"menu_about_dev_1": "Diego Puche",
+	"menu_about_dev_3": "Juan Anzola",
+	"menu_about_dev_2": "Mateo Anaya",
+
+	"controlinterface_tittle": "Control Interface ",
+	"controlinterface_isobaric_rb": "T. Isobaric",
+	"controlinterface_isovolumetric_rb": "T. Isovolumetric",
+	"controlinterface_isothermal_rb": "T. Isothermal",
+	"controlinterface_adiabatic_rb": "T. Adiabatic",
+
+	"controlinterface_pause_resume": "Pause/Resume",
+	"controlinterface_reset_play": "Restart/Start",
+
+	"iv_empty_fields": "Please, enter the initial Data",
+	"iv_invalid_data": "The initial Data is invalid",
+	"iv_invalid_range": "Initial data is not within the accepted range",
+	"iv_negative_particles": "The number of particles can't be negative",
+
+	"fv_isobaric_input_error": "For the isobaric transformation, you only have to enter the final temperature or the final volume", 
+	"fv_isovolumetric_input_error": "For the isovolumetric transformation , you only have to enter the final temperature or the final pressure", 
+	"fv_isothermal_input_error": "For the isothermal transformation, you only have to enter the final volume or the final pressure", 
+	"fv_adiabatic_input_error": "For the adiabatic , you only have to enter the final pressure or the volume or the temperature",
+
+	"fv_invalid_data": "The entered data is invalid",
+	"fv_invalid_range": " Out of range",
+
+	"sm_error_message": "The maximum number of particles for this simulation is ",
+
+	"Welcome" : "title",
+	"firt_advisor" : "As you can see later, the control interface is divided into two parts ",
+	"second_adivisor" : "In this part you can enter the initial and final data according to their range.",
+	"third_advisor" : "If you click here you can see the history data.",
+	"Four_advisor" : "In this part you can choose the type of transformation of your preference.",
+	"fifth_advisor" : "If you click here you can pause or resume the simulation. ",
+	"six_advisor" : "If you click here you can restart or start the simulation.",
+        
+	"warn_title_interface" : "Warning",
+	"warn_settings_save_message" : "Are you sure to save the settings?",
+	"error_settings_title" : "Save error",
+	"error_settings_message" : "Settings could not be saved", 
+
+	"form_error_title" : "Validation error",
+	"error_title_interface" : "Error",
+	"pause_error" : "You can't pause the simulation when it hasn't started",
+	"history_error" : "It can't be saved the data in the history",
+	"history_error2": "You should choose a item",
+	"particles_error" : "The number of particle is out of range",
+
+	"status_gas_expanded": "Gas Expanding",
+	"status_gas_compressed": "Gas Compressing",
+
+	"history_dialog_title": "History",
+	"history_dialog_accept": "OK"
+
+}

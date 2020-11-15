@@ -719,6 +719,7 @@ public class ControlInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_onPauseResumeButton
 
     private void OnBackMenuButton(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OnBackMenuButton
+        simulationWorkspace.dispose();
         PSurface surface = simulationWorkspace.getSurface();
         SmoothCanvas smoothCanvas = (SmoothCanvas)surface.getNative();
         JFrame frame = (JFrame) smoothCanvas.getFrame();

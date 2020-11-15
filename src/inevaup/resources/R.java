@@ -59,6 +59,7 @@ public class R {
 		general_settings_subtitle1,
 		simulacion_settings_subtitle2,
 		simulacion_settings_subtitle3,
+		six_advisor,
 		pause_error,
 		iv_invalid_data,
 		fv_isobaric_input_error,

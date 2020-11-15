@@ -25,25 +25,45 @@ public class Instructions extends javax.swing.JPanel {
         home_back_title.setText(appResources.getString(R.strings.menu_back_home_title));
         
         advice_label.setIcon(appResources.getIcon(R.icons.advice));
+        advice_label.setForeground(appResources.getColor(R.colors.primary_text));
         advice_label.setFont(appResources.getFont(R.fonts.roboto_regular, 14));
+        advice_label.setText(appResources.getString(R.strings.firt_advisor));
+        
         part1_label.setForeground(appResources.getColor(R.colors.white_text));
         part1_label.setFont(appResources.getFont(R.fonts.roboto_regular, 14));
+        
         part2_label.setForeground(appResources.getColor(R.colors.white_text));
         part2_label.setFont(appResources.getFont(R.fonts.roboto_regular, 14));
+        
         image_label.setIcon(appResources.getImage(R.images.parte1));
         image_label2.setIcon(appResources.getImage(R.images.part2));
+        
         text_label1.setIcon(appResources.getIcon(R.icons.advice));
-        text_label1.setFont(appResources.getFont(R.fonts.roboto_regular, 12));
+        text_label1.setForeground(appResources.getColor(R.colors.primary_text));
+        text_label1.setFont(appResources.getFont(R.fonts.roboto_regular, 14));
+        text_label1.setText(appResources.getString(R.strings.second_adivisor));
+        
+        
         text_label2.setIcon(appResources.getIcon(R.icons.history_icon));
-        text_label2.setFont(appResources.getFont(R.fonts.roboto_regular, 12));
+        text_label2.setForeground(appResources.getColor(R.colors.primary_text));
+        text_label2.setFont(appResources.getFont(R.fonts.roboto_regular, 14));
+        text_label2.setText(appResources.getString(R.strings.third_advisor));
+        
+        
         text_label3.setIcon(appResources.getIcon(R.icons.advice));
-        text_label3.setFont(appResources.getFont(R.fonts.roboto_regular, 12));
+        text_label3.setForeground(appResources.getColor(R.colors.primary_text));
+        text_label3.setFont(appResources.getFont(R.fonts.roboto_regular, 14));
+        text_label3.setText(appResources.getString(R.strings.Four_advisor));
+        
         text_label4.setIcon(appResources.getIcon(R.icons.control_play_pause));
-        text_label4.setFont(appResources.getFont(R.fonts.roboto_regular, 12));
+        text_label4.setForeground(appResources.getColor(R.colors.primary_text));
+        text_label4.setFont(appResources.getFont(R.fonts.roboto_regular, 14));
+        text_label4.setText(appResources.getString(R.strings.fifth_advisor));
+        
         text_label5.setIcon(appResources.getIcon(R.icons.control_reset));
-        text_label5.setFont(appResources.getFont(R.fonts.roboto_regular, 12));
-        
-        
+        text_label5.setForeground(appResources.getColor(R.colors.primary_text));
+        text_label5.setFont(appResources.getFont(R.fonts.roboto_regular, 14));
+        text_label5.setText(appResources.getString(R.strings.six_advisor));
         
         
     }
@@ -63,15 +83,15 @@ public class Instructions extends javax.swing.JPanel {
         part2_panel = new javax.swing.JPanel();
         part2_label = new javax.swing.JLabel();
         text_label3 = new javax.swing.JLabel();
-        text_label4 = new javax.swing.JLabel();
         text_label5 = new javax.swing.JLabel();
+        text_label4 = new javax.swing.JLabel();
         advice_label = new javax.swing.JLabel();
         image_label = new javax.swing.JLabel();
 
         settings_content_layout.setBackground(new java.awt.Color(255, 255, 255));
 
         home_back_button.setBackground(new java.awt.Color(1, 87, 155));
-        home_back_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        home_back_button.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         home_back_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 OnBackHomeButton(evt);
@@ -116,15 +136,15 @@ public class Instructions extends javax.swing.JPanel {
         text_label3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/icons/advice.png"))); // NOI18N
         text_label3.setText("En esta parte podras elegir el tipo de transformacion de su preferencia.");
 
-        text_label4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        text_label4.setForeground(new java.awt.Color(1, 87, 155));
-        text_label4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/icons/control-reset.png"))); // NOI18N
-        text_label4.setText("Si haces click aqui podras reiniciar o comenzar la simulacion.");
-
         text_label5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         text_label5.setForeground(new java.awt.Color(1, 87, 155));
-        text_label5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/icons/control-play-pause.png"))); // NOI18N
-        text_label5.setText("Si haces click aqui podras pausar o resumir la simulacion.");
+        text_label5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/icons/control-reset.png"))); // NOI18N
+        text_label5.setText("Si haces click aqui podras reiniciar o comenzar la simulacion.");
+
+        text_label4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        text_label4.setForeground(new java.awt.Color(1, 87, 155));
+        text_label4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/data/icons/control-play-pause.png"))); // NOI18N
+        text_label4.setText("Si haces click aqui podras pausar o resumir la simulacion.");
 
         advice_label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         advice_label.setForeground(new java.awt.Color(1, 87, 155));
@@ -155,8 +175,8 @@ public class Instructions extends javax.swing.JPanel {
                             .addComponent(text_label3)
                             .addComponent(text_label1)
                             .addComponent(text_label2)
-                            .addComponent(text_label4)
-                            .addComponent(text_label5)))
+                            .addComponent(text_label5)
+                            .addComponent(text_label4)))
                     .addGroup(settings_content_layoutLayout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addComponent(advice_label))
@@ -189,9 +209,9 @@ public class Instructions extends javax.swing.JPanel {
                     .addGroup(settings_content_layoutLayout.createSequentialGroup()
                         .addComponent(text_label3)
                         .addGap(10, 10, 10)
-                        .addComponent(text_label5)
+                        .addComponent(text_label4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(text_label4)))
+                        .addComponent(text_label5)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(home_back_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(16, Short.MAX_VALUE))
