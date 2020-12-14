@@ -29,6 +29,7 @@ public class Thermometer extends SketchFragment {
         this.temperature = temperature;
     }
 
+    @Override
     public void draw(){
         
         float transformation,tp=5;

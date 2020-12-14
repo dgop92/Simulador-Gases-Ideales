@@ -5,11 +5,8 @@ import java.util.HashMap;
 import idealgas.GasDataMap;
 import idealgas.TransformationType;
 import idealgas.datarecorder.CSVWritter;
-import idealgas.transformations.AdiabaticTransformation;
 import idealgas.transformations.BaseTransformation;
-import idealgas.transformations.IsobaricTransformation;
-import idealgas.transformations.IsothermalTransformation;
-import idealgas.transformations.IsovolumetricTransformation;
+import idealgas.transformations.TransformationFactory;
 import idealgas.transformations.TransformationStrategy;
 import inevaup.preferences.AppSettings;
 import inevaup.resources.AppResources;
@@ -151,20 +148,11 @@ public class SimulationWorkspace extends PApplet{
             resetSimulation();
         }
 
-        switch (transformationType) {
-            case ISOBARIC:
-                transformationStrategy = new IsobaricTransformation(initialData, finalData);
-                break;
-            case ISOVOLUMETRIC:
-                transformationStrategy = new IsovolumetricTransformation(initialData, finalData);
-                break;
-            case ISOTHERMAL:
-                transformationStrategy = new IsothermalTransformation(initialData, finalData);
-                break;
-            case ADIABATIC:
-                transformationStrategy = new AdiabaticTransformation(initialData, finalData);
-                break;
-        }
+        TransformationFactory transformationFactory = 
+            new TransformationFactory(initialData, finalData);
+
+        transformationStrategy = 
+            transformationFactory.createTransformation(transformationType);
         
         if(isMaxParticleReached(initialData.get("n"), transformationStrategy.getPVrange().minVolume)){
             return false;

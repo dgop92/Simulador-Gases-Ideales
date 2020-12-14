@@ -29,6 +29,7 @@ public class Barometer extends SketchFragment {
         this.pressure = pressure;
     }
 
+    @Override
     public void draw() {
         float transformation;
         float[] temp = new float[1] ;

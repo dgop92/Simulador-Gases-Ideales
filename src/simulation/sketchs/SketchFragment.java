@@ -38,4 +38,6 @@ public abstract class SketchFragment {
 
     abstract public void update();
 
+    abstract public void draw();
+
 }

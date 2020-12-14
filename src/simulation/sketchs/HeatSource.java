@@ -31,6 +31,7 @@ public class HeatSource extends SketchFragment {
         draw();
     }
 
+    @Override
     public void draw() {
 
         if (isLosingHeat) {

@@ -25,6 +25,7 @@ public class StatusBar extends SketchFragment {
         draw();
     }
     
+    @Override
     public void draw(){
         DecimalFormat roundFormat = new DecimalFormat("#.##");
         

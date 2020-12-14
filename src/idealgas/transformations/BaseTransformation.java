@@ -32,7 +32,9 @@ public abstract class BaseTransformation {
 
     public static final float MOLAR_MASS = 0.032f; 
 
-    public BaseTransformation(HashMap<String, Float> initialData, HashMap<String, Float> finalData) {
+    public BaseTransformation(HashMap<String, Float> initialData,
+        HashMap<String, Float> finalData) {
+            
         this.pressure0 = initialData.get("pressure");
         this.volume0 = initialData.get("volume");
         this.temperature0 = initialData.get("temperature");
