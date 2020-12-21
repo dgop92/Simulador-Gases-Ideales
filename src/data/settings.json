@@ -1,5 +1,5 @@
 {
-	"collisions":true,
+	"collisions":false,
 	"fps":"0",
 	"language":"strings_es.json",
 	"theme":"default_theme.json",

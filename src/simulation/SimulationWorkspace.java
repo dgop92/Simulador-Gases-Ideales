@@ -7,7 +7,6 @@ import idealgas.TransformationType;
 import idealgas.datarecorder.CSVWritter;
 import idealgas.transformations.BaseTransformation;
 import idealgas.transformations.TransformationFactory;
-import idealgas.transformations.TransformationStrategy;
 import inevaup.preferences.AppSettings;
 import inevaup.resources.AppResources;
 import inevaup.resources.R;
@@ -32,10 +31,10 @@ public class SimulationWorkspace extends PApplet{
     private HeatSource heatSource;
     private Cylinder cylinder;
 
-    private CSVWritter csvWritter;
-    private boolean saveCsvData;
+    /* private CSVWritter csvWritter;
+    private boolean saveCsvData; */
 
-    private TransformationStrategy transformationStrategy;
+    private GasSubject gasSubject;
 
     public boolean isRunning;
     public boolean isPaused;
@@ -58,7 +57,10 @@ public class SimulationWorkspace extends PApplet{
         if (currentFps != 0){
             frameRate(currentFps);
         }
-        saveCsvData = (boolean)AppSettings.getSettings().getSetting("save_data");
+        /* saveCsvData = (boolean)AppSettings.getSettings()
+            .getSetting("save_data"); */
+
+        gasSubject = new GasSubject();
 
         robotoFont = new PFont(
             AppResources.getResources().getFont(R.fonts.roboto_regular, 16), true);
@@ -79,7 +81,14 @@ public class SimulationWorkspace extends PApplet{
         cylinder = new Cylinder(this, 0, 60, 500, 480);
         heatSource = new HeatSource(this, 0, 540, 500, 650);
 
-        csvWritter = new CSVWritter();
+        gasSubject.register(statusBar);
+        gasSubject.register(thermometer);
+        gasSubject.register(barometer);
+        gasSubject.register(pvGraph);
+        gasSubject.register(cylinder);
+        gasSubject.register(heatSource);
+
+        // csvWritter = new CSVWritter();
     }
 
     @Override
@@ -87,22 +96,7 @@ public class SimulationWorkspace extends PApplet{
         background(0);
 
         if (isRunning && !isPaused){
-            transformationStrategy.updateData();
-
-            statusBar.setData(transformationStrategy.getData());
-            statusBar.setGasExpandedCompressed(
-                transformationStrategy.isGasBeingExpanded(), 
-                transformationStrategy.isGasBeingCompressed());
-            
-            cylinder.setPistonHeight(transformationStrategy.getData().get("fake_piston_height"));
-            cylinder.increaseVelocity(transformationStrategy.getData().get("deltaVel"));
-
-            thermometer.setTemperature(transformationStrategy.getData().get("temperature"));
-            barometer.setPressure(transformationStrategy.getData().get("pressure"));
-
-            heatSource.setTemperature(transformationStrategy.getData().get("temperature"));
-            heatSource.setLosingHeat(transformationStrategy.isLosingHeat());
-            heatSource.setAbsorbingHeat(transformationStrategy.isAbsorbingHeat());
+            gasSubject.updateGasData();
 
             statusBar.update();
             thermometer.update();
@@ -112,12 +106,9 @@ public class SimulationWorkspace extends PApplet{
             cylinder.update();
             heatSource.update();
 
-            pvGraph.setPoint(transformationStrategy.getData().get("pressure"),
-                             transformationStrategy.getData().get("volume"));
+            isRunning = !gasSubject.IsTheTransformationFinished();
 
-            isRunning = !transformationStrategy.IsTheTransformationFinished();
-
-            if (saveCsvData){
+            /* if (saveCsvData){
                 if (frameCount % 30 == 0) {
                     csvWritter.putRow(transformationStrategy.getData());
                 }
@@ -125,7 +116,7 @@ public class SimulationWorkspace extends PApplet{
                 if(transformationStrategy.IsTheTransformationFinished()){
                     csvWritter.saveData();
                 }
-            }
+            } */
 
         }else{
             statusBar.draw();
@@ -143,22 +134,24 @@ public class SimulationWorkspace extends PApplet{
         HashMap<String, Float> finalData, TransformationType transformationType){
         
         //Si no es la primera vez reseteamos los componentes
-        if (transformationStrategy != null){
+        if (gasSubject.isSimulationAlreadyStarted()){
             delay(600);
             resetSimulation();
         }
 
-        TransformationFactory transformationFactory = 
-            new TransformationFactory(initialData, finalData);
-
-        transformationStrategy = 
-            transformationFactory.createTransformation(transformationType);
+        gasSubject.setGasTransformation(
+            new TransformationFactory(initialData, finalData), transformationType
+        );
         
-        if(isMaxParticleReached(initialData.get("n"), transformationStrategy.getPVrange().minVolume)){
+        if(isMaxParticleReached(
+            initialData.get("n"), 
+            gasSubject.getGasTransmoration().getPVrange().minVolume
+        )
+        ){
             return false;
         }
         
-        pvGraph.setPVScale(transformationStrategy.getPVrange());
+        pvGraph.setPVScale(gasSubject.getGasTransmoration().getPVrange());
         cylinder.fillCylinder(initialData.get("volume"), 
                               initialData.get("n").intValue(), 
                               BaseTransformation.getInitialFakeVelocity(initialData.get("temperature")));
@@ -184,6 +177,7 @@ public class SimulationWorkspace extends PApplet{
     private void resetSimulation(){
         noLoop();
         //reset csvWritter
+        gasSubject.clearObservers();
         initSketch();
         loop();
     }
