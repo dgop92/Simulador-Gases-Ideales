@@ -8,22 +8,26 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 
-public class CSVWritter {
+public class CSVWriter implements GasDataWriter{
 
     public static final String CSV_DATA_PATH = "smdata/data_csv";
 
     private final StringBuilder csvData;
 
-    public CSVWritter() {
-        createSMDataFolder();
+    public CSVWriter() {
         csvData = new StringBuilder();
     }
 
-    public void putRow(HashMap<String, Float> gasData) {
+    @Override
+    public void insertRecord(HashMap<String, Float> gasData) {
+
+        createSMDataFolder();
 
         String pressure = getFormatedGasFloatData(gasData.get("pressure"));
         String volume = getFormatedGasFloatData(gasData.get("volume"));
-        String temperature = getFormatedGasFloatData(gasData.get("temperature"));
+        String temperature = getFormatedGasFloatData(
+            gasData.get("temperature")
+        );
 
         String internalEnergy = getFormatedGasFloatData(gasData.get("internalEnergy"));
         String heat = getFormatedGasFloatData(gasData.get("heat"));
@@ -37,6 +41,7 @@ public class CSVWritter {
         csvData.append(row);
     }
 
+    @Override
     public boolean saveData(){
         DateTimeFormatter dateFileNameFormatter = DateTimeFormatter.ofPattern("ddMMyyyyHHmmss");
         String fileName = "data" + LocalDateTime.now().format(dateFileNameFormatter) + ".txt";

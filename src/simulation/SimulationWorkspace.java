@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import idealgas.GasDataMap;
 import idealgas.TransformationType;
-import idealgas.datarecorder.CSVWritter;
+import idealgas.datarecorder.CSVWriter;
 import idealgas.transformations.BaseTransformation;
 import idealgas.transformations.TransformationFactory;
 import inevaup.preferences.AppSettings;
@@ -31,9 +31,6 @@ public class SimulationWorkspace extends PApplet{
     private HeatSource heatSource;
     private Cylinder cylinder;
 
-    /* private CSVWritter csvWritter;
-    private boolean saveCsvData; */
-
     private GasSubject gasSubject;
 
     public boolean isRunning;
@@ -57,10 +54,16 @@ public class SimulationWorkspace extends PApplet{
         if (currentFps != 0){
             frameRate(currentFps);
         }
-        /* saveCsvData = (boolean)AppSettings.getSettings()
-            .getSetting("save_data"); */
-
+        boolean saveData = (boolean)AppSettings.getSettings()
+            .getSetting("save_data");
+        
         gasSubject = new GasSubject();
+
+        //some factory and settings to chose the way to save data
+        // #NOTE remember reset data 
+        if (saveData){
+            gasSubject.setGasDataWriter(new CSVWriter());
+        }
 
         robotoFont = new PFont(
             AppResources.getResources().getFont(R.fonts.roboto_regular, 16), true);
@@ -107,16 +110,6 @@ public class SimulationWorkspace extends PApplet{
             heatSource.update();
 
             isRunning = !gasSubject.IsTheTransformationFinished();
-
-            /* if (saveCsvData){
-                if (frameCount % 30 == 0) {
-                    csvWritter.putRow(transformationStrategy.getData());
-                }
-    
-                if(transformationStrategy.IsTheTransformationFinished()){
-                    csvWritter.saveData();
-                }
-            } */
 
         }else{
             statusBar.draw();

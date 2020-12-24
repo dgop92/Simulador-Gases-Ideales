@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import idealgas.TransformationType;
+import idealgas.datarecorder.GasDataWriter;
 import idealgas.transformations.TransformationFactory;
 import idealgas.transformations.TransformationStrategy;
 
@@ -13,9 +14,17 @@ public class GasSubject {
     private GasData gasData;
 
     public TransformationStrategy gasTransmoration;
+    public GasDataWriter gasDataWriter;
+    public boolean saveGasData;
+    public int gasRecordCount = 0;
 
     public GasSubject() {
         gasData = new GasData();
+    }
+
+    public void setGasDataWriter(GasDataWriter gasDataWriter) {
+        this.gasDataWriter = gasDataWriter;
+        saveGasData = true;
     }
 
     public void setGasTransformation(
@@ -26,7 +35,7 @@ public class GasSubject {
             createTransformation(transformationType);
 
     }
-
+    
     public TransformationStrategy getGasTransmoration(){
         return gasTransmoration;
     }
@@ -57,6 +66,17 @@ public class GasSubject {
 
         gasData.setGasData(gasTransmoration.getData());
 
+        if (saveGasData){
+            if (gasRecordCount == 30){
+                gasDataWriter.insertRecord(gasTransmoration.getData());
+            }
+            if (gasTransmoration.IsTheTransformationFinished()){
+                gasDataWriter.saveData();
+            }
+            gasRecordCount = 0;
+        }
+
+        gasRecordCount += 1;
         notifyAllObservers();
     }
 
@@ -64,5 +84,9 @@ public class GasSubject {
         for (GasObserver observer : observers) {
             observer.updateGasData(gasData);
         }
+    }
+
+    public GasDataWriter getGasDataWriter() {
+        return gasDataWriter;
     }
 }
